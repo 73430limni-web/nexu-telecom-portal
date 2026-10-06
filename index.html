@@ -1,0 +1,920 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#071a33"><title>TRON • Portal de Pagos</title><style>
+:root{--bg:#f4f7fb;--card:#fff;--ink:#102033;--muted:#667085;--line:#e4e7ec;--nav:#071a33;--blue:#175cd3;--green:#039855;--red:#d92d20;--orange:#dc6803;--shadow:0 8px 26px #10182812}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,Segoe UI,Arial,sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer;border:0}.top{background:linear-gradient(135deg,#071a33,#123b72);color:#fff;position:sticky;top:0;z-index:20;box-shadow:0 5px 20px #0003}.topin{max-width:1500px;margin:auto;padding:13px 18px;display:flex;align-items:center;justify-content:space-between;gap:15px}.brand{display:flex;gap:11px;align-items:center}.mark{width:42px;height:42px;border-radius:12px;background:#fff;color:#071a33;display:grid;place-items:center;font-weight:900;font-size:20px}.brand h1{font-size:20px;margin:0}.brand small{opacity:.72}.actions{display:flex;gap:7px;flex-wrap:wrap}.btn{padding:10px 13px;border-radius:10px;font-weight:800;background:#fff;color:var(--ink)}.btn.blue{background:#2563eb;color:#fff}.btn.green{background:#12b76a;color:#fff}.btn.dark{background:#ffffff16;color:#fff;border:1px solid #ffffff2a}.btn.red{background:#d92d20;color:#fff}.btn.light{background:#f2f4f7}.wrap{max-width:1500px;margin:auto;padding:20px}.hero{display:flex;align-items:end;justify-content:space-between;gap:15px;margin-bottom:18px}.hero h2{margin:0 0 5px;font-size:28px}.hero p{margin:0;color:var(--muted)}.period{background:#fff;border:1px solid var(--line);padding:10px 13px;border-radius:12px;font-weight:800}.stats{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:18px}.stat{background:#fff;border:1px solid var(--line);border-radius:16px;padding:15px;box-shadow:var(--shadow)}.stat label{display:block;color:var(--muted);font-size:12px}.stat strong{display:block;font-size:25px;margin-top:5px}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.search{flex:1;min-width:250px;border:1px solid var(--line);border-radius:11px;padding:11px 13px;background:#fff}.select{border:1px solid var(--line);border-radius:11px;padding:11px 13px;background:#fff}.card{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}.tableWrap{overflow:auto}.table{width:100%;border-collapse:collapse;min-width:1150px}.table th,.table td{padding:12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}.table th{background:#f8fafc;color:var(--muted);font-size:11px;text-transform:uppercase}.name{font-weight:850}.muted{color:var(--muted);font-size:12px}.money{font-weight:900}.pill{display:inline-block;padding:5px 8px;border-radius:999px;font-size:12px;font-weight:800}.pill.red{background:#fef3f2;color:#b42318}.pill.green{background:#ecfdf3;color:#067647}.pill.orange{background:#fffaeb;color:#b54708}.pill.gray{background:#f2f4f7;color:#475467}.rowBtns{display:flex;gap:6px;flex-wrap:wrap}.mini{padding:7px 9px;border-radius:8px;background:#f2f4f7;font-weight:800;color:#344054}.mini.green{background:#ecfdf3;color:#067647}.mini.blue{background:#eef4ff;color:#175cd3}.mini.red{background:#fef3f2;color:#b42318}.empty{text-align:center;padding:40px;color:var(--muted)}.footer{text-align:center;padding:25px;color:var(--muted);font-size:12px}
+.screen{position:fixed;inset:0;background:#f4f7fb;z-index:40;display:none;overflow:auto}.screen.show{display:block}.screenTop{background:#071a33;color:#fff;padding:15px 20px;position:sticky;top:0;z-index:3}.screenTopIn{max-width:1500px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:10px}.screenTop h2{margin:0}.cobrarGrid{max-width:1500px;margin:auto;padding:18px;display:grid;grid-template-columns:360px 1fr;gap:15px}.clientList,.customerCard,.panel{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow)}.clientList{overflow:hidden}.listHead{padding:13px;border-bottom:1px solid var(--line)}.listHead input{width:100%;padding:10px;border:1px solid var(--line);border-radius:9px}.list{max-height:calc(100vh - 160px);overflow:auto}.listItem{padding:12px 14px;border-bottom:1px solid var(--line);cursor:pointer}.listItem:hover,.listItem.active{background:#eef4ff}.listItem b{display:block}.listItem span{font-size:12px;color:var(--muted)}.listItem .amt{float:right;color:var(--red);font-weight:900}.customerCard{padding:18px}.customerHead{display:flex;justify-content:space-between;gap:15px;align-items:flex-start;border-bottom:1px solid var(--line);padding-bottom:15px;margin-bottom:15px}.customerHead h2{margin:0 0 5px}.bigDebt{font-size:32px;font-weight:950;color:var(--red);white-space:nowrap}.infoGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:15px}.info{background:#f8fafc;border-radius:11px;padding:11px}.info b{display:block;color:var(--muted);font-size:11px;margin-bottom:4px}.monthsTitle{display:flex;justify-content:space-between;align-items:center;margin:15px 0 8px}.monthRows{border:1px solid var(--line);border-radius:12px;overflow:hidden}.monthRow{display:grid;grid-template-columns:1fr 120px 130px 110px;gap:8px;padding:10px 12px;border-bottom:1px solid var(--line);align-items:center}.monthRow:last-child{border-bottom:0}.monthRow.pending{background:#fff7ed}.monthRow.paid{background:#ecfdf3}.monthRow.none{background:#f8fafc;color:#98a2b3}.payBox{margin-top:15px;background:#071a33;color:#fff;border-radius:15px;padding:15px}.payBox h3{margin:0 0 10px}.payLine{display:flex;gap:8px;flex-wrap:wrap}.payLine input,.payLine select{padding:11px;border-radius:9px;border:0;min-width:140px}.payButtons{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px}.payButtons button{padding:9px 11px;border-radius:8px;font-weight:800}.payButtons .quick{background:#fff;color:#071a33}.payButtons .doPay{background:#12b76a;color:#fff}.notice{padding:11px 13px;background:#eef4ff;color:#175cd3;border-radius:10px;font-size:13px;margin-bottom:12px}.dashGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.panel{padding:16px}.panel h3{margin:0 0 10px}.big{font-size:30px;font-weight:950}.tableSmall{width:100%;border-collapse:collapse}.tableSmall th,.tableSmall td{padding:9px;border-bottom:1px solid var(--line);text-align:left}.tableSmall th{font-size:11px;color:var(--muted)}
+.modal{position:fixed;inset:0;background:#10182899;display:none;align-items:center;justify-content:center;padding:15px;z-index:60}.modal.show{display:flex}.modalBox{width:min(900px,100%);max-height:92vh;overflow:auto;background:#fff;border-radius:17px}.modalHead{padding:15px 18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between}.modalBody{padding:18px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:11px}.field{display:flex;flex-direction:column;gap:5px}.field.full{grid-column:1/-1}.field label{font-size:12px;font-weight:800}.field input,.field select,.field textarea{padding:10px;border:1px solid var(--line);border-radius:9px}.field textarea{min-height:90px}.modalFoot{padding:14px 18px;border-top:1px solid var(--line);display:flex;justify-content:flex-end;gap:8px}
+@media(max-width:1100px){.stats{grid-template-columns:repeat(3,1fr)}.dashGrid{grid-template-columns:1fr 1fr}}@media(max-width:900px){.cobrarGrid{grid-template-columns:1fr}.list{max-height:270px}.infoGrid{grid-template-columns:1fr 1fr}.monthRow{grid-template-columns:1fr 100px 110px}}@media(max-width:600px){.wrap{padding:12px}.stats{grid-template-columns:repeat(2,1fr);gap:8px}.stat strong{font-size:21px}.hero{flex-direction:column;align-items:flex-start}.grid,.dashGrid{grid-template-columns:1fr}.infoGrid{grid-template-columns:1fr}.customerHead{flex-direction:column}.bigDebt{font-size:28px}.monthRow{grid-template-columns:1fr 90px}.monthRow button{grid-column:1/3}.topin{align-items:flex-start}.actions{justify-content:flex-end}}
+
+.sectorGrid{display:grid;grid-template-columns:1.2fr .8fr;gap:15px}.sectorTable{width:100%;border-collapse:collapse}.sectorTable th,.sectorTable td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left}.sectorTable th{background:#f8fafc;color:var(--muted);font-size:11px;text-transform:uppercase}.sectorNum{width:90px;padding:8px;border:1px solid var(--line);border-radius:8px;font-weight:800}.sectorZone{font-weight:800}.sectorCerro{background:#fffaeb}.sectorTorre{background:#eef4ff}.sectorUnknown{background:#f8fafc}.sectorCards{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.sectorCard{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px}.sectorCard small{color:var(--muted);display:block}.sectorCard strong{font-size:28px;display:block;margin-top:4px}.sectorWarn{background:#fffaeb;border:1px solid #fedf89;color:#92400e;border-radius:12px;padding:12px;margin-bottom:12px}.sectorGood{background:#ecfdf3;border:1px solid #abefc6;color:#067647;border-radius:12px;padding:12px;margin-bottom:12px}@media(max-width:900px){.sectorGrid{grid-template-columns:1fr}.sectorCards{grid-template-columns:1fr 1fr}}@media(max-width:600px){.sectorCards{grid-template-columns:1fr}}
+.queueGrid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.queueCard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:15px;box-shadow:var(--shadow)}.queueItem{border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:9px}.queueItem:last-child{margin-bottom:0}.queueTop{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.queueTitle{font-weight:900}.queueMeta{font-size:12px;color:var(--muted);line-height:1.5;margin-top:5px}.priorityAlta{color:#b42318;background:#fef3f2}.priorityMedia{color:#b54708;background:#fffaeb}.priorityBaja{color:#067647;background:#ecfdf3}.statusPendiente{color:#b54708;background:#fffaeb}.statusProceso{color:#175cd3;background:#eef4ff}.statusResuelto{color:#067647;background:#ecfdf3}@media(max-width:900px){.queueGrid{grid-template-columns:1fr}}.authOverlay{position:fixed;inset:0;background:linear-gradient(135deg,#061427,#123b72);z-index:100;display:flex;align-items:center;justify-content:center;padding:18px}.authCard{width:min(440px,100%);background:#fff;border-radius:22px;padding:28px;box-shadow:0 20px 60px #0005}.authLogo{width:58px;height:58px;border-radius:16px;background:#071a33;color:#fff;display:grid;place-items:center;font-size:28px;font-weight:950;margin-bottom:15px}.authCard h2{margin:0 0 6px}.authCard p{color:var(--muted);margin:0 0 18px}.authField{display:flex;flex-direction:column;gap:6px;margin:10px 0}.authField label{font-size:12px;font-weight:800}.authField input{padding:12px;border:1px solid var(--line);border-radius:10px}.authError{background:#fef3f2;color:#b42318;border-radius:10px;padding:10px;margin:10px 0;display:none}.userBadge{display:inline-flex;align-items:center;gap:7px;background:#ffffff16;border:1px solid #ffffff2a;color:#fff;border-radius:999px;padding:7px 10px;font-size:12px;font-weight:800}.adminOnly.hidden{display:none!important}.userTable{width:100%;border-collapse:collapse}.userTable th,.userTable td{padding:10px;border-bottom:1px solid var(--line);text-align:left}.userTable th{font-size:11px;color:var(--muted);text-transform:uppercase}.permBox{background:#f8fafc;border:1px solid var(--line);padding:12px;border-radius:12px;margin-top:12px}.logoutBtn{background:#fff;color:#071a33!important}
+/* ===== AJUSTE RESPONSIVE MOVIL 2026-10-05 =====
+   Solo modifica presentación. No toca clientes, pagos, Supabase, localStorage ni lógica de cobro. */
+@media (max-width: 700px){
+  html,body{width:100%;max-width:100%;overflow-x:hidden}
+  body{font-size:14px}
+  .top{position:sticky;top:0}
+  .topin{width:100%;padding:10px 12px;display:flex;flex-direction:column;align-items:stretch;gap:10px}
+  .brand{width:100%;gap:9px}
+  .mark{width:40px;height:40px;flex:0 0 40px}
+  .brand h1{font-size:17px;line-height:1.1}
+  .brand small{font-size:12px}
+  .actions{width:100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;align-items:stretch}
+  .actions .btn,.actions .userBadge{width:100%;min-width:0;margin:0;min-height:46px;padding:9px 8px;border-radius:11px;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.15}
+  .actions .userBadge{font-size:12px;white-space:normal}
+  .actions .logoutBtn{min-height:42px}
+  .wrap{padding:10px}
+  .hero{margin-bottom:12px;gap:8px}
+  .hero h2{font-size:23px}
+  .hero p{font-size:12px}
+  .period{padding:8px 10px;font-size:12px;width:100%}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:12px}
+  .stat{padding:11px;border-radius:13px;min-width:0}
+  .stat label{font-size:11px}
+  .stat strong{font-size:20px;overflow-wrap:anywhere}
+  .toolbar{gap:7px}
+  .toolbar .search{min-width:0;width:100%;flex-basis:100%}
+  .toolbar .select,.toolbar .btn{flex:1 1 calc(50% - 4px);min-width:0}
+  .card{border-radius:13px}
+  .tableWrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .table{min-width:820px}
+
+  /* Pantallas internas */
+  .screenTop{padding:11px 12px}
+  .screenTopIn{width:100%;align-items:center}
+  .screenTop h2{font-size:18px}
+  .screenTop small{font-size:11px}
+  .screenTop .btn{padding:8px 10px;white-space:nowrap}
+  .cobrarGrid{padding:10px;grid-template-columns:1fr;gap:10px}
+  .clientList,.customerCard,.panel{border-radius:13px}
+  .list{max-height:220px}
+  .listItem{padding:10px 12px}
+  .customerCard{padding:12px}
+  .customerHead{gap:8px;padding-bottom:11px;margin-bottom:11px}
+  .customerHead h2{font-size:20px}
+  .bigDebt{font-size:27px}
+  .infoGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+  .info{padding:9px;font-size:13px;overflow-wrap:anywhere}
+  .monthRows{border-radius:10px}
+  .monthRow{grid-template-columns:minmax(0,1fr) 78px 92px;gap:5px;padding:9px}
+  .monthRow>div:nth-child(4){grid-column:1/-1}
+  .monthRow button{width:100%}
+  .payBox{padding:12px;border-radius:12px}
+  .payLine{display:grid;grid-template-columns:1fr 1fr}
+  .payLine input,.payLine select{width:100%;min-width:0}
+  .payButtons{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+  .payButtons button{width:100%;min-height:42px}
+  .tableSmall{min-width:650px}
+  .panel{padding:12px}
+  .dashGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .dashGrid .panel{min-width:0}
+  .big{font-size:24px;overflow-wrap:anywhere}
+
+  /* Modales */
+  .modal{padding:8px}
+  .modalBox{width:100%;max-height:94vh;border-radius:14px}
+  .modalHead{padding:12px 14px}
+  .modalBody{padding:12px}
+  .grid{grid-template-columns:1fr;gap:9px}
+  .field.full{grid-column:auto}
+  .modalFoot{padding:10px 12px;position:sticky;bottom:0;background:#fff}
+  .modalFoot .btn{flex:1;min-width:0}
+
+  /* Formularios y pantallas auxiliares */
+  .sectorGrid,.queueGrid{grid-template-columns:1fr}
+  .sectorCards{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .sectorNum{width:75px}
+}
+@media (max-width:390px){
+  .actions{gap:6px}
+  .actions .btn,.actions .userBadge{font-size:13px;min-height:43px;padding:8px 6px}
+  .brand h1{font-size:16px}
+  .stats{gap:6px}
+  .stat{padding:9px}
+  .stat strong{font-size:18px}
+  .infoGrid,.dashGrid{grid-template-columns:1fr 1fr}
+  .payLine{grid-template-columns:1fr}
+  .payButtons{grid-template-columns:1fr}
+}
+/* ===== FIN AJUSTE RESPONSIVE MOVIL ===== */
+</style><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script></head><body>
+<div class="authOverlay" id="setupOverlay" style="display:none"><div class="authCard"><div class="authLogo">N</div><h2>Crear administrador</h2><p>Primer acceso: crea tu propio usuario y contraseña. No existe una cuenta administrativa predeterminada.</p><div class="authField"><label>Tu nombre</label><input id="setupName" autocomplete="name"></div><div class="authField"><label>Usuario</label><input id="setupUser" autocomplete="username"></div><div class="authField"><label>Contraseña</label><input id="setupPass" type="password" autocomplete="new-password"></div><div class="authField"><label>Confirmar contraseña</label><input id="setupPass2" type="password" autocomplete="new-password"></div><div class="authError" id="setupError"></div><button class="btn blue" style="width:100%;margin-top:8px" onclick="createFirstAdmin()">Crear administrador</button></div></div><div class="authOverlay" id="authOverlay"><div class="authCard"><div class="authLogo">T</div><h2>Acceso NEXU</h2><p>Inicia sesión para administrar la cobranza.</p><div class="authField"><label>Usuario</label><input id="loginUser" autocomplete="username"></div><div class="authField"><label>Contraseña</label><input id="loginPass" type="password" autocomplete="current-password" onkeydown="if(event.key==='Enter')login()"></div><div class="authError" id="loginError"></div><button class="btn blue" style="width:100%;margin-top:8px" onclick="login()">Entrar</button></div></div></div>
+<header class="top"><div class="topin"><div class="brand"><div class="mark">T</div><div><h1>Telecomunicaciones</h1><small>Ilimitadas TRON</small></div></div><div class="actions"><button class="btn green" onclick="openCobrar()">💰 Cobrar</button><button class="btn dark" onclick="openInstalaciones()">🔧 Instalaciones <span id="instCountTop"></span></button><button class="btn dark" onclick="openReportes()">🛠 Reportes <span id="repCountTop"></span></button><button id="btnCaja" class="btn blue adminOnly" onclick="openCaja()">🧾 Corte de caja</button><button id="btnTransfers" class="btn adminOnly" onclick="openTransfers()">🏦 Transferencias</button><button id="btnSectores" class="btn adminOnly" onclick="openSectores()">📡 Sectoriales</button><button id="btnSolicitudes" class="btn adminOnly" onclick="openPlanRequests()">🔔 Solicitudes <span id="planReqCount"></span></button><button class="btn dark" onclick="openBulk()">📲 WhatsApp</button><button id="btnNew" class="btn blue adminOnly" onclick="openClient()">＋ Nuevo cliente</button><span id="userBadge" class="userBadge">—</span><button class="btn logoutBtn" onclick="logout()">Salir</button></div></div></header>
+<main class="wrap"><section class="hero"><div><h2>Cobranza</h2><p>Control de pagos, adeudos, caja y transferencias.</p></div><div class="period" id="periodLabel"></div></section>
+<section class="stats"><div class="stat"><label>Clientes</label><strong id="sClients">0</strong></div><div class="stat"><label>Con adeudo</label><strong id="sPending">0</strong></div><div class="stat"><label>Deuda total</label><strong id="sDebt">$0</strong></div><div class="stat"><label>Cobrado hoy</label><strong id="sToday">$0</strong></div><div class="stat"><label>Transferencias hoy</label><strong id="sTransfers">$0</strong></div><div class="stat"><label>Cobrado histórico</label><strong id="sCollected">$0</strong></div></section>
+<div class="toolbar"><input id="search" class="search" placeholder="🔎 Buscar por nombre o WhatsApp..." oninput="render()"><select id="filter" class="select" onchange="render()"><option value="active" selected>Activos</option><option value="all">Todos</option><option value="debt">Con adeudo</option><option value="paid">Sin adeudo</option><option value="inactive">Inactivos</option></select><button class="btn light adminOnly" onclick="openCaja()">🧾 Caja</button><button class="btn light adminOnly" onclick="openTransfers()">🏦 Transferencias</button><button class="btn light adminOnly" onclick="openImport()">⬆ Importar CSV</button><button class="btn light adminOnly" onclick="exportCSV()">⬇ Exportar CSV</button><button class="btn light adminOnly" onclick="backup()">💾 Respaldo</button><button class="btn light adminOnly" onclick="restore()">↩ Restaurar</button><button class="btn light adminOnly" onclick="openUsers()">👤 Usuarios</button></div>
+<div class="card"><div class="tableWrap"><table class="table"><thead><tr><th>Cliente</th><th>Plan</th><th>Sectorial</th><th>Meses pendientes</th><th>Adeudo total</th><th>WhatsApp</th><th>Acciones</th></tr></thead><tbody id="tbody"></tbody></table></div></div><div class="footer">NEXU • Cobranza, instalaciones y soporte. Los datos se guardan en este dispositivo. Usa Respaldo periódicamente.</div></main>
+
+<section class="screen" id="cobrarScreen"><div class="screenTop"><div class="screenTopIn"><div><h2>💰 Cobrar</h2><small>Revisa exactamente qué debe cada cliente y registra el pago.</small></div><button class="btn" onclick="closeScreen('cobrarScreen')">✕ Cerrar</button></div></div><div class="cobrarGrid"><div class="clientList"><div class="listHead"><input id="cobrarSearch" placeholder="Buscar cliente..." oninput="renderCobrarList()"></div><div id="cobrarList" class="list"></div></div><div id="customerPanel" class="customerCard"><div class="empty">Selecciona un cliente.</div></div></div></section>
+<section class="screen" id="cajaScreen"><div class="screenTop"><div class="screenTopIn"><div><h2>🧾 Corte de caja</h2><small>Control diario y acumulado de lo cobrado.</small></div><button class="btn" onclick="closeScreen('cajaScreen')">✕ Cerrar</button></div></div><div class="wrap"><div class="toolbar"><input id="cajaDate" class="select" type="date" onchange="renderCaja()"><button class="btn green" onclick="closeCajaDay()">🔒 Cerrar corte del día</button><button class="btn light" onclick="printCaja()">🖨 Imprimir</button><button class="btn light" onclick="exportPayments()">⬇ Exportar movimientos</button></div><div id="cajaBody"></div></div></section>
+<section class="screen" id="transferScreen"><div class="screenTop"><div class="screenTopIn"><div><h2>🏦 Transferencias</h2><small>Clientes que pagaron por transferencia y cuánto pagaron.</small></div><button class="btn" onclick="closeScreen('transferScreen')">✕ Cerrar</button></div></div><div class="wrap"><div id="transferBody"></div></div></section>
+<section class="screen" id="sectoresScreen"><div class="screenTop"><div class="screenTopIn"><div><h2>📡 Sectoriales y antenas</h2><small>Control de clientes por sectorial, ubicación y espacio disponible.</small></div><button class="btn" onclick="closeScreen('sectoresScreen')">✕ Cerrar</button></div></div><div class="wrap"><div id="sectoresBody"></div></div></section>
+
+<section class="screen" id="instalacionesScreen"><div class="screenTop"><div class="screenTopIn"><div><h2>🔧 Instalaciones pendientes</h2><small>Nuevos clientes capturados por cobranza antes de realizar la instalación.</small></div><button class="btn" onclick="closeScreen('instalacionesScreen')">✕ Cerrar</button></div></div><div class="wrap"><div class="toolbar"><button class="btn blue" onclick="openInstalacionModal()">＋ Nueva instalación</button><input id="instSearch" class="search" placeholder="🔎 Buscar por nombre o WhatsApp..." oninput="renderInstalaciones()"></div><div id="instalacionesBody"></div></div></section>
+<section class="screen" id="reportesScreen"><div class="screenTop"><div class="screenTopIn"><div><h2>🛠 Reportes de clientes</h2><small>Registra fallas, visitas y seguimiento de soporte.</small></div><button class="btn" onclick="closeScreen('reportesScreen')">✕ Cerrar</button></div></div><div class="wrap"><div class="toolbar"><button class="btn blue" onclick="openReporteModal()">＋ Nuevo reporte</button><select id="repFilter" class="select" onchange="renderReportes()"><option value="all">Todos</option><option value="pendiente">Pendientes</option><option value="proceso">En proceso</option><option value="resuelto">Resueltos</option></select><input id="repSearch" class="search" placeholder="🔎 Buscar cliente o reporte..." oninput="renderReportes()"></div><div id="reportesBody"></div></div></section>
+<section class="screen" id="planRequestsScreen"><div class="screenTop"><div class="screenTopIn"><div><h2>🔔 Solicitudes de cambio de plan</h2><small>Solicitudes enviadas desde la página pública.</small></div><button class="btn" onclick="closeScreen('planRequestsScreen')">✕ Cerrar</button></div></div><div class="wrap"><div id="planRequestsBody"></div></div></section><section class="screen" id="usersScreen"><div class="screenTop"><div class="screenTopIn"><div><h2>👤 Usuarios y permisos</h2><small>El administrador controla clientes, pagos, respaldos y configuración.</small></div><button class="btn" onclick="closeScreen('usersScreen')">✕ Cerrar</button></div></div><div class="wrap"><div class="panel"><div class="toolbar"><button class="btn blue" onclick="openUserModal()">＋ Crear usuario</button></div><div id="usersBody"></div></div></div></section>
+<div class="modal" id="userModal"><div class="modalBox" style="max-width:600px"><div class="modalHead"><h3 id="userModalTitle">Crear empleado</h3><button class="mini" onclick="closeModal('userModal')">✕</button></div><div class="modalBody"><div class="grid"><div class="field full"><label>Nombre</label><input id="uName" placeholder="Nombre del empleado"></div><div class="field full"><label>Correo electrónico</label><input id="uUser" type="email" autocomplete="username" placeholder="empleado@correo.com"></div><div class="field"><label>Contraseña</label><input id="uPass" type="password" autocomplete="new-password" placeholder="Mínimo 8 caracteres"></div><div class="field full"><label>Rol</label><select id="uRole"><option value="employee">Empleado — solo cobranza</option><option value="admin">Administrador</option></select></div></div><div class="permBox"><b>Empleado</b><div class="muted">Puede buscar clientes, ver su información, abrir WhatsApp y registrar cobros/abonos. No puede agregar clientes, editar información, borrar/modificar pagos anteriores, ver cortes, transferencias, sectoriales, respaldos ni usuarios.</div></div></div><div class="modalFoot"><button class="btn light" onclick="closeModal('userModal')">Cancelar</button><button class="btn blue" onclick="saveUser()">Guardar usuario</button></div></div></div>
+<div class="modal" id="instalacionModal"><div class="modalBox"><div class="modalHead"><h3>Nueva instalación pendiente</h3><button class="mini" onclick="closeModal('instalacionModal')">✕</button></div><div class="modalBody"><div class="grid"><div class="field full"><label>Nombre completo *</label><input id="iName"></div><div class="field"><label>WhatsApp</label><input id="iPhone" inputmode="tel"></div><div class="field"><label>Plan</label><select id="iPlan"><option value="10/2">10/2 — $350</option><option value="20/5">20/5 — $500</option><option value="Personalizado">Personalizado</option></select></div><div class="field"><label>Cuota mensual</label><input id="iPrice" type="number" value="350"></div><div class="field"><label>Fecha solicitada</label><input id="iDate" type="date"></div><div class="field"><label>Antena prevista</label><input id="iAntenna" placeholder="LiteBeam M5, NanoStation AC..."></div><div class="field full"><label>Dirección</label><input id="iAddress"></div><div class="field full"><label>Notas / referencias</label><textarea id="iNotes"></textarea></div></div></div><div class="modalFoot"><button class="btn light" onclick="closeModal('instalacionModal')">Cancelar</button><button class="btn blue" onclick="saveInstalacion()">Guardar instalación</button></div></div></div>
+<div class="modal" id="reporteModal"><div class="modalBox"><div class="modalHead"><h3 id="reporteTitle">Nuevo reporte</h3><button class="mini" onclick="closeModal('reporteModal')">✕</button></div><div class="modalBody"><div class="grid"><div class="field full"><label>Cliente existente (opcional)</label><select id="rClient"><option value="">— Cliente no seleccionado —</option></select></div><div class="field"><label>Nombre completo del cliente *</label><input id="rName"></div><div class="field"><label>WhatsApp</label><input id="rPhone" inputmode="tel"></div><div class="field full"><label>Dirección *</label><input id="rAddress" placeholder="Calle, colonia, localidad y referencias"></div><div class="field"><label>Trabajo requerido</label><select id="rTask"><option value="Alinear antena">Alinear antena</option><option value="Cambiar antena">Cambiar antena</option><option value="Subir altura">Subir altura</option><option value="Revisar antena">Revisar antena</option><option value="Otro trabajo">Otro trabajo</option></select></div><div class="field"><label>Prioridad</label><select id="rPriority"><option value="media">Media</option><option value="alta">Alta</option><option value="baja">Baja</option></select></div><div class="field"><label>Estado</label><select id="rStatus"><option value="pendiente">Pendiente</option><option value="proceso">En proceso</option><option value="resuelto">Resuelto</option></select></div><div class="field full"><label>Descripción del trabajo *</label><input id="rIssue" placeholder="Ej. Reorientar antena hacia el sectorial"></div><div class="field full"><label>Descripción / seguimiento</label><textarea id="rNotes"></textarea></div></div></div><div class="modalFoot"><button class="btn light" onclick="closeModal('reporteModal')">Cancelar</button><button class="btn blue" onclick="saveReporte()">Guardar reporte</button></div></div></div>
+<div class="modal" id="clientModal"><div class="modalBox"><div class="modalHead"><h3 id="clientTitle">Nuevo cliente</h3><button class="mini" onclick="closeModal('clientModal')">✕</button></div><div class="modalBody"><div class="grid"><div class="field full"><label>Nombre completo *</label><input id="fName"></div><div class="field"><label>WhatsApp</label><input id="fPhone" inputmode="tel" placeholder="7351234567"></div><div class="field"><label>Correo electrónico *</label><input id="fEmail" type="email" autocomplete="email" placeholder="cliente@correo.com"></div><div class="field"><label>Plan</label><select id="fPlan"><option value="350">10/2 — $350</option><option value="500">20/5 — $500</option><option value="0">Personalizado</option></select></div><div class="field"><label>Cuota mensual</label><input id="fPrice" type="number" value="350"></div><div class="field"><label>Estado</label><select id="fActive"><option value="1">Activo</option><option value="0">Inactivo</option></select></div><div class="field"><label>Fecha instalación</label><input id="fInstall" type="date"></div><div class="field"><label>Antena</label><input id="fAntenna" placeholder="LiteBeam M5, NanoStation AC..."></div><div class="field"><label>Sectorial</label><select id="fSectorial"><option value="">— Sin sectorial asignada —</option></select></div><div class="field full"><label>Dirección</label><input id="fAddress"></div><div class="field full"><label>Notas</label><textarea id="fNotes"></textarea></div></div></div><div class="modalFoot"><button id="deleteClientBtn" class="btn red" style="display:none" onclick="deleteClient()">🗑 Cancelar servicio</button><button id="hardDeleteClientBtn" class="btn red" style="display:none" onclick="hardDeleteClient()">🗑 Eliminar definitivamente</button><button class="btn light" onclick="closeModal('clientModal')">Cancelar</button><button class="btn blue" onclick="saveClient()">Guardar cliente</button></div></div></div>
+<div class="modal" id="importModal"><div class="modalBox"><div class="modalHead"><h3>Importar clientes</h3><button class="mini" onclick="closeModal('importModal')">✕</button></div><div class="modalBody"><div class="notice">CSV: Nombre, WhatsApp, Plan, Cuota, Activo, Dirección, Instalación, Antena</div><input type="file" accept=".csv" onchange="importCSV(event)"></div></div></div>
+<div class="modal" id="bulkModal"><div class="modalBox"><div class="modalHead"><h3>📲 Cobranza WhatsApp</h3><button class="mini" onclick="closeModal('bulkModal')">✕</button></div><div class="modalBody" id="bulkBody"></div></div></div>
+<script>
+const MONTHS=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+const KEY='nexu_v6_2026'; let clients=[],editId=null,selectedCobrarId=null;
+const USER_KEY='nexu_usuarios_v2'; const INST_KEY='nexu_instalaciones_v1'; const REP_KEY='nexu_reportes_v1'; let currentUser=null,editingUserId=null,editingInstId=null,editingRepId=null;
+function users(){try{let x=JSON.parse(localStorage.getItem(USER_KEY)||'null');if(Array.isArray(x))return x}catch(e){}return []}
+function ensureAccess(){let arr=users();if(!arr.length){setupOverlay.style.display='flex';authOverlay.style.display='none'}else{setupOverlay.style.display='none';authOverlay.style.display='flex'}}
+function createFirstAdmin(){let name=setupName.value.trim(),username=setupUser.value.trim(),pass=setupPass.value,pass2=setupPass2.value;if(!name||!username||!pass){setupError.textContent='Completa todos los campos.';setupError.style.display='block';return}if(pass.length<6){setupError.textContent='La contraseña debe tener al menos 6 caracteres.';setupError.style.display='block';return}if(pass!==pass2){setupError.textContent='Las contraseñas no coinciden.';setupError.style.display='block';return}saveUsers([{id:uid(),name,username,password:pass,role:'admin',active:true}]);setupOverlay.style.display='none';authOverlay.style.display='flex';loginUser.value=username;loginPass.value='';loginError.textContent='Administrador creado. Ahora inicia sesión.';loginError.style.display='block'}
+function saveUsers(x){localStorage.setItem(USER_KEY,JSON.stringify(x))}
+function isAdmin(){return currentUser?.role==='admin'}
+function requireAdmin(){if(!isAdmin()){alert('Esta función es exclusiva del administrador.');return false}return true}
+function login(){let u=(loginUser.value||'').trim(),p=loginPass.value||'',x=users().find(a=>a.active&&a.username.toLowerCase()===u.toLowerCase()&&a.password===p);if(!x){loginError.textContent='Usuario o contraseña incorrectos.';loginError.style.display='block';return}currentUser=x;loginError.style.display='none';authOverlay.style.display='none';updatePermissions();load();render();updateQueueBadges()}
+function logout(){currentUser=null;authOverlay.style.display='flex';loginUser.value='';loginPass.value='';updatePermissions()}
+function updatePermissions(){document.querySelectorAll('.adminOnly').forEach(el=>el.classList.toggle('hidden',!isAdmin()));if(userBadge)userBadge.textContent=currentUser?`👤 ${currentUser.name} · ${isAdmin()?'Administrador':'Cobrador'}`:'—'}
+async function cloudUsers(){
+  if(!requireAdmin())return [];
+  const {data,error}=await supabaseClient.rpc('nexu_list_profiles');
+  if(error)throw error;
+  return (data||[]).map(u=>({id:u.id,name:u.nombre||u.name||u.username||'Usuario',username:u.username||'',role:u.rol||u.role||'employee',active:u.activo!==false}));
+}
+async function openUsers(){if(!requireAdmin())return;try{await renderUsers();showScreen('usersScreen')}catch(e){alert('No se pudieron cargar los usuarios: '+cloudError(e));}}
+async function renderUsers(){
+  if(!requireAdmin())return;
+  try{
+    const arr=await cloudUsers();
+    window.__cloudUsers=arr;
+    usersBody.innerHTML='<table class="userTable"><tr><th>Nombre</th><th>Correo</th><th>Rol</th><th>Estado</th><th>Acciones</th></tr>'+arr.map(u=>{
+      const actions=u.id===currentUser?.id
+        ? `<button class="mini blue" onclick="editUser('${u.id}')">Editar</button>`
+        : `<button class="mini blue" onclick="editUser('${u.id}')">Editar</button><button class="mini" onclick="toggleUser('${u.id}')">${u.active?'Desactivar':'Activar'}</button>`;
+      return '<tr><td><b>'+esc(u.name)+'</b></td><td>'+esc(u.username)+'</td><td>'+(u.role==='admin'?'Administrador':'Empleado')+'</td><td>'+(u.active?'<span class="pill green">Activo</span>':'<span class="pill gray">Inactivo</span>')+'</td><td><div class="rowBtns">'+actions+'</div></td></tr>';
+    }).join('')+'</table>';
+  }catch(e){usersBody.innerHTML='<div class="notice">No se pudieron cargar los usuarios: '+esc(cloudError(e))+'</div>';throw e;}
+}
+async function openUserModal(id){
+  if(!requireAdmin())return;
+  editingUserId=id||null;
+  let u=null;
+  if(id){
+    u=(window.__cloudUsers||[]).find(x=>x.id===id);
+    if(!u){try{const arr=await cloudUsers();u=arr.find(x=>x.id===id)}catch(e){return alert('No se pudo cargar el usuario: '+cloudError(e));}}
+  }
+  userModalTitle.textContent=id?'Editar usuario':'Crear usuario';
+  uName.value=u?.name||'';uUser.value=u?.username||'';uPass.value='';uRole.value=u?.role||'employee';uRole.disabled=id===currentUser?.id;
+  showModal('userModal');
+}
+function editUser(id){openUserModal(id)}
+async function saveUser(){
+  if(!requireAdmin())return;
+  const name=uName.value.trim(),email=uUser.value.trim().toLowerCase(),pass=uPass.value,role=uRole.value;
+  if(!name||!email)return alert('Completa nombre y correo electrónico.');
+  if(!/^\S+@\S+\.\S+$/.test(email))return alert('Escribe un correo electrónico válido. Ejemplo: empleado@gmail.com');
+  if(!editingUserId && pass.length<8)return alert('La contraseña debe tener al menos 8 caracteres.');
+  if(!editingUserId){
+    if(!confirm('Se creará una cuenta real de Supabase para '+email+'. ¿Continuar?'))return;
+    try{
+      const {data:{session:adminSession}}=await supabaseClient.auth.getSession();
+      const {data,error}=await supabaseClient.auth.signUp({email,password:pass,options:{data:{name,role}}});
+      if(error)throw error;
+      if(!data?.user)throw new Error('Supabase no devolvió el usuario creado.');
+      if(adminSession){
+        const {error:restoreError}=await supabaseClient.auth.setSession({access_token:adminSession.access_token,refresh_token:adminSession.refresh_token});
+        if(restoreError)throw restoreError;
+      }
+      const {error:profileError}=await supabaseClient.rpc('nexu_upsert_profile',{p_user_id:data.user.id,p_name:name,p_username:email,p_role:role,p_active:true});
+      if(profileError)throw profileError;
+      closeModal('userModal');await renderUsers();alert('Usuario creado correctamente. Ya puede iniciar sesión con ese correo y contraseña.');
+    }catch(e){
+      try{const {data:{session}}=await supabaseClient.auth.getSession();if(session&&session.user?.id!==currentUser?.id&&currentUser?.id){/* best effort: current session is restored above when possible */}}catch(_){ }
+      alert('No se pudo crear el usuario: '+cloudError(e));
+    }
+    return;
+  }
+  try{
+    const {error}=await supabaseClient.rpc('nexu_upsert_profile',{p_user_id:editingUserId,p_name:name,p_username:email,p_role:editingUserId===currentUser?.id?'admin':role,p_active:true});
+    if(error)throw error;
+    closeModal('userModal');await renderUsers();alert('Usuario actualizado.');
+  }catch(e){alert('No se pudo actualizar el usuario: '+cloudError(e));}
+}
+async function toggleUser(id){
+  if(!requireAdmin()||id===currentUser?.id)return;
+  const u=(window.__cloudUsers||[]).find(x=>x.id===id);if(!u)return;
+  try{
+    const {error}=await supabaseClient.rpc('nexu_set_profile_active',{p_user_id:id,p_active:!u.active});
+    if(error)throw error;
+    await renderUsers();
+  }catch(e){alert('No se pudo cambiar el estado: '+cloudError(e));}
+}
+function deleteUser(id){alert('Para evitar borrar una cuenta de acceso accidentalmente, esta versión no elimina usuarios. Puedes desactivarlos desde Usuarios.');}
+
+const money=n=>new Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN',maximumFractionDigits:0}).format(Math.round(n||0));
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const uid=()=>crypto.randomUUID?crypto.randomUUID():Date.now()+Math.random();
+const NEXU_TIMEZONE='America/Mexico_City';
+
+const localDateKey=d=>{
+  try{
+    const parts=new Intl.DateTimeFormat('en-CA',{timeZone:NEXU_TIMEZONE,year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(d);
+    const y=parts.find(x=>x.type==='year')?.value;
+    const m=parts.find(x=>x.type==='month')?.value;
+    const day=parts.find(x=>x.type==='day')?.value;
+    return `${y}-${m}-${day}`;
+  }catch(e){
+    return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+  }
+};
+
+const now=()=>{
+  const d=new Date();
+  try{
+    const parts=new Intl.DateTimeFormat('en-CA',{timeZone:NEXU_TIMEZONE,year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(d);
+    const y=Number(parts.find(x=>x.type==='year')?.value);
+    const m=Number(parts.find(x=>x.type==='month')?.value)-1;
+    const day=parts.find(x=>x.type==='day')?.value;
+    return{y,m,day:`${y}-${String(m+1).padStart(2,'0')}-${day}`};
+  }catch(e){
+    return{y:d.getFullYear(),m:d.getMonth(),day:localDateKey(d)};
+  }
+};
+const key=(y,m)=>y+'-'+String(m+1).padStart(2,'0');
+function migrate(c){c.months=c.months||{};c.payments=c.payments||[];c.price=Number(c.price)||350;c.plan=c.plan||'10/2';c.phone=(c.phone||'').replace(/\D/g,'').slice(-10);c.address=c.address||'';c.installDate=c.installDate||'';c.antenna=c.antenna||'';c.notes=c.notes||'';c.active=c.active!==false;c.sectorialId=c.sectorialId||c.sectorial_id||null;return c}
+function buildSeed(){return window.SEED_NAMES.map(name=>migrate({id:uid(),name,phone:'',plan:'10/2',price:350,active:true,months:{},payments:[]}))}
+function setMonth(c,m,paid=0,charged=true){let p=now();c.months[key(p.y,m)]={charged,paid:Number(paid)||0}}
+function applySheetSnapshot(){let p=now();clients.forEach(c=>{c.months={};c.payments=[];if(c.active)setMonth(c,p.m,0,true)});
+ // Octubre marcado como pagado en las hojas visibles.
+ ['Juan Antonio Vargas','Artemia Gutierrez','Xochil Rubi Carmona','Karen Rosas Franco','Alfonzo Ayala Sanchez','Eder Lopez Ramos'].forEach(n=>{let c=findName(n);if(c)setMonth(c,p.m,c.price,true)});
+ // Casos claramente visibles con meses anteriores pendientes en las hojas: Itzel Rubi Bobadilla y Francisco Javier.
+ ['Itzel Rubi Bobadilla','Francisco Javier'].forEach(n=>{let c=findName(n);if(c){for(let m=4;m<=p.m;m++)setMonth(c,m,0,true)}});
+ // Registros cancelados/no activos visibles.
+ ['Fernando Pineda','Dulce Morales Nestor','Celia Pineda Najera','Tzayuna Sanchez','Armando Junior Escobar'].forEach(n=>{let c=findName(n);if(c)c.active=false});
+ save();
+}
+function findName(n){return clients.find(c=>c.name.toLowerCase().replace(/[^a-z0-9ñáéíóúü ]/gi,'').trim()===n.toLowerCase().replace(/[^a-z0-9ñáéíóúü ]/gi,'').trim())||clients.find(c=>c.name.toLowerCase().includes(n.toLowerCase().split(' ')[0]+' '+n.toLowerCase().split(' ')[1]))}
+function load(){let raw=localStorage.getItem(KEY);if(raw){try{clients=JSON.parse(raw).map(migrate);return}catch(e){}}clients=buildSeed();applySheetSnapshot()}
+function save(){localStorage.setItem(KEY,JSON.stringify(clients))}
+function md(c,m){let p=now();return c.months?.[key(p.y,m)]||{charged:false,paid:0}}
+function debt(c){let p=now(),t=0;for(let m=0;m<=p.m;m++){let x=md(c,m);if(x.charged)t+=Math.max(0,c.price-(x.paid||0))}return t}
+function pending(c){let p=now(),a=[];for(let m=0;m<=p.m;m++){let x=md(c,m),r=Math.max(0,c.price-(x.paid||0));if(x.charged&&r>0)a.push({m,rem:r})}return a}
+function activeCloudPayments(){
+  return (window.__cloudPayments||[]).filter(p=>p && !p.voided && p.status!=='voided');
+}
+function paymentsAll(){
+  const cloud=activeCloudPayments();
+  if(cloud.length){
+    return cloud.map(p=>{
+      const c=clients.find(x=>x.id===p.client_id);
+      const allocations=Array.isArray(p.payment_months)?p.payment_months:[];
+      const periods=allocations.map(pm=>(pm.client_months?.period||'').slice(0,7)).filter(Boolean);
+      return {
+        id:p.id,
+        date:p.created_at,
+        amount:Number(p.amount||0),
+        method:p.method||'Efectivo',
+        period:periods.join(', ')||((p.created_at||'').slice(0,7)),
+        client:c?.name||'Cliente',
+        clientId:p.client_id||null,
+        registeredBy:paymentEmployeeName(p.employee_id||p.user_id||'')
+      };
+    }).sort((a,b)=>new Date(b.date)-new Date(a.date));
+  }
+  return clients.flatMap(c=>(c.payments||[]).map(p=>({...p,client:c.name,clientId:c.id}))).sort((a,b)=>new Date(b.date)-new Date(a.date));
+}
+function sameDay(iso,day){
+  if(!iso)return false;
+  const d=new Date(iso);
+  return !Number.isNaN(d.getTime())&&localDateKey(d)===day;
+}
+function paymentMethodKind(value){
+  const m=String(value??'').trim().normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+  if(['transfer','transferencia','transferencias','bank transfer','bank_transfer'].includes(m))return 'transferencia';
+  if(['deposito','deposit'].includes(m))return 'deposito';
+  return m;
+}
+function todayTotal(method){
+  const d=now().day;
+  return paymentsAll().filter(p=>{
+    const pm=paymentMethodKind(p.method);
+    const wanted=paymentMethodKind(method);
+    return sameDay(p.date,d)&&(!wanted||pm===wanted);
+  }).reduce((s,p)=>s+Number(p.amount||0),0);
+}
+function totalCollected(){
+  return paymentsAll().reduce((s,p)=>s+Number(p.amount||0),0);
+}
+function render(){let p=now();periodLabel.textContent=MONTHS[p.m]+' '+p.y;sClients.textContent=clients.filter(c=>c.active).length;sPending.textContent=clients.filter(c=>c.active&&debt(c)>0).length;sDebt.textContent=money(clients.filter(c=>c.active).reduce((s,c)=>s+debt(c),0));sToday.textContent=money(todayTotal());sTransfers.textContent=money(todayTotal('Transferencia'));sCollected.textContent=money(totalCollected());let q=search.value.toLowerCase(),f=filter.value;let arr=clients.filter(c=>(!q||c.name.toLowerCase().includes(q)||c.phone.includes(q))&&(f==='all'||(f==='active'&&c.active)||(f==='debt'&&c.active&&debt(c)>0)||(f==='paid'&&c.active&&debt(c)<=0)||(f==='inactive'&&!c.active)));tbody.innerHTML=arr.map(c=>{let ps=pending(c),sec=getSectorialById(c.sectorialId);return `<tr><td><div class="name">${esc(c.name)}</div><div class="muted">${esc(c.antenna||'Sin antena registrada')}</div></td><td>${esc(c.plan)}<div class="muted">${money(c.price)}/mes</div></td><td>${sec?`<b>${esc(sec.name)}</b><div class="muted">${esc(sec.zone||'')}</div>`:'<span class="muted">Sin asignar</span>'}</td><td>${ps.length?ps.map(x=>MONTHS[x.m]).join(', '):'—'}</td><td class="money">${money(debt(c))}<br><span class="pill ${c.active?(debt(c)>0?'red':'green'):'gray'}">${c.active?(debt(c)>0?'Pendiente':'Pagado'):'Inactivo'}</span></td><td>${c.phone||'<span class="muted">Sin número</span>'}</td><td><div class="rowBtns"><button class="mini green" onclick="openCobrar('${c.id}')">Cobrar</button>${isAdmin()?`<button class="mini blue" onclick="editClient('${c.id}')">Editar</button>`:''}</div></td></tr>`}).join('')||'<tr><td colspan="7" class="empty">No hay clientes.</td></tr>'}
+function openCobrar(id){cobrarScreen.classList.add('show');selectedCobrarId=id||clients.find(c=>c.active&&debt(c)>0)?.id||clients.find(c=>c.active)?.id;renderCobrarList();renderCustomer()}
+function renderCobrarList(){let q=(cobrarSearch.value||'').toLowerCase();let arr=clients.filter(c=>c.active&&(!q||c.name.toLowerCase().includes(q)||c.phone.includes(q)));cobrarList.innerHTML=arr.map(c=>`<div class="listItem ${c.id===selectedCobrarId?'active':''}" onclick="selectCobrar('${c.id}')"><span class="amt">${money(debt(c))}</span><b>${esc(c.name)}</b><span>${esc(c.plan)} • ${c.phone||'Sin WhatsApp'}</span></div>`).join('')||'<div class="empty">No encontrado.</div>'}
+function selectCobrar(id){selectedCobrarId=id;renderCobrarList();renderCustomer()}
+function renderCustomer(){let c=clients.find(x=>x.id===selectedCobrarId);if(!c){customerPanel.innerHTML='<div class="empty">Selecciona un cliente.</div>';return}let p=now(),d=debt(c),ps=pending(c),rows='';for(let m=0;m<12;m++){let x=md(c,m),r=Math.max(0,c.price-(x.paid||0));let futurePaid=m>p.m&&x.charged&&r<=0;let cls=m>p.m?(futurePaid?'paid':'none'):!x.charged?'none':r<=0?'paid':'pending';let txt=m>p.m?(futurePaid?'Pagado por adelantado':'No generado'):!x.charged?'No generado':r<=0?'Pagado':x.paid>0?'Abono '+money(x.paid)+' • falta '+money(r):'Pendiente '+money(r);rows+=`<div class="monthRow ${cls}"><div><b>${MONTHS[m]}</b><div class="muted">${txt}</div></div><div>${m<=p.m&&x.charged?money(r):futurePaid?'$0':'—'}</div><div>${m>p.m&&futurePaid?'<span class="pill green">Adelantado</span>':m<=p.m&&x.charged&&r>0?'<span class="pill red">Debe</span>':m<=p.m&&x.charged?'<span class="pill green">Pagado</span>':'<span class="pill gray">No generado</span>'}</div><div>${isAdmin()&&m<=p.m?`<button class="mini ${x.charged?'red':'green'}" onclick="toggleMonth('${c.id}',${m})">${x.charged?'Quitar':'Generar'}</button>`:''}</div></div>`}
+customerPanel.innerHTML=`<div class="customerHead"><div><h2>${esc(c.name)}</h2><div class="muted">${esc(c.plan)} • ${money(c.price)} mensuales</div></div><div class="bigDebt">${money(d)}<div class="muted" style="text-align:right">adeudo total</div></div></div><div class="infoGrid"><div class="info"><b>WhatsApp</b>${c.phone||'No registrado'}</div><div class="info"><b>Dirección</b>${esc(c.address)||'No registrada'}</div><div class="info"><b>Antena</b>${esc(c.antenna)||'No registrada'}</div><div class="info"><b>Instalación</b>${c.installDate||'No registrada'}</div><div class="info"><b>Plan</b>${esc(c.plan)}</div><div class="info"><b>Cuota</b>${money(c.price)} / mes</div></div><div class="rowBtns">${isAdmin()?`<button class="btn green" onclick="editClient('${c.id}')">Editar información</button>`:''}${c.phone?`<button class="btn blue" onclick="wa('${c.id}')">📲 WhatsApp</button>`:''}</div><div class="monthsTitle"><h3 style="margin:0">Exactamente qué debe</h3><span class="muted">${ps.length} mensualidad(es) pendientes</span></div><div class="monthRows">${rows}</div><div class="monthsTitle"><h3 style="margin:0">Historial de pagos</h3><span class="muted">${(c.payments||[]).length} movimiento(s)</span></div><div class="panel" style="padding:0;margin-bottom:15px"><div class="tableWrap"><table class="tableSmall"><tr><th>Fecha</th><th>Método</th><th>Periodo</th><th>Monto</th></tr>${(c.payments||[]).slice().sort((a,b)=>new Date(b.date)-new Date(a.date)).slice(0,20).map(pay=>`<tr><td>${new Date(pay.date).toLocaleString('es-MX')}</td><td>${esc(pay.method||'—')}</td><td>${esc(pay.period||'—')}</td><td class="money">${money(pay.amount)}</td></tr>`).join('')||'<tr><td colspan="4" class="muted">Sin pagos registrados.</td></tr>'}</table></div></div><div class="payBox"><h3>Registrar pago</h3><div class="muted" style="color:#c9d7ee">El pago se aplica primero al mes pendiente más antiguo.</div><div class="payLine" style="margin-top:10px"><input id="payAmount" type="number" min="0" max="${d}" value="${Math.min(d,c.price)||0}"><select id="payMethod"><option>Efectivo</option><option>Transferencia</option><option>Depósito</option><option>Otro</option></select></div><div class="muted" style="color:#c9d7ee;margin-top:7px">Máximo permitido: ${money(d)}. Los abonos se aplican al adeudo más antiguo y quedan en el historial.</div><div class="payButtons"><button class="quick" onclick="setPay(${c.price})">Pagar 1 mes (${money(c.price)})</button><button class="quick" onclick="setPay(${c.price*2})">Pagar 2 meses (${money(c.price*2)})</button><button class="quick" onclick="setPay(${d})">Liquidar (${money(d)})</button><button class="doPay" onclick="registerPayment()">✓ Registrar pago</button><button class="quick" style="margin-top:8px" onclick="registerAdvancePayment()">💳 Registrar meses pagados por adelantado</button></div></div>`}
+function setPay(n){payAmount.value=Math.min(Math.max(0,n),debt(clients.find(x=>x.id===selectedCobrarId)))}
+function addMonthsForAdvance(client, count){
+  const p=now();
+  const existing=new Map();
+  Object.entries(client.months||{}).forEach(([k,x])=>existing.set(k,x));
+  let added=[];
+  let cursor=new Date(p.y,p.m+1,1);
+  let guard=0;
+  while(added.length<count && guard<36){
+    const y=cursor.getFullYear(), m=cursor.getMonth(), k=key(y,m);
+    const x=existing.get(k);
+    if(x && x.charged && Number(x.paid||0)>0 && Number(x.paid||0) < Number(x.amount||client.price||0)){
+      throw new Error('Existe una mensualidad futura con un abono parcial. Debe revisarse antes de registrar otro pago adelantado.');
+    }
+    if(!x || !x.charged){
+      added.push({period:k+'-01',key:k});
+    }
+    cursor.setMonth(cursor.getMonth()+1); guard++;
+  }
+  return added;
+}
+async function registerAdvancePayment(){
+  if(!requireAdmin())return;
+  const c=clients.find(x=>x.id===selectedCobrarId);
+  if(!c)return;
+  const currentDebt=debt(c);
+  if(currentDebt>0){
+    return alert('Este cliente todavía tiene un adeudo de '+money(currentDebt)+'. Primero registra ese pago. El pago adelantado se habilita cuando esté al corriente.');
+  }
+  const raw=prompt('¿Cuántos meses pagó por adelantado?\n\nEscribe un número de 1 a 12.');
+  if(raw===null)return;
+  const count=Math.floor(Number(raw));
+  if(!Number.isFinite(count)||count<1||count>12)return alert('Escribe un número de meses entre 1 y 12.');
+  const paymentMethod=(document.getElementById('payMethod')?.value||'Transferencia');
+  let monthsToAdd;
+  try{monthsToAdd=addMonthsForAdvance(c,count);}catch(e){return alert(e.message||'No se puede registrar el pago adelantado.');}
+  if(monthsToAdd.length!==count)return alert('No se pudieron preparar todas las mensualidades adelantadas. No se registró ningún pago.');
+  const total=Number(c.price||0)*count;
+  if(total<=0)return alert('La cuota mensual del cliente no es válida.');
+  if(!confirm(`Se registrarán ${count} meses pagados por adelantado por ${money(total)}.\n\nMétodo: ${paymentMethod}\n\nLos meses quedarán pagados y cuando llegue cada mes no generarán adeudo. ¿Continuar?`))return;
+  try{
+    for(const item of monthsToAdd){
+      const {error}=await supabaseClient.from('client_months').upsert({
+        client_id:c.id,
+        period:item.period,
+        charged:true,
+        amount:Number(c.price||0),
+        paid:0
+      },{onConflict:'client_id,period'});
+      if(error)throw error;
+    }
+    const {error:payError}=await supabaseClient.rpc('register_nexu_payment',{
+      p_client_id:c.id,
+      p_amount:total,
+      p_method:paymentMethod,
+      p_concept:'Pago adelantado',
+      p_notes:`${count} mes(es) pagados por adelantado`
+    });
+    if(payError)throw payError;
+    await cloudLoad();
+    render();
+    renderCobrarList();
+    renderCustomer();
+    renderCaja();
+    renderTransfers();
+    alert(`Pago adelantado registrado correctamente. ${count} mes(es) quedaron pagados.`);
+  }catch(e){
+    alert('No se pudo registrar el pago adelantado: '+cloudError(e));
+    await cloudLoad();
+    render();
+    renderCobrarList();
+    renderCustomer();
+  }
+}
+function registerPayment(){let c=clients.find(x=>x.id===selectedCobrarId);if(!c)return;let amt=Number(payAmount.value)||0;let totalDebt=debt(c);if(amt<=0)return alert('Escribe un monto válido.');if(totalDebt<=0)return alert('Este cliente no tiene adeudo pendiente.');if(amt>totalDebt)return alert('El monto no puede ser mayor al adeudo total de '+money(totalDebt)+'.');let rem=amt,p=now(),method=payMethod.value,stamp=new Date().toISOString();for(let m=0;m<=p.m&&rem>0;m++){let k=key(p.y,m),x=c.months?.[k];if(!x?.charged)continue;let due=Math.max(0,c.price-(x.paid||0));if(due<=0)continue;let add=Math.min(due,rem);x.paid=(x.paid||0)+add;rem-=add;c.payments.push({id:uid(),date:stamp,amount:add,method,period:k,registeredBy:currentUser?.name||''})}save();render();renderCobrarList();renderCustomer();renderCaja();renderTransfers();alert('Pago registrado correctamente. Adeudo restante: '+money(debt(c))+'.')}
+function toggleMonth(id,m){if(!requireAdmin())return;let c=clients.find(x=>x.id===id);if(!c)return;let p=now(),k=key(p.y,m),x=c.months?.[k];if(x?.charged){delete c.months[k]}else{c.months[k]={charged:true,paid:0}}save();render();renderCobrarList();renderCustomer()}
+function wa(id){let c=clients.find(x=>x.id===id);if(!c?.phone)return alert('Este cliente no tiene WhatsApp.');let d=debt(c),ps=pending(c);let lines=ps.map(x=>`• ${MONTHS[x.m]}: ${money(x.rem)}`).join('%0A');let msg=`Estimado cliente ${encodeURIComponent(c.name)} Te recordamos que tu servicio de internet está próximo a vencer. Para evitar la suspensión del servicio, te invitamos a realizar tu pago. 
+Fecha límite de pago 8 de octubre`;window.open('https://wa.me/52'+c.phone+'?text='+msg,'_blank')}
+function openCaja(){
+  if(!requireAdmin())return;
+  cajaScreen.classList.add('show');
+  cajaDate.value=now().day;
+  renderCaja();
+}
+function closeCajaDay(){
+  if(!requireAdmin())return;
+  const d=cajaDate.value||now().day;
+  const arr=paymentsAll().filter(p=>sameDay(p.date,d));
+  const total=arr.reduce((s,p)=>s+Number(p.amount||0),0);
+  if(!total)return alert('No hay movimientos en esa fecha.');
+  const efectivo=arr.filter(p=>paymentMethodKind(p.method)==='efectivo').reduce((s,p)=>s+Number(p.amount||0),0);
+  const transferencia=arr.filter(p=>paymentMethodKind(p.method)==='transferencia').reduce((s,p)=>s+Number(p.amount||0),0);
+  const deposito=arr.filter(p=>paymentMethodKind(p.method)==='deposito').reduce((s,p)=>s+Number(p.amount||0),0);
+  const cuts=JSON.parse(localStorage.getItem('nexu_cortes')||'[]');
+  cuts.push({date:d,total,efectivo,transferencia,deposito});
+  localStorage.setItem('nexu_cortes',JSON.stringify(cuts));
+  renderCaja();
+  alert('Corte guardado correctamente. Total del corte: '+money(total));
+}
+function renderCaja(){
+  const d=cajaDate.value||now().day;
+  const arr=paymentsAll().filter(p=>sameDay(p.date,d));
+  const total=arr.reduce((s,p)=>s+Number(p.amount||0),0);
+  const efectivo=arr.filter(p=>paymentMethodKind(p.method)==='efectivo').reduce((s,p)=>s+Number(p.amount||0),0);
+  const transferencia=arr.filter(p=>paymentMethodKind(p.method)==='transferencia').reduce((s,p)=>s+Number(p.amount||0),0);
+  const deposito=arr.filter(p=>paymentMethodKind(p.method)==='deposito').reduce((s,p)=>s+Number(p.amount||0),0);
+  const otros=Math.max(0,total-efectivo-transferencia-deposito);
+  const acumulado=totalCollected();
+  const cuts=JSON.parse(localStorage.getItem('nexu_cortes')||'[]').filter(x=>x.date===d);
+  cajaBody.innerHTML=`
+    <div class="dashGrid">
+      <div class="panel"><h3>Total del corte / día</h3><div class="big">${money(total)}</div><div class="muted">${arr.length} cobro(s)</div></div>
+      <div class="panel"><h3>💵 Efectivo</h3><div class="big">${money(efectivo)}</div></div>
+      <div class="panel"><h3>🏦 Transferencias</h3><div class="big">${money(transferencia)}</div></div>
+      <div class="panel"><h3>📄 Depósito / otros</h3><div class="big">${money(deposito+otros)}</div></div>
+      <div class="panel"><h3>💰 Total acumulado</h3><div class="big">${money(acumulado)}</div><div class="muted">Todos los pagos registrados</div></div>
+    </div>
+    <div class="panel" style="margin-top:12px">
+      <h3>Movimientos del día (${arr.length})</h3>
+      ${arr.length?`<table class="tableSmall"><tr><th>Hora</th><th>Cliente</th><th>Método</th><th>Periodo</th><th>Cobrado por</th><th>Monto</th></tr>
+      ${arr.map(p=>`<tr><td>${new Date(p.date).toLocaleTimeString('es-MX',{timeZone:NEXU_TIMEZONE,hour:'2-digit',minute:'2-digit'})}</td><td>${esc(p.client)}</td><td>${esc(p.method)}</td><td>${esc(p.period||'—')}</td><td><b>${esc(p.registeredBy||'Sin registrar')}</b></td><td class="money">${money(p.amount)}</td></tr>`).join('')}</table>`:'<div class="empty">Sin movimientos en esta fecha.</div>'}
+    </div>
+    <div class="panel" style="margin-top:12px">
+      <h3>Historial de cortes</h3>
+      ${cuts.length?cuts.map(x=>`<div style="padding:9px;border-bottom:1px solid var(--line)"><b>${x.date}</b> — ${money(x.total)} <span class="muted">Efectivo ${money(x.efectivo)} • Transferencia ${money(x.transferencia)} • Depósito ${money(x.deposito)}</span></div>`).join(''):'<div class="muted">Todavía no hay cortes guardados para esta fecha.</div>'}
+    </div>`;
+}
+function printCaja(){window.print()}
+function exportPayments(){let arr=paymentsAll(),rows=[['Fecha','Cliente','Método','Periodo','Cobrado por','Monto']].concat(arr.map(p=>[p.date,p.client,p.method,p.period,p.registeredBy||'Sin registrar',p.amount]));let csv=rows.map(r=>r.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\n');download(new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8'}),'nexu_movimientos.csv')}
+function openTransfers(){if(!requireAdmin())return;transferScreen.classList.add('show');renderTransfers()}
+function renderTransfers(){let arr=paymentsAll().filter(p=>paymentMethodKind(p.method)==='transferencia'),total=arr.reduce((s,p)=>s+p.amount,0),today=arr.filter(p=>sameDay(p.date,now().day)).reduce((s,p)=>s+p.amount,0);transferBody.innerHTML=`<div class="dashGrid"><div class="panel"><h3>Total transferido histórico</h3><div class="big">${money(total)}</div></div><div class="panel"><h3>Transferencias de hoy</h3><div class="big">${money(today)}</div></div><div class="panel"><h3>Movimientos</h3><div class="big">${arr.length}</div></div><div class="panel"><h3>Clientes</h3><div class="big">${new Set(arr.map(x=>x.clientId)).size}</div></div></div><div class="panel" style="margin-top:12px"><h3>Detalle de transferencias</h3>${arr.length?`<table class="tableSmall"><tr><th>Fecha</th><th>Cliente</th><th>Periodo</th><th>Monto</th><th>Cobrado por</th></tr>${arr.map(p=>`<tr><td>${new Date(p.date).toLocaleString('es-MX')}</td><td>${esc(p.client)}</td><td>${p.period}</td><td class="money">${money(p.amount)}</td><td>${esc(p.registeredBy||'Sin registrar')}</td></tr>`).join('')}</table>`:'<div class="empty">Aún no hay pagos por transferencia.</div>'}</div>`}
+function openBulk(){let arr=clients.filter(c=>c.active&&debt(c)>0);bulkBody.innerHTML=arr.length?`<div class="notice">Solo aparecen clientes con adeudo.</div>`+arr.map(c=>`<div style="padding:11px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:10px;align-items:center"><div><b>${esc(c.name)}</b><div class="muted">${money(debt(c))} • ${c.phone||'Sin número'}</div></div>${c.phone?`<button class="mini green" onclick="wa('${c.id}')">Abrir WhatsApp</button>`:'<span class="pill gray">Agregar número</span>'}</div>`).join(''):'<div class="empty">No hay clientes con adeudo.</div>';showModal('bulkModal')}
+function getInstalaciones(){try{let x=JSON.parse(localStorage.getItem(INST_KEY)||'[]');return Array.isArray(x)?x:[]}catch(e){return []}}
+function saveInstalaciones(x){localStorage.setItem(INST_KEY,JSON.stringify(x))}
+function getReportes(){try{let x=JSON.parse(localStorage.getItem(REP_KEY)||'[]');return Array.isArray(x)?x:[]}catch(e){return []}}
+function saveReportes(x){localStorage.setItem(REP_KEY,JSON.stringify(x))}
+function openInstalaciones(){renderInstalaciones();showScreen('instalacionesScreen')}
+function openInstalacionModal(id){editingInstId=id||null;let x=id?getInstalaciones().find(a=>a.id===id):null;iName.value=x?.name||'';iPhone.value=x?.phone||'';iPlan.value=x?.plan||'10/2';iPrice.value=x?.price??350;iDate.value=x?.date||now().day;iAntenna.value=x?.antenna||'';iAddress.value=x?.address||'';iNotes.value=x?.notes||'';showModal('instalacionModal')}
+function saveInstalacion(){let name=iName.value.trim();if(!name)return alert('Escribe el nombre del nuevo cliente.');let arr=getInstalaciones();let x=editingInstId?arr.find(a=>a.id===editingInstId):{id:uid(),createdAt:new Date().toISOString(),createdBy:currentUser?.name||'',status:'pendiente'};if(!x)return;Object.assign(x,{name,phone:iPhone.value.replace(/\D/g,'').slice(-10),plan:iPlan.value,price:Number(iPrice.value)||350,date:iDate.value,antenna:iAntenna.value.trim(),address:iAddress.value.trim(),notes:iNotes.value.trim(),updatedAt:new Date().toISOString(),updatedBy:currentUser?.name||''});if(!editingInstId)arr.unshift(x);saveInstalaciones(arr);closeModal('instalacionModal');renderInstalaciones();updateQueueBadges();alert('Instalación guardada en pendientes.')}
+function renderInstalaciones(){let arr=getInstalaciones(),q=(instSearch?.value||'').toLowerCase().trim();arr=arr.filter(x=>!q||(x.name||'').toLowerCase().includes(q)||(x.phone||'').includes(q));instalacionesBody.innerHTML=arr.length?arr.map(x=>`<div class="queueItem"><div class="queueTop"><div><div class="queueTitle">${esc(x.name)}</div><div class="queueMeta">📱 ${esc(x.phone||'Sin WhatsApp')} · 📅 ${esc(x.date||'Sin fecha')} · ${esc(x.plan||'—')} · ${money(x.price)}</div><div class="queueMeta">📍 ${esc(x.address||'Sin dirección')} · 📡 ${esc(x.antenna||'Antena por definir')}</div><div class="queueMeta">📝 ${esc(x.notes||'Sin notas')} · Capturó: ${esc(x.createdBy||'—')}</div></div><span class="pill ${x.status==='instalado'?'green':'orange'}">${x.status==='instalado'?'Instalado':'Pendiente'}</span></div><div class="rowBtns" style="margin-top:9px"><button class="mini blue" onclick="openInstalacionModal('${x.id}')">Editar</button>${x.status!=='instalado'?`<button class="mini green" onclick="convertInstalacion('${x.id}')">✓ Convertir en cliente</button>`:''}${isAdmin()?`<button class="mini red" onclick="deleteInstalacion('${x.id}')">Eliminar</button>`:''}</div></div>`).join(''):'<div class="empty">No hay instalaciones pendientes.</div>'}
+function convertInstalacion(id){if(!requireAdmin())return;let arr=getInstalaciones(),x=arr.find(a=>a.id===id);if(!x)return;if(!confirm(`¿Agregar a ${x.name} como cliente activo?`))return;let c=migrate({id:uid(),name:x.name,phone:x.phone,plan:x.plan,price:x.price,active:true,months:{},payments:[],address:x.address,installDate:x.date,antenna:x.antenna,notes:x.notes});setMonth(c,now().m,0,true);clients.push(c);x.status='instalado';x.installedAt=new Date().toISOString();x.installedBy=currentUser?.name||'';saveInstalaciones(arr);save();render();renderInstalaciones();updateQueueBadges();alert('Cliente agregado correctamente a cobranza.')}
+function deleteInstalacion(id){if(!requireAdmin())return;if(!confirm('¿Eliminar esta solicitud de instalación?'))return;saveInstalaciones(getInstalaciones().filter(x=>x.id!==id));renderInstalaciones();updateQueueBadges()}
+function openReportes(){renderReportes();showScreen('reportesScreen')}
+function openReporteModal(id){editingRepId=id||null;let x=id?getReportes().find(a=>a.id===id):null;rClient.innerHTML='<option value="">— Cliente no seleccionado —</option>'+clients.map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('');rClient.value=x?.client_id||x?.clientId||'';rName.value=x?.name||'';rPhone.value=x?.phone||'';rAddress.value=x?.address||((x?.notes||'').match(/\[DIRECCION\] (.*)/)?.[1]||'');rTask.value=x?.task||((x?.issue||'').split(':')[0]||'Alinear antena');rPriority.value=x?.priority||'media';rStatus.value=(x?.status||'pendiente').toLowerCase();rIssue.value=x?.description||((x?.issue||'').includes(':')?x.issue.split(':').slice(1).join(':').trim():x?.issue||'');rNotes.value=(x?.notes||'').replace(/\[DIRECCION\] .*\n?/,'');showModal('reporteModal')}
+rClient.onchange=function(){let c=clients.find(x=>x.id===rClient.value);if(c){rName.value=c.name;rPhone.value=c.phone||'';rAddress.value=c.address||''}}
+async function saveReporte(){let name=rName.value.trim(),address=rAddress.value.trim(),description=rIssue.value.trim();if(!name||!address||!description)return alert('Escribe el nombre completo, la dirección y la descripción del trabajo.');if(!cloudReady)return alert('El portal todavía no está conectado a la nube.');const payload={client_id:rClient.value||null,name,phone:rPhone.value.replace(/\D/g,'').slice(-10),priority:rPriority.value,status:rStatus.value,issue:`${rTask.value}: ${description}`,notes:`[DIRECCION] ${address}${rNotes.value.trim()?'\n'+rNotes.value.trim():''}`};try{const result=editingRepId?await supabaseClient.from('service_reports').update(payload).eq('id',editingRepId):await supabaseClient.from('service_reports').insert({...payload,created_by:currentUser?.id||null});if(result.error)throw result.error;await cloudLoad();closeModal('reporteModal');renderReportes();updateQueueBadges();alert('Reporte de trabajo de antena guardado correctamente.')}catch(e){alert('No se pudo guardar el reporte: '+cloudError(e))}}
+function renderReportes(){let arr=getReportes(),q=(repSearch?.value||'').toLowerCase().trim(),f=repFilter?.value||'all';arr=arr.filter(x=>(f==='all'||x.status===f)&&(!q||`${x.name} ${x.phone} ${x.issue} ${x.notes}`.toLowerCase().includes(q)));reportesBody.innerHTML=arr.length?arr.map(x=>`<div class="queueItem"><div class="queueTop"><div><div class="queueTitle">${esc(x.name)}</div><div class="queueMeta">📱 ${esc(x.phone||'Sin WhatsApp')} · ${esc(x.issue)}</div><div class="queueMeta">📍 ${esc(x.address||((x.notes||'').match(/\[DIRECCION\] (.*)/)?.[1]?.split('\n')[0])||'Sin dirección')}</div><div class="queueMeta">📝 ${esc(x.notes||'Sin seguimiento')} · Capturó: ${esc(x.createdBy||'—')} · Actualizó: ${esc(x.updatedBy||'—')}</div></div><div><span class="pill ${x.priority==='alta'?'priorityAlta':x.priority==='baja'?'priorityBaja':'priorityMedia'}">Prioridad ${esc(x.priority)}</span> <span class="pill ${x.status==='resuelto'?'statusResuelto':x.status==='proceso'?'statusProceso':'statusPendiente'}">${x.status==='resuelto'?'Resuelto':x.status==='proceso'?'En proceso':'Pendiente'}</span></div></div><div class="rowBtns" style="margin-top:9px"><button class="mini blue" onclick="openReporteModal('${x.id}')">Editar / actualizar</button>${x.phone?`<button class="mini green" onclick="window.open('https://wa.me/52${x.phone}','_blank')">WhatsApp</button>`:''}${isAdmin()?`<button class="mini red" onclick="deleteReporte('${x.id}')">Eliminar</button>`:''}</div></div>`).join(''):'<div class="empty">No hay reportes con este filtro.</div>'}
+function deleteReporte(id){if(!requireAdmin())return;if(!confirm('¿Eliminar este reporte?'))return;saveReportes(getReportes().filter(x=>x.id!==id));renderReportes();updateQueueBadges()}
+function updateQueueBadges(){let a=getInstalaciones().filter(x=>x.status!=='instalado').length,b=getReportes().filter(x=>x.status!=='resuelto').length;if(instCountTop)instCountTop.textContent=a?`(${a})`:'';if(repCountTop)repCountTop.textContent=b?`(${b})`:''}
+
+function sectorialList(){return (window.__cloudSectors&&window.__cloudSectors.length)?window.__cloudSectors:loadSectors();}
+function getSectorialById(id){return id?sectorialList().find(x=>String(x.id)===String(id)):null;}
+function linkedSectorialCount(id,excludeClientId){return clients.filter(c=>c.active&&String(c.sectorialId||'')===String(id)&&String(c.id)!==String(excludeClientId||'')).length;}
+function sectorialStatus(count){return count>=18?'red':count<=10?'green':'yellow';}
+function sectorialStatusLabel(count){return count>=18?'🔴 LLENO':count<=10?'🟢 BIEN':'🟡 MEDIO';}
+function fillSectorialSelect(currentId){if(!fSectorial)return;const list=sectorialList();const exclude=editId;fSectorial.innerHTML='<option value="">— Sin sectorial asignada —</option>'+list.map(x=>{const currentClient=editId?clients.find(c=>String(c.id)===String(editId)):null;const n=linkedSectorialCount(x.id,exclude)+(currentClient?.active&&String(x.id)===String(currentId)?1:0);const isCurrent=String(x.id)===String(currentId);const blocked=!isCurrent&&n>=18;return `<option value="${esc(String(x.id))}" ${isCurrent?'selected':''} ${blocked?'disabled':''}>${esc(x.name)} — ${n} clientes ${sectorialStatusLabel(n)}${blocked?' — NO DISPONIBLE':''}</option>`}).join('');}
+function validateSectorialAssignment(targetId,clientId,willBeActive){if(!willBeActive||!targetId)return true;const c=linkedSectorialCount(targetId,clientId);if(c>=18){const sec=getSectorialById(targetId);alert(`🚫 ${sec?sec.name:'Esta sectorial'} ya tiene ${c} clientes activos.\n\nNo se pueden agregar más clientes a esta sectorial.\n\nAsigna al cliente a otra sectorial disponible.`);return false;}return true;}
+function openClient(){if(!requireAdmin())return;editId=null;clientTitle.textContent='Nuevo cliente';['fName','fPhone','fEmail','fAntenna','fAddress','fNotes','fInstall'].forEach(id=>document.getElementById(id).value='');fPlan.value='350';fPrice.value=350;fActive.value='1';deleteClientBtn.style.display='none';hardDeleteClientBtn.style.display='none';fillSectorialSelect('');showModal('clientModal')}
+function editClient(id){if(!requireAdmin())return;let c=clients.find(x=>x.id===id);if(!c)return;editId=id;clientTitle.textContent='Editar cliente';fName.value=c.name;fPhone.value=c.phone||'';fEmail.value=c.email||'';fAntenna.value=c.antenna||'';fPlan.value=c.plan==='10/2'?'350':c.plan==='20/5'?'500':'0';fPrice.value=c.price;fActive.value=c.active?'1':'0';fAddress.value=c.address||'';fNotes.value=c.notes||'';fInstall.value=c.installDate||'';deleteClientBtn.style.display=c.active?'inline-flex':'none';hardDeleteClientBtn.style.display=(!c.active && !(c.payments||[]).length && debt(c)<=0)?'inline-flex':'none';fillSectorialSelect(c.sectorialId||'');showModal('clientModal')}
+fPlan.addEventListener('change',e=>{if(e.target.value==='350')fPrice.value=350;if(e.target.value==='500')fPrice.value=500});
+async function deleteClient(){
+  if(!requireAdmin()||!editId)return;
+  const c=clients.find(x=>x.id===editId);if(!c)return;
+  const d=debt(c),payments=(c.payments||[]).length;
+  const warning=d>0||payments>0
+    ? `Este cliente tiene ${payments} pago(s) registrado(s)${d>0?' y un adeudo de '+money(d):''}.\n\nSe cancelará el servicio y pasará a INACTIVO. No se borrarán sus pagos, mensualidades ni historial.\n\nAsí podrás conservarlo para una futura reconexión. ¿Confirmas?`
+    : `¿Confirmas cancelar el servicio de ${c.name}?\n\nEl cliente quedará INACTIVO y conservará su registro.`;
+  if(!confirm(warning))return;
+  try{
+    const {error}=await supabaseClient.from('clients').update({active:false}).eq('id',editId);
+    if(error)throw error;
+    await cloudLoad();
+    closeModal('clientModal');
+    if(selectedCobrarId===editId){selectedCobrarId=null;renderCobrarList();renderCustomer()}
+    render();
+    alert('Servicio cancelado. El cliente quedó INACTIVO y su historial se conservó.');
+  }catch(e){alert('No se pudo cancelar el servicio: '+cloudError(e));}
+}
+
+async function hardDeleteClient(){
+  if(!requireAdmin()||!editId)return;
+  const c=clients.find(x=>x.id===editId);if(!c)return;
+  const payments=(c.payments||[]).length;
+  if(c.active)return alert('Primero cancela el servicio para poder eliminarlo definitivamente.');
+  if(payments>0)return alert('Este cliente tiene pagos registrados. No se puede eliminar definitivamente; mantenlo INACTIVO para conservar su historial.');
+  if(debt(c)>0)return alert('Este cliente todavía tiene adeudo. No se puede eliminar definitivamente; mantenlo INACTIVO para conservar su deuda e historial.');
+  const ok=confirm(`⚠️ ELIMINACIÓN DEFINITIVA\n\nSe borrará ${c.name} de la base de datos y ya no podrás recuperar su registro desde el portal.\n\nÚsalo únicamente para clientes de PRUEBA o registros duplicados.\n\n¿Continuar?`);
+  if(!ok)return;
+  try{
+    // Primero quitamos sus mensualidades generadas; no hay pagos porque arriba se verificó payments===0.
+    const {error:monthError}=await supabaseClient.from('client_months').delete().eq('client_id',editId);
+    if(monthError)throw monthError;
+    const {error}=await supabaseClient.from('clients').delete().eq('id',editId);
+    if(error)throw error;
+    await cloudLoad();
+    closeModal('clientModal');
+    if(selectedCobrarId===editId){selectedCobrarId=null;renderCobrarList();renderCustomer()}
+    render();
+    alert('Cliente de prueba eliminado definitivamente.');
+  }catch(e){alert('No se pudo eliminar definitivamente. Si Supabase protege este registro por relaciones, déjalo INACTIVO para conservarlo.\n\n'+cloudError(e));}
+}
+async function saveClient(){
+  if(!requireAdmin())return;
+  let name=fName.value.trim();if(!name)return alert('Escribe el nombre.');
+  const email=fEmail.value.trim().toLowerCase();
+  if(!editId && (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)))return alert('Escribe un correo electrónico válido del cliente.');
+  const active=fActive.value==='1';
+  const sectorialId=fSectorial.value||null;
+  if(!validateSectorialAssignment(sectorialId,editId,active))return;
+  const row={
+    name,
+    phone:fPhone.value.replace(/\D/g,'').slice(-10),
+    email,
+    plan:fPlan.value==='350'?'10/2':fPlan.value==='500'?'20/5':'Personalizado',
+    price:Number(fPrice.value)||0,
+    active,
+    antenna:fAntenna.value.trim(),
+    address:fAddress.value.trim(),
+    notes:fNotes.value.trim(),
+    install_date:fInstall.value||null,
+    sectorial_id:sectorialId
+  };
+  try{
+    let id=editId;
+    if(editId){
+      const {error}=await supabaseClient.from('clients').update(row).eq('id',editId);
+      if(error)throw error;
+    }else{
+      const {data,error}=await supabaseClient.from('clients').insert(row).select('id').single();
+      if(error)throw error;
+      id=data.id;
+    }
+    await supabaseClient.rpc('ensure_nexu_current_month');
+    await cloudLoad();
+    closeModal('clientModal');render();
+    if(cobrarScreen.classList.contains('show')){selectedCobrarId=id;renderCobrarList();renderCustomer()}
+    alert(editId?'Cliente actualizado correctamente.':'Cliente agregado correctamente a la nube.');
+  }catch(e){alert('No se pudo guardar el cliente: '+cloudError(e));}
+}
+function openImport(){if(!requireAdmin())return;showModal('importModal')}
+function parseCSVLine(line){let out=[],cur='',q=false;for(let i=0;i<line.length;i++){let ch=line[i];if(ch==='"'){if(q&&line[i+1]==='"'){cur+='"';i++}else q=!q}else if(ch===','&&!q){out.push(cur.trim());cur=''}else cur+=ch}out.push(cur.trim());return out}
+async function importCSV(e){
+  if(!requireAdmin())return;
+  let file=e.target.files[0];if(!file)return;
+  let r=new FileReader();
+  r.onload=async()=>{
+    try{
+      let lines=r.result.replace(/^\uFEFF/,'').split(/\r?\n/).filter(Boolean);
+      let h=parseCSVLine(lines[0]).map(x=>x.toLowerCase()),ix=k=>h.indexOf(k),count=0;
+      for(let line of lines.slice(1)){
+        let a=parseCSVLine(line),name=a[ix('nombre')]||a[0];if(!name)continue;
+        const row={name,phone:(a[ix('whatsapp')]||'').replace(/\D/g,'').slice(-10),plan:a[ix('plan')]||'10/2',price:Number(a[ix('cuota')])||350,active:(a[ix('activo')]||'1')!=='0',address:a[ix('dirección')]||a[ix('direccion')]||'',install_date:a[ix('instalación')]||a[ix('instalacion')]||null,antenna:a[ix('antena')]||'',notes:''};
+        const {error}=await supabaseClient.from('clients').insert(row);if(error)throw error;count++;
+      }
+      await supabaseClient.rpc('ensure_nexu_current_month');
+      await cloudLoad();closeModal('importModal');render();alert('Importación terminada. '+count+' clientes guardados en la nube.');
+    }catch(err){alert('No se pudo completar la importación: '+cloudError(err));}
+  };
+  r.readAsText(file,'UTF-8');
+}
+function exportCSV(){if(!requireAdmin())return;let rows=[['Nombre','WhatsApp','Plan','Cuota','Activo','Dirección','Instalación','Antena','Adeudo']];clients.forEach(c=>rows.push([c.name,c.phone,c.plan,c.price,c.active?1:0,c.address,c.installDate,c.antenna,debt(c)]));let csv=rows.map(r=>r.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\n');download(new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8'}),'nexu_clientes.csv')}
+function backup(){if(!requireAdmin())return;download(new Blob([JSON.stringify({version:8,exportedAt:new Date().toISOString(),clients,cortes:JSON.parse(localStorage.getItem('nexu_cortes')||'[]'),users:users(),instalaciones:getInstalaciones(),reportes:getReportes(),sectoriales:loadSectors()},null,2)],{type:'application/json'}),'nexu_respaldo_cloud.json')}
+function restore(){if(!requireAdmin())return;let i=document.createElement('input');i.type='file';i.accept='.json';i.onchange=e=>{let r=new FileReader();r.onload=()=>{try{let d=JSON.parse(r.result);if(!Array.isArray(d.clients))throw 0;clients=d.clients.map(migrate);localStorage.setItem('nexu_cortes',JSON.stringify(d.cortes||[]));if(Array.isArray(d.users)&&d.users.length)saveUsers(d.users);if(Array.isArray(d.instalaciones))saveInstalaciones(d.instalaciones);if(Array.isArray(d.reportes))saveReportes(d.reportes);if(Array.isArray(d.sectoriales))saveSectorsData(d.sectoriales);save();render();updateQueueBadges();alert('Respaldo restaurado correctamente.')}catch(_){alert('Respaldo inválido.')}};r.readAsText(e.target.files[0])};i.click()}
+function download(blob,name){let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
+function showModal(id){document.getElementById(id).classList.add('show')}function closeModal(id){document.getElementById(id).classList.remove('show')}function closeScreen(id){document.getElementById(id).classList.remove('show')}
+window.SEED_NAMES=["Mayte Monge", "Mayra Ayala", "Javier Cazares", "Daniela Belen Lopez", "David Ayala", "Erika Jazmin Galicia", "Jahir Morales", "Ana Laura Camacho", "Noemi Lopez C.", "Tomas Moctezuma", "Isabel Carmona", "Lorenzo Romero R.", "Jorge Ayala", "Luis Alberto Carmona", "Celia Sanchez Cazares", "Hodalys Ayala", "Irma Gutierrez", "Tereza Campos", "Abigail Aroche", "Francisco Javier", "Maria Maribel Ayala", "Misael Camacho", "Araceli Sanchez Rivas", "Ines Camacho Monge", "Maria Keidi Montes", "Aldo Rodrigo Lopez", "Fernanda Jimena Torres", "Eugenio Rosas Galicia", "Neyzer Galicia Escobar", "Mauro Monge Ayala", "Clara Lopez Ayala", "Ramon Moctezuma M", "Santa Aguilar Rivas", "Juan Antonio Vargas", "Maria Guadalupe Galicia", "Lorena Ramos Ayala", "Rosa Maria Reyes Ruiz", "Yatzelli Castillo", "Artemia Gutierrez", "Agustina Vergara", "Fernando Ayala G.", "Maria Elena Cazares", "Inocencio Monge", "Alondra Sanchez Galicia", "Leticia Ayala Camacho", "Ana Guadalupe Ocadiz", "Cirino Cazares", "Esthefane Lopez", "Indra Itzel Sanchez", "Leticia Rivera Ramirez", "Mario Alfredo", "Ramon Pineda", "Diana Itzel", "Victor Daniel Aroche", "Marlen Hernandez", "Ana Leticia Camacho", "Erika Liliana Lopez", "America Cristal", "Fredi David Gutierrez", "Basiliza Neri Flores", "Laura Ofelia Franco", "Cecilia Ayala Galicia", "Itzel Rubi Bobadilla", "Xochil Rubi Carmona", "Aldo Espinoza", "Naydelin Gutierrez", "Jorge Cazares Rivas", "Araceli Morales Sanchez", "Noemi Sanchez Anzures", "Fidel Monge Ayala", "Nayeli Monge Garcia", "Mariam Carmona Pineda", "Armando Junior Escobar", "Rogelia Galicia Sanchez", "Adalina Gutierrez Monge", "Diego German Valerio", "Anabel Sanchez Moc", "Armando Duvan", "Esmeralda Camacho M.", "Catalina Pizarro Escobar", "Gabriela Gallardo Anzures", "Sandra Elizabeth Cazares", "Juan Carlos Sanchez R", "Hugo Ayala Gutierrez", "Marta De La Torre Castro", "Luis Antonio Ayala Garcia", "Maria Paz Moctezuma A", "Floricela Sanchez Galicia", "Karen Rosas Franco", "Hodalys Gutierrez", "Yuliana Villalba Vargas", "Rodrigo Sanchez", "Raul Vargas Alcantar", "Dora Alejandra Garcia C.", "Aurelio Garcia Aguilar", "Esmeralda Anzures Yañez", "Brenda Anai Monge Ayala", "Noemi Sanchez Anzures F.", "Celia Pineda Najera", "Leticia Espinoza Galicia", "Angel Arturo Ayala", "Miguel Monge Yañez", "Chrystian Amaury Bernave", "Norma Sanchez Morales", "Anayeli Sanchez Gutierrez", "Alexander Sanchez C.", "Vicente Sanchez Galicia", "Ulices Israel Moctezuma", "Miriam Sanchez Cazares", "Sofia Sanchez Camacho", "Brayan Camacho F.", "Hortencia Estrada Lopez", "Rubi Denisse Ayala", "Jorge Luis Sanchez", "Jonathan Uriel Fonseca", "Tzayuna Sanchez", "Rosalva Gutierrez", "Suzana Colon", "Moyra Gatica Ayala", "O Fer Gabia", "Mercedes Ayala", "Ethel Alejandra Villalobos", "Imelda Ramos Ramos", "Epifania Yañez", "Alfonzo Ayala Sanchez", "Gustavo Sanchez", "Gloria Camacho Yañez", "Yessica Escobar", "Belem Ayala Pineda", "Dulce Morales Nestor", "Reyna Ayala", "Hernaldo Pineda", "Jonathan Alexis Sanchez", "Itzel Elizabeth Gutierrez", "Celia Sanchez (Casa)", "Claudia Moctezuma Rivas", "Alvaro Sanchez", "Liliana Monge", "Victor Hugo Trujillo", "Daniel Farias", "Maria del Rosario Sanchez", "Armando Uri Ayala", "Anayeli Vargas", "Luis Antonio Cazares", "Fernando Pineda", "Armando Aguilar", "Luis Javier Heredia", "Alma Yolanda", "Bertha", "Veronica Ayala", "Maria Elena Camacho", "Lorena Ayala", "Laura Yucan Zuniga", "Yoravet Jimenez", "Ximena Sanchez Anzures", "Luciana Arenas", "Mona del Carmen", "Fatima Isabel Garcia", "Adriana Garcia Pura", "Yuliza Sanchez", "Eder Lopez Ramos", "Laura Monse Ayala", "Elsa Ayala", "Maria Fernanda Sanchez", "Javier Sanchez", "Adriana Ayala Ayala", "Laura Fonseca Rivas", "Martha Patricia Flores", "Elizabeth Torres I", "Deysi Jazmin Gutierrez", "Mario Eloisa Flores", "Alfredo Maldonado", "Isabel Camacho Diaz", "Livia Rosas Rosas", "Oscar Monco Sarmiento", "Alejandro Escobar", "Noe Armando Monge", "German Lisandro Moc", "Melan Monserrat A", "Alejandro Cazares", "Maria Pilar Sanchez", "Marco Leonor Ayala", "Lucia Cazares", "Yasmith Sanchez", "Alma Gabriela Carmona"];
+const SECTOR_STORAGE='nexu_sectoriales_v1';
+const DEFAULT_SECTORS=[
+ {id:'s8',name:'Sectorial 8',posicion:'Magle',clients:16,zone:'Cerro'},
+ {id:'s18',name:'Sectorial 18',posicion:'',clients:18,zone:'Cerro'},
+ {id:'s10',name:'Sectorial 10',posicion:'',clients:19,zone:'Cerro'},
+ {id:'s1',name:'Sectorial 1',posicion:'Arriba',clients:15,zone:'Torre'},
+ {id:'s3',name:'Sectorial 3',posicion:'Izquierda',clients:18,zone:'Torre'},
+ {id:'s5',name:'Sectorial 5',posicion:'Abajo',clients:20,zone:'Torre'},
+ {id:'s4',name:'Sectorial 4',posicion:'Derecha',clients:16,zone:'Torre'},
+ {id:'s12',name:'Sectorial 12',posicion:'Derecha',clients:6,zone:'Torre'},
+ {id:'s2',name:'Sectorial 2',posicion:'Abajo',clients:13,zone:'Torre'},
+ {id:'s7',name:'Sectorial 7',posicion:'Central',clients:16,zone:'Torre'},
+ {id:'s6',name:'Sectorial 6',posicion:'Arriba',clients:11,zone:'Torre'},
+ {id:'s9',name:'Sectorial 9',posicion:'Derecha',clients:7,zone:'Torre'},
+ {id:'s11',name:'Sectorial 11',posicion:'Abajo',clients:5,zone:'Torre'},
+ {id:'s13',name:'Sectorial 13',posicion:'Extra',clients:2,zone:'Cerro'},
+ {id:'s17',name:'Sectorial 17',posicion:'',clients:null,zone:'Cerro'}
+];
+function loadSectors(){if(Array.isArray(window.__cloudSectors)&&window.__cloudSectors.length)return window.__cloudSectors;try{let d=JSON.parse(localStorage.getItem(SECTOR_STORAGE)||'null');return Array.isArray(d)?d:DEFAULT_SECTORS.map(x=>({...x}));}catch(e){return DEFAULT_SECTORS.map(x=>({...x}));}}
+function saveSectorsData(arr){localStorage.setItem(SECTOR_STORAGE,JSON.stringify(arr));}
+function openSectores(){if(!requireAdmin())return;renderSectores();showScreen('sectoresScreen');}
+function showScreen(id){document.getElementById(id).classList.add('show')}
+function renderSectores(){
+ const arr=sectorialList();
+ const activos=clients.filter(c=>c.active).length;
+ const linkedTotal=clients.filter(c=>c.active&&c.sectorialId).length;
+ const sinSectorial=activos-linkedTotal;
+ const cerro=arr.filter(x=>x.zone==='Cerro').reduce((a,x)=>a+linkedSectorialCount(x.id),0);
+ const torre=arr.filter(x=>x.zone==='Torre').reduce((a,x)=>a+linkedSectorialCount(x.id),0);
+ const diff=activos-linkedTotal;
+ sectoresBody.innerHTML=`<div class="sectorGrid"><div><div class="sectorCards"><div class="sectorCard"><small>Clientes activos en el portal</small><strong>${activos}</strong><span class="muted">clientes reales activos</span></div><div class="sectorCard"><small>Clientes vinculados</small><strong>${linkedTotal}</strong><span class="muted">asignados a una sectorial</span></div><div class="sectorCard"><small>Sin sectorial</small><strong>${sinSectorial}</strong><span class="muted">pendientes de asignar</span></div><div class="sectorCard"><small>Cerro / Torre</small><strong>${cerro} / ${torre}</strong><span class="muted">clientes vinculados</span></div></div><div class="${diff===0?'sectorGood':'sectorWarn'}" style="margin-top:12px">${diff===0?'✅ Los clientes activos están vinculados a una sectorial.':'⚠️ Hay '+diff+' cliente(s) activo(s) sin sectorial asignada. Así podrás cuadrar exactamente tus clientes reales.'}</div><div class="panel"><h3>Clientes por sectorial</h3><div class="tableWrap"><table class="sectorTable"><thead><tr><th>Sectorial</th><th>Posición</th><th>Zona</th><th>Clientes activos</th><th>Estado</th></tr></thead><tbody>${arr.map((x)=>{const n=linkedSectorialCount(x.id),st=sectorialStatus(n);return `<tr class="${x.zone==='Cerro'?'sectorCerro':x.zone==='Torre'?'sectorTorre':'sectorUnknown'}"><td><b>${esc(x.name)}</b></td><td>${esc(x.position||x.posicion||'—')}</td><td class="sectorZone">${esc(x.zone||'')}</td><td><strong style="font-size:20px">${n}</strong><div class="muted">${Number.isFinite(Number(x.clients))?`Registrados: ${Number(x.clients)}`:'Sin cantidad previa'}</div></td><td><span class="pill ${st==='green'?'green':st==='yellow'?'orange':'red'}">${sectorialStatusLabel(n)}</span></td></tr>`}).join('')}</tbody></table></div><div class="notice" style="margin-top:12px">🟢 0–10: bien · 🟡 11–17: capacidad media · 🔴 18 o más: llena. Una sectorial con 18 clientes no permitirá agregar otro.</div><div class="toolbar" style="margin-top:12px"><button class="btn green" onclick="saveSectoriales()">💾 Guardar sectoriales</button><button class="btn light" onclick="resetSectoriales()">↩ Restaurar lista original</button></div></div></div><div><div class="panel"><h3>📊 Resumen</h3><p class="muted">Cada cliente activo puede quedar vinculado a una sectorial desde <b>Editar cliente</b>. El número de esta pantalla se calcula directamente de esos vínculos.</p><div class="notice">Clientes activos: <b>${activos}</b><br>Vinculados: <b>${linkedTotal}</b><br>Sin sectorial: <b>${sinSectorial}</b></div></div><div class="panel" style="margin-top:12px"><h3>🚦 Capacidad</h3><p class="muted">Cuando una sectorial llega a 18 clientes, queda en rojo y el portal bloquea nuevas asignaciones a esa sectorial.</p></div></div></div>`;
+}
+function updateSector(i,v){let arr=loadSectors();arr[i].clients=v===''?null:Number(v);window.__sectorsDraft=arr;}
+function saveSectoriales(){if(!requireAdmin())return;let arr=window.__sectorsDraft||loadSectors();saveSectorsData(arr);renderSectores();alert('Sectoriales guardadas correctamente.');}
+function resetSectoriales(){if(!requireAdmin())return;if(!confirm('¿Restaurar las cantidades originales registradas?'))return;window.__sectorsDraft=null;saveSectorsData(DEFAULT_SECTORS.map(x=>({...x})));renderSectores();}
+
+/* ==========================================================
+   NEXU CLOUD - Supabase
+   Project: ddfnrowhxsnyhqceglsm
+   ========================================================== */
+const NEXU_SUPABASE_URL='https://ddfnrowhxsnyhqceglsm.supabase.co';
+const NEXU_SUPABASE_KEY='sb_publishable_qb8lMFVg3ZJO3W2jrw0pxg_8k_NTVR5';
+const supabaseClient=window.supabase.createClient(NEXU_SUPABASE_URL,NEXU_SUPABASE_KEY);
+let cloudMode=true, cloudProfile=null, cloudReady=false;
+window.__cloudProfileMap={};
+
+function paymentEmployeeName(id){
+  if(!id) return 'Sin registrar';
+  const map=window.__cloudProfileMap||{};
+  if(map[id]) return map[id];
+  if(cloudProfile?.id===id) return cloudProfile.name||cloudProfile.email||'Usuario';
+  return 'Usuario';
+}
+
+function cloudError(err){ console.error('NEXU CLOUD',err); return err?.message||String(err||'Error de conexión'); }
+function cloudNotice(msg,ok=false){
+  let x=document.getElementById('cloudStatus');
+  if(!x){x=document.createElement('div');x.id='cloudStatus';x.style='position:fixed;right:14px;bottom:14px;z-index:9999;padding:10px 14px;border-radius:12px;background:#071a33;color:#fff;font:700 12px Arial;box-shadow:0 8px 24px #0003';document.body.appendChild(x)}
+  x.textContent=(ok?'☁️ ':'⚠️ ')+msg;x.style.background=ok?'#067647':'#b42318';
+  clearTimeout(window.__cloudTimer);window.__cloudTimer=setTimeout(()=>x.remove(),3500);
+}
+function setAuthTexts(mode){
+  if(mode==='login'){
+    document.querySelector('#authOverlay h2').textContent='Telecomunicaciones TRON';
+    document.querySelector('#authOverlay p').textContent='Iniciar sesión .';
+    document.querySelector('#authOverlay label').textContent='Correo electrónico';
+    loginUser.type='email';loginUser.autocomplete='email';loginUser.placeholder='tu@correo.com';
+  } else {
+    document.querySelector('#setupOverlay h2').textContent='Crear administrador NEXU';
+    document.querySelector('#setupOverlay p').textContent='Primer acceso: crea la cuenta que administrará el portal en la nube.';
+    document.querySelectorAll('#setupOverlay .authField label')[0].textContent='Tu nombre';
+    document.querySelectorAll('#setupOverlay .authField label')[1].textContent='Correo electrónico';
+    setupUser.type='email';setupUser.autocomplete='email';setupUser.placeholder='tu@correo.com';
+  }
+}
+async function getCloudProfile(){
+  const {data:{user}}=await supabaseClient.auth.getUser();
+  if(!user) return null;
+  const {data,error}=await supabaseClient.from('profiles').select('*').eq('id',user.id).maybeSingle();
+  if(error) throw error;
+  if(!data){
+    console.warn('NEXU: el usuario autenticado no tiene un perfil visible en public.profiles. Revisa la fila del usuario y la política SELECT de profiles.');
+    return {id:user.id,name:user.email||'Usuario',username:user.email,role:'employee',active:true,email:user.email,_profileMissing:true};
+  }
+  /* NEXU supports the Spanish profile schema used by this project:
+     nombre / rol / activo. Normalize it to the internal names used by the UI. */
+  return {
+    ...data,
+    id:data.id||user.id,
+    name:data.name||data.nombre||user.email||'Usuario',
+    username:data.username||data.usuario||user.email,
+    role:data.role||data.rol||'employee',
+    active:data.active!==undefined ? data.active : (data.activo!==undefined ? data.activo : true),
+    email:user.email
+  };
+}
+function cloudIsAdmin(){
+  const r=String(cloudProfile?.role||'').toLowerCase();
+  return r==='admin' || r==='administrador';
+}
+function syncCurrentUser(){currentUser=cloudProfile?{id:cloudProfile.id,name:cloudProfile.name||cloudProfile.email||'Usuario',username:cloudProfile.username||cloudProfile.email,role:cloudIsAdmin()?'admin':'employee',active:cloudProfile.active!==false}:null;}
+
+async function createFirstAdmin(){
+  const name=setupName.value.trim(), email=setupUser.value.trim(), pass=setupPass.value, pass2=setupPass2.value;
+  if(!name||!email||!pass)return alert('Completa todos los campos.');
+  if(pass.length<8)return alert('La contraseña debe tener al menos 8 caracteres.');
+  if(pass!==pass2)return alert('Las contraseñas no coinciden.');
+  try{
+    const {data,error}=await supabaseClient.auth.signUp({email,password:pass});
+    if(error)throw error;
+    if(!data.session){alert('Cuenta creada. Si Supabase pide confirmar el correo, confirma el correo y después inicia sesión.');setAuthTexts('login');setupOverlay.style.display='none';authOverlay.style.display='flex';loginUser.value=email;return;}
+    const {error:rpcError}=await supabaseClient.rpc('bootstrap_nexu_admin',{p_name:name,p_username:email});
+    if(rpcError)throw rpcError;
+    cloudProfile=await getCloudProfile();syncCurrentUser();await cloudLoad();authOverlay.style.display='none';setupOverlay.style.display='none';updatePermissions();render();cloudNotice('NEXU conectado a la nube',true);
+  }catch(e){alert('No se pudo crear el administrador: '+cloudError(e));}
+}
+async function login(){
+  const email=(loginUser.value||'').trim(),pass=loginPass.value||'';
+  if(!email||!pass)return;
+  try{
+    const {error}=await supabaseClient.auth.signInWithPassword({email,password:pass});
+    if(error)throw error;
+    cloudProfile=await getCloudProfile();
+    if(cloudProfile?.active===false)throw new Error('Este usuario está desactivado.');
+    syncCurrentUser();
+    await cloudLoad();
+    authOverlay.style.display='none';setupOverlay.style.display='none';updatePermissions();render();updateQueueBadges();
+    if(cloudProfile?._profileMissing){
+      cloudNotice('NEXU conectado, pero falta el perfil visible en public.profiles.',false);
+    }else{
+      cloudNotice('NEXU conectado a la nube',true);
+    }
+  }catch(e){loginError.textContent=cloudError(e);loginError.style.display='block';}
+}
+async function logout(){await supabaseClient.auth.signOut();cloudProfile=null;currentUser=null;clients=[];authOverlay.style.display='flex';setAuthTexts('login');updatePermissions();}
+
+async function cloudLoad(){
+  cloudReady=false;
+  try{
+    const {error:monthErr}=await supabaseClient.rpc('ensure_nexu_current_month');
+    if(monthErr) console.warn('No se pudo asegurar mes actual:',monthErr.message);
+    const [cr,mr,sr,pr,ir,rr]=await Promise.all([
+      supabaseClient.from('clients').select('*').order('name'),
+      supabaseClient.from('client_months').select('*').order('period'),
+      supabaseClient.from('sectorials').select('*').order('name'),
+      supabaseClient.from('payments').select('*,payment_months(amount,client_month_id,client_months(period))').order('created_at',{ascending:false}),
+      supabaseClient.from('installations').select('*').order('created_at',{ascending:false}),
+      supabaseClient.from('service_reports').select('*').order('created_at',{ascending:false})
+    ]);
+    if(cr.error)throw cr.error;if(mr.error)throw mr.error;
+    if(sr.error)console.warn('Sectoriales:',sr.error.message);
+    if(pr.error)throw new Error('No se pudieron cargar los pagos: '+pr.error.message);
+    if(ir.error)console.warn('Instalaciones:',ir.error.message);
+    if(rr.error)console.warn('Reportes:',rr.error.message);
+    const months=mr.data||[], pays=pr.data||[];
+
+    // Los pagos guardan employee_id = auth.uid().
+    // El administrador puede consultar los perfiles mediante la RPC segura
+    // nexu_list_profiles y así mostrar el nombre real de quien cobró.
+    window.__cloudProfileMap={};
+    if(cloudIsAdmin()){
+      try{
+        const {data:profileRows,error:profileError}=await supabaseClient.rpc('nexu_list_profiles');
+        if(!profileError){
+          (profileRows||[]).forEach(u=>{
+            window.__cloudProfileMap[u.id]=u.nombre||u.name||u.username||'Usuario';
+          });
+        }else{
+          console.warn('No se pudieron cargar nombres de cobradores:',profileError.message);
+        }
+      }catch(e){
+        console.warn('No se pudieron cargar nombres de cobradores:',e);
+      }
+    }
+    if(cloudProfile?.id && !window.__cloudProfileMap[cloudProfile.id]){
+      window.__cloudProfileMap[cloudProfile.id]=cloudProfile.name||cloudProfile.email||'Usuario';
+    }
+
+    clients=(cr.data||[]).map(c=>{
+      const cm={};months.filter(m=>m.client_id===c.id).forEach(m=>cm[m.period.slice(0,7)]={id:m.id,charged:m.charged,paid:Number(m.paid||0),amount:Number(m.amount||c.price||0)});
+      const cp=pays.filter(p=>p.client_id===c.id && !p.voided).flatMap(p=>{
+        const allocations=Array.isArray(p.payment_months)?p.payment_months:[];
+        if(allocations.length){
+          return allocations.map(pm=>({
+            id:p.id,
+            date:p.created_at,
+            amount:Number(pm.amount||0),
+            method:p.method||'',
+            period:(pm.client_months?.period||'').slice(0,7),
+            registeredBy:paymentEmployeeName(p.employee_id||p.user_id||'')
+          }));
+        }
+        // Fallback: the payments table itself contains amount/client_id/method/created_at.
+        // This is also what the dashboard uses for "Cobrado hoy".
+        return [{
+          id:p.id,
+          date:p.created_at,
+          amount:Number(p.amount||0),
+          method:p.method||'',
+          period:p.created_at?String(p.created_at).slice(0,7):'',
+          registeredBy:paymentEmployeeName(p.employee_id||p.user_id||'')
+        }];
+      });
+      return migrate({id:c.id,name:c.name,phone:c.phone||'',plan:c.plan||'10/2',price:Number(c.price||0),active:c.active!==false,address:c.address||'',installDate:c.install_date||'',antenna:c.antenna||'',notes:c.notes||'',email:c.email||'',months:cm,payments:cp,sectorialId:c.sectorial_id||null});
+    });
+    window.__cloudSectors=(sr.data||[]).map(x=>({id:x.id,name:x.name,zone:x.zone||'',position:x.position||'',clients:x.client_count??null,notes:x.notes||''}));
+    window.__cloudInstallations=ir.data||[];window.__cloudReports=rr.data||[];window.__cloudPayments=pays||[];
+    cloudReady=true;
+    return true;
+  }catch(e){cloudReady=false;throw e;}
+}
+
+/* Replace local persistence with cloud persistence for the core collection data. */
+async function save(){ return true; }
+function load(){ return; }
+function paymentsAll(){return clients.flatMap(c=>(c.payments||[]).map(p=>({...p,client:c.name,clientId:c.id}))).sort((a,b)=>new Date(b.date)-new Date(a.date));}
+
+async function registerPayment(){
+  if(!cloudReady)return alert('El portal todavía no está conectado a la nube.');
+  let c=clients.find(x=>x.id===selectedCobrarId);if(!c)return;
+  let amt=Number(payAmount.value)||0,totalDebt=debt(c);
+  if(amt<=0)return alert('Escribe un monto válido.');
+  if(totalDebt<=0)return alert('Este cliente no tiene adeudo pendiente.');
+  if(amt>totalDebt)return alert('El monto no puede ser mayor al adeudo total de '+money(totalDebt)+'.');
+  const method=payMethod.value;
+  if(!confirm('Registrar '+money(amt)+' a '+c.name+' por '+method+'?'))return;
+  try{
+    const {error}=await supabaseClient.rpc('register_nexu_payment',{p_client_id:c.id,p_amount:amt,p_method:method,p_concept:'Cobranza mensual',p_notes:''});
+    if(error)throw error;
+    await cloudLoad();render();renderCobrarList();renderCustomer();renderCaja();renderTransfers();
+    alert('Pago registrado correctamente. Adeudo restante: '+money(debt(clients.find(x=>x.id===c.id)))+'.');
+  }catch(e){alert('No se pudo registrar el pago: '+cloudError(e));}
+}
+
+async function reverseCloudPayment(paymentId){
+  if(!cloudIsAdmin())return alert('Solo el administrador puede anular pagos.');
+  if(!confirm('¿Anular este pago? Esta acción revierte su aplicación a las mensualidades.'))return;
+  const {error}=await supabaseClient.rpc('void_nexu_payment',{p_payment_id:paymentId});
+  if(error)return alert('No se pudo anular: '+cloudError(error));
+  await cloudLoad();render();renderCaja();renderTransfers();alert('Pago anulado correctamente.');
+}
+
+/* Cloud sectorials */
+function loadSectors(){return window.__cloudSectors||[];}
+async function saveSectorsData(arr){
+  if(!cloudIsAdmin())return alert('Solo el administrador.');
+  for(const x of arr){const {error}=await supabaseClient.from('sectorials').update({name:x.name,zone:x.zone||'',position:x.position||'',client_count:x.clients,notes:x.notes||''}).eq('id',x.id);if(error)throw error;}
+  window.__cloudSectors=arr;return true;
+}
+function saveSectors(x){return saveSectorsData(x);}
+
+/* Keep installations/reports visible; write new records to cloud. */
+function getInstalaciones(){return window.__cloudInstallations||[];}
+function getReportes(){return window.__cloudReports||[];}
+async function saveInstalacion(){
+  let name=iName.value.trim();if(!name)return alert('Escribe el nombre del nuevo cliente.');
+  const row={name,phone:iPhone.value.replace(/\D/g,'').slice(-10),plan:iPlan.value,price:Number(iPrice.value)||350,requested_date:iDate.value||null,antenna:iAntenna.value.trim(),address:iAddress.value.trim(),notes:iNotes.value.trim(),status:'Pendiente',created_by:currentUser?.id||null};
+  try{const {error}=await supabaseClient.from('installations').insert(row);if(error)throw error;await cloudLoad();closeModal('instalacionModal');renderInstalaciones();updateQueueBadges();alert('Instalación guardada en la nube.');}catch(e){alert('No se pudo guardar: '+cloudError(e));}
+}
+
+
+async function openPlanRequests(){if(!requireAdmin())return;try{await renderPlanRequests();showScreen('planRequestsScreen')}catch(e){alert('No se pudieron cargar las solicitudes: '+cloudError(e))}}
+async function renderPlanRequests(){const {data,error}=await supabaseClient.rpc('nexu_list_plan_requests');if(error)throw error;planRequestsBody.innerHTML=(data||[]).length?(data.map(r=>`<div class="queueItem"><div class="queueTop"><div><div class="queueTitle">${esc(r.client_name)}</div><div class="queueMeta">Plan actual: <b>${esc(r.current_plan)}</b> · Solicita: <b>${esc(r.requested_plan)}</b></div><div class="queueMeta">${new Date(r.created_at).toLocaleString('es-MX')}</div></div><span class="pill orange">Pendiente</span></div><div class="rowBtns" style="margin-top:9px"><button class="mini green" onclick="reviewPlanRequest('${r.id}',true)">✓ Aceptar</button><button class="mini red" onclick="reviewPlanRequest('${r.id}',false)">Rechazar</button></div></div>`).join('')):'<div class="empty">No hay solicitudes pendientes.</div>';const badge=document.getElementById('planReqCount');if(badge)badge.textContent=data?.length?`(${data.length})`:''}
+async function reviewPlanRequest(id,approve){if(!requireAdmin())return;if(!confirm(approve?'¿Aceptar el cambio de plan?':'¿Rechazar esta solicitud?'))return;try{const {error}=await supabaseClient.rpc('nexu_review_plan_request',{p_request_id:id,p_approve:approve});if(error)throw error;await cloudLoad();render();await renderPlanRequests();alert(approve?'Plan actualizado correctamente.':'Solicitud rechazada.')}catch(e){alert('No se pudo actualizar la solicitud: '+cloudError(e))}}
+
+/* Cloud status and safe boot */
+async function cloudBoot(){
+  setAuthTexts('login');
+  const {data:{session}}=await supabaseClient.auth.getSession();
+  if(session){
+    try{
+      cloudProfile=await getCloudProfile();
+      if(cloudProfile?.active===false)throw new Error('Usuario desactivado');
+      syncCurrentUser();
+      await cloudLoad();
+      authOverlay.style.display='none';
+      setupOverlay.style.display='none';
+      updatePermissions();
+      render();
+      updateQueueBadges();
+      if(cloudProfile?._profileMissing){
+        cloudNotice('NEXU conectado, pero el perfil administrativo no es visible en Supabase. Revisa public.profiles y sus permisos.',false);
+      }else{
+        cloudNotice('NEXU conectado a la nube',true);
+      }
+      return;
+    }catch(e){console.error(e);}
+  }
+
+  /* Production already has an administrator in Supabase.
+     Do not infer "first access" from profiles while unauthenticated:
+     RLS intentionally hides profiles from anonymous users, which can make
+     a real production account look like zero profiles on a new device. */
+  setAuthTexts('login');
+  setupOverlay.style.display='none';
+  authOverlay.style.display='flex';
+}
+
+/* Persistencia segura de mensualidades generadas en Supabase.
+   La versión local anterior solo modificaba clients en memoria porque save() está desactivado
+   en producción. Esta función guarda únicamente el registro de client_months seleccionado;
+   no toca clientes ni pagos. */
+async function toggleMonth(id,m){
+  if(!cloudIsAdmin())return alert('Esta función es exclusiva del administrador.');
+  const c=clients.find(x=>x.id===id);
+  if(!c)return;
+  const p=now();
+  if(m>p.m)return alert('No se pueden generar meses futuros.');
+  const period=key(p.y,m)+'-01';
+  const current=c.months?.[key(p.y,m)];
+  try{
+    if(current?.charged){
+      // Nunca borrar una mensualidad que ya tenga dinero aplicado.
+      if(Number(current.paid||0)>0)return alert('No se puede quitar esta mensualidad porque ya tiene un pago aplicado.');
+      if(!current.id)return alert('No se encontró el registro de esta mensualidad en la nube.');
+      const {error}=await supabaseClient.from('client_months').delete().eq('id',current.id);
+      if(error)throw error;
+    }else{
+      const {error}=await supabaseClient.from('client_months').upsert({
+        client_id:id,
+        period,
+        charged:true,
+        amount:Number(c.price||0),
+        paid:0
+      },{onConflict:'client_id,period'});
+      if(error)throw error;
+    }
+    await cloudLoad();
+    render();
+    renderCobrarList();
+    renderCustomer();
+  }catch(e){
+    alert('No se pudo guardar la mensualidad: '+cloudError(e));
+  }
+}
+
+/* Override local permission gate with cloud role. */
+function isAdmin(){return cloudIsAdmin();}
+function requireAdmin(){if(!cloudIsAdmin()){alert('Esta función es exclusiva del administrador.');return false}return true;}
+
+/* Avoid local seed generation: all production data comes from Supabase. */
+updatePermissions();
+cloudBoot();
+<!-- sectorial-client-linking-2026-10-05 -->
+</script></body></html>
