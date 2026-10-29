@@ -1,0 +1,1347 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#071a33"><title>TRON • Portal de Pagos</title><style>
+:root{--bg:#f4f7fb;--card:#fff;--ink:#102033;--muted:#667085;--line:#e4e7ec;--nav:#071a33;--blue:#175cd3;--green:#039855;--red:#d92d20;--orange:#dc6803;--shadow:0 8px 26px #10182812}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,Segoe UI,Arial,sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer;border:0}.top{background:linear-gradient(135deg,#071a33,#123b72);color:#fff;position:sticky;top:0;z-index:20;box-shadow:0 5px 20px #0003}.topin{max-width:1500px;margin:auto;padding:13px 18px;display:flex;align-items:center;justify-content:space-between;gap:15px}.brand{display:flex;gap:11px;align-items:center}.mark{width:42px;height:42px;border-radius:12px;background:#fff;color:#071a33;display:grid;place-items:center;font-weight:900;font-size:20px}.brand h1{font-size:20px;margin:0}.brand small{opacity:.72}.actions{display:flex;gap:7px;flex-wrap:wrap}.btn{padding:10px 13px;border-radius:10px;font-weight:800;background:#fff;color:var(--ink)}.btn.blue{background:#2563eb;color:#fff}.btn.green{background:#12b76a;color:#fff}.btn.dark{background:#ffffff16;color:#fff;border:1px solid #ffffff2a}.btn.red{background:#d92d20;color:#fff}.btn.light{background:#f2f4f7}.wrap{max-width:1500px;margin:auto;padding:20px}.hero{display:flex;align-items:end;justify-content:space-between;gap:15px;margin-bottom:18px}.hero h2{margin:0 0 5px;font-size:28px}.hero p{margin:0;color:var(--muted)}.period{background:#fff;border:1px solid var(--line);padding:10px 13px;border-radius:12px;font-weight:800}.stats{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:18px}.stat{background:#fff;border:1px solid var(--line);border-radius:16px;padding:15px;box-shadow:var(--shadow)}.stat label{display:block;color:var(--muted);font-size:12px}.stat strong{display:block;font-size:25px;margin-top:5px}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.search{flex:1;min-width:250px;border:1px solid var(--line);border-radius:11px;padding:11px 13px;background:#fff}.select{border:1px solid var(--line);border-radius:11px;padding:11px 13px;background:#fff}.card{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}.tableWrap{overflow:auto}.table{width:100%;border-collapse:collapse;min-width:1150px}.table th,.table td{padding:12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}.table th{background:#f8fafc;color:var(--muted);font-size:11px;text-transform:uppercase}.name{font-weight:850}.muted{color:var(--muted);font-size:12px}.money{font-weight:900}.pill{display:inline-block;padding:5px 8px;border-radius:999px;font-size:12px;font-weight:800}.pill.red{background:#fef3f2;color:#b42318}.pill.green{background:#ecfdf3;color:#067647}.pill.orange{background:#fffaeb;color:#b54708}.pill.gray{background:#f2f4f7;color:#475467}.rowBtns{display:flex;gap:6px;flex-wrap:wrap}.mini{padding:7px 9px;border-radius:8px;background:#f2f4f7;font-weight:800;color:#344054}.mini.green{background:#ecfdf3;color:#067647}.mini.blue{background:#eef4ff;color:#175cd3}.mini.red{background:#fef3f2;color:#b42318}.empty{text-align:center;padding:40px;color:var(--muted)}.footer{text-align:center;padding:25px;color:var(--muted);font-size:12px}
+.screen{position:fixed;inset:0;background:#f4f7fb;z-index:40;display:none;overflow:auto}.screen.show{display:block}.screenTop{background:#071a33;color:#fff;padding:15px 20px;position:sticky;top:0;z-index:3}.screenTopIn{max-width:1500px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:10px}.screenTop h2{margin:0}.cobrarGrid{max-width:1500px;margin:auto;padding:18px;display:grid;grid-template-columns:360px 1fr;gap:15px}.clientList,.customerCard,.panel{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow)}.clientList{overflow:hidden}.listHead{padding:13px;border-bottom:1px solid var(--line)}.listHead input{width:100%;padding:10px;border:1px solid var(--line);border-radius:9px}.list{max-height:calc(100vh - 160px);overflow:auto}.listItem{padding:12px 14px;border-bottom:1px solid var(--line);cursor:pointer}.listItem:hover,.listItem.active{background:#eef4ff}.listItem b{display:block}.listItem span{font-size:12px;color:var(--muted)}.listItem .amt{float:right;color:var(--red);font-weight:900}.customerCard{padding:18px}.customerHead{display:flex;justify-content:space-between;gap:15px;align-items:flex-start;border-bottom:1px solid var(--line);padding-bottom:15px;margin-bottom:15px}.customerHead h2{margin:0 0 5px}.bigDebt{font-size:32px;font-weight:950;color:var(--red);white-space:nowrap}.infoGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:15px}.info{background:#f8fafc;border-radius:11px;padding:11px}.info b{display:block;color:var(--muted);font-size:11px;margin-bottom:4px}.monthsTitle{display:flex;justify-content:space-between;align-items:center;margin:15px 0 8px}.monthRows{border:1px solid var(--line);border-radius:12px;overflow:hidden}.monthRow{display:grid;grid-template-columns:1fr 120px 130px 110px;gap:8px;padding:10px 12px;border-bottom:1px solid var(--line);align-items:center}.monthRow:last-child{border-bottom:0}.monthRow.pending{background:#fff7ed}.monthRow.paid{background:#ecfdf3}.monthRow.none{background:#f8fafc;color:#98a2b3}.payBox{margin-top:15px;background:#071a33;color:#fff;border-radius:15px;padding:15px}.payBox h3{margin:0 0 10px}.payLine{display:flex;gap:8px;flex-wrap:wrap}.payLine input,.payLine select{padding:11px;border-radius:9px;border:0;min-width:140px}.payButtons{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px}.payButtons button{padding:9px 11px;border-radius:8px;font-weight:800}.payButtons .quick{background:#fff;color:#071a33}.payButtons .doPay{background:#12b76a;color:#fff}.notice{padding:11px 13px;background:#eef4ff;color:#175cd3;border-radius:10px;font-size:13px;margin-bottom:12px}.dashGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.panel{padding:16px}.panel h3{margin:0 0 10px}.big{font-size:30px;font-weight:950}.tableSmall{width:100%;border-collapse:collapse}.tableSmall th,.tableSmall td{padding:9px;border-bottom:1px solid var(--line);text-align:left}.tableSmall th{font-size:11px;color:var(--muted)}
+.modal{position:fixed;inset:0;background:#10182899;display:none;align-items:center;justify-content:center;padding:15px;z-index:60}.modal.show{display:flex}.modalBox{width:min(900px,100%);max-height:92vh;overflow:auto;background:#fff;border-radius:17px}.modalHead{padding:15px 18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between}.modalBody{padding:18px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:11px}.field{display:flex;flex-direction:column;gap:5px}.field.full{grid-column:1/-1}.field label{font-size:12px;font-weight:800}.field input,.field select,.field textarea{padding:10px;border:1px solid var(--line);border-radius:9px}.field textarea{min-height:90px}.modalFoot{padding:14px 18px;border-top:1px solid var(--line);display:flex;justify-content:flex-end;gap:8px}
+@media(max-width:1100px){.stats{grid-template-columns:repeat(3,1fr)}.dashGrid{grid-template-columns:1fr 1fr}}@media(max-width:900px){.cobrarGrid{grid-template-columns:1fr}.list{max-height:270px}.infoGrid{grid-template-columns:1fr 1fr}.monthRow{grid-template-columns:1fr 100px 110px}}@media(max-width:600px){.wrap{padding:12px}.stats{grid-template-columns:repeat(2,1fr);gap:8px}.stat strong{font-size:21px}.hero{flex-direction:column;align-items:flex-start}.grid,.dashGrid{grid-template-columns:1fr}.infoGrid{grid-template-columns:1fr}.customerHead{flex-direction:column}.bigDebt{font-size:28px}.monthRow{grid-template-columns:1fr 90px}.monthRow button{grid-column:1/3}.topin{align-items:flex-start}.actions{justify-content:flex-end}}
+
+.sectorGrid{display:grid;grid-template-columns:1.2fr .8fr;gap:15px}.sectorTable{width:100%;border-collapse:collapse}.sectorTable th,.sectorTable td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left}.sectorTable th{background:#f8fafc;color:var(--muted);font-size:11px;text-transform:uppercase}.sectorNum{width:90px;padding:8px;border:1px solid var(--line);border-radius:8px;font-weight:800}.sectorZone{font-weight:800}.sectorCerro{background:#fffaeb}.sectorTorre{background:#eef4ff}.sectorUnknown{background:#f8fafc}.sectorCards{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.sectorCard{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px}.sectorCard small{color:var(--muted);display:block}.sectorCard strong{font-size:28px;display:block;margin-top:4px}.sectorWarn{background:#fffaeb;border:1px solid #fedf89;color:#92400e;border-radius:12px;padding:12px;margin-bottom:12px}.sectorGood{background:#ecfdf3;border:1px solid #abefc6;color:#067647;border-radius:12px;padding:12px;margin-bottom:12px}@media(max-width:900px){.sectorGrid{grid-template-columns:1fr}.sectorCards{grid-template-columns:1fr 1fr}}@media(max-width:600px){.sectorCards{grid-template-columns:1fr}}
+.queueGrid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.queueCard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:15px;box-shadow:var(--shadow)}.queueItem{border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:9px}.queueItem:last-child{margin-bottom:0}.queueTop{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.queueTitle{font-weight:900}.queueMeta{font-size:12px;color:var(--muted);line-height:1.5;margin-top:5px}.priorityAlta{color:#b42318;background:#fef3f2}.priorityMedia{color:#b54708;background:#fffaeb}.priorityBaja{color:#067647;background:#ecfdf3}.statusPendiente{color:#b54708;background:#fffaeb}.statusProceso{color:#175cd3;background:#eef4ff}.statusResuelto{color:#067647;background:#ecfdf3}@media(max-width:900px){.queueGrid{grid-template-columns:1fr}}.authOverlay{position:fixed;inset:0;background:linear-gradient(135deg,#061427,#123b72);z-index:100;display:flex;align-items:center;justify-content:center;padding:18px}.authCard{width:min(440px,100%);background:#fff;border-radius:22px;padding:28px;box-shadow:0 20px 60px #0005}.authLogo{width:58px;height:58px;border-radius:16px;background:#071a33;color:#fff;display:grid;place-items:center;font-size:28px;font-weight:950;margin-bottom:15px}.authCard h2{margin:0 0 6px}.authCard p{color:var(--muted);margin:0 0 18px}.authField{display:flex;flex-direction:column;gap:6px;margin:10px 0}.authField label{font-size:12px;font-weight:800}.authField input{padding:12px;border:1px solid var(--line);border-radius:10px}.authError{background:#fef3f2;color:#b42318;border-radius:10px;padding:10px;margin:10px 0;display:none}.userBadge{display:inline-flex;align-items:center;gap:7px;background:#ffffff16;border:1px solid #ffffff2a;color:#fff;border-radius:999px;padding:7px 10px;font-size:12px;font-weight:800}.adminOnly.hidden{display:none!important}.userTable{width:100%;border-collapse:collapse}.userTable th,.userTable td{padding:10px;border-bottom:1px solid var(--line);text-align:left}.userTable th{font-size:11px;color:var(--muted);text-transform:uppercase}.permBox{background:#f8fafc;border:1px solid var(--line);padding:12px;border-radius:12px;margin-top:12px}.logoutBtn{background:#fff;color:#071a33!important}
+/* ===== AJUSTE RESPONSIVE MOVIL 2026-10-05 =====
+   Solo modifica presentación. No toca clientes, pagos, Supabase, localStorage ni lógica de cobro. */
+@media (max-width: 700px){
+  html,body{width:100%;max-width:100%;overflow-x:hidden}
+  body{font-size:14px}
+  .top{position:sticky;top:0}
+  .topin{width:100%;padding:10px 12px;display:flex;flex-direction:column;align-items:stretch;gap:10px}
+  .brand{width:100%;gap:9px}
+  .mark{width:40px;height:40px;flex:0 0 40px}
+  .brand h1{font-size:17px;line-height:1.1}
+  .brand small{font-size:12px}
+  .actions{width:100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;align-items:stretch}
+  .actions .btn,.actions .userBadge{width:100%;min-width:0;margin:0;min-height:46px;padding:9px 8px;border-radius:11px;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.15}
+  .actions .userBadge{font-size:12px;white-space:normal}
+  .actions .logoutBtn{min-height:42px}
+  .wrap{padding:10px}
+  .hero{margin-bottom:12px;gap:8px}
+  .hero h2{font-size:23px}
+  .hero p{font-size:12px}
+  .period{padding:8px 10px;font-size:12px;width:100%}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:12px}
+  .stat{padding:11px;border-radius:13px;min-width:0}
+  .stat label{font-size:11px}
+  .stat strong{font-size:20px;overflow-wrap:anywhere}
+  .toolbar{gap:7px}
+  .toolbar .search{min-width:0;width:100%;flex-basis:100%}
+  .toolbar .select,.toolbar .btn{flex:1 1 calc(50% - 4px);min-width:0}
+  .card{border-radius:13px}
+  .tableWrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .table{min-width:820px}
+
+  /* Pantallas internas */
+  .screenTop{padding:11px 12px}
+  .screenTopIn{width:100%;align-items:center}
+  .screenTop h2{font-size:18px}
+  .screenTop small{font-size:11px}
+  .screenTop .btn{padding:8px 10px;white-space:nowrap}
+  .cobrarGrid{padding:10px;grid-template-columns:1fr;gap:10px}
+  .clientList,.customerCard,.panel{border-radius:13px}
+  .list{max-height:220px}
+  .listItem{padding:10px 12px}
+  .customerCard{padding:12px}
+  .customerHead{gap:8px;padding-bottom:11px;margin-bottom:11px}
+  .customerHead h2{font-size:20px}
+  .bigDebt{font-size:27px}
+  .infoGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+  .info{padding:9px;font-size:13px;overflow-wrap:anywhere}
+  .monthRows{border-radius:10px}
+  .monthRow{grid-template-columns:minmax(0,1fr) 78px 92px;gap:5px;padding:9px}
+  .monthRow>div:nth-child(4){grid-column:1/-1}
+  .monthRow button{width:100%}
+  .payBox{padding:12px;border-radius:12px}
+  .payLine{display:grid;grid-template-columns:1fr 1fr}
+  .payLine input,.payLine select{width:100%;min-width:0}
+  .payButtons{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+  .payButtons button{width:100%;min-height:42px}
+  .tableSmall{min-width:650px}
+  .panel{padding:12px}
+  .dashGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .dashGrid .panel{min-width:0}
+  .big{font-size:24px;overflow-wrap:anywhere}
+
+  /* Modales */
+  .modal{padding:8px}
+  .modalBox{width:100%;max-height:94vh;border-radius:14px}
+  .modalHead{padding:12px 14px}
+  .modalBody{padding:12px}
+  .grid{grid-template-columns:1fr;gap:9px}
+  .field.full{grid-column:auto}
+  .modalFoot{padding:10px 12px;position:sticky;bottom:0;background:#fff}
+  .modalFoot .btn{flex:1;min-width:0}
+
+  /* Formularios y pantallas auxiliares */
+  .sectorGrid,.queueGrid{grid-template-columns:1fr}
+  .sectorCards{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .sectorNum{width:75px}
+}
+@media (max-width:390px){
+  .actions{gap:6px}
+  .actions .btn,.actions .userBadge{font-size:13px;min-height:43px;padding:8px 6px}
+  .brand h1{font-size:16px}
+  .stats{gap:6px}
+  .stat{padding:9px}
+  .stat strong{font-size:18px}
+  .infoGrid,.dashGrid{grid-template-columns:1fr 1fr}
+  .payLine{grid-template-columns:1fr}
+  .payButtons{grid-template-columns:1fr}
+}
+/* ===== FIN AJUSTE RESPONSIVE MOVIL ===== */
+
+/* ===== TRON LOGIN PROFESSIONAL REDESIGN: presentation only ===== */
+#authOverlay.authOverlay{padding:0;overflow-y:auto;align-items:stretch;justify-content:stretch;background:#06152b;isolation:isolate}
+#authOverlay.authOverlay:before{content:"";position:fixed;inset:0;z-index:-2;background:radial-gradient(ellipse at 18% 12%,#1358a7 0,transparent 35%),radial-gradient(ellipse at 78% 85%,#087fbd 0,transparent 30%),linear-gradient(135deg,#06152b 0%,#0a2c55 52%,#06172e 100%)}
+#authOverlay.authOverlay:after{content:"";position:fixed;inset:0;z-index:-1;opacity:.19;background-image:linear-gradient(#6ab5ff18 1px,transparent 1px),linear-gradient(90deg,#6ab5ff18 1px,transparent 1px);background-size:46px 46px;mask-image:linear-gradient(90deg,#000,transparent 75%)}
+.loginShell{width:100%;min-height:100vh;display:grid;grid-template-columns:minmax(0,1.08fr) minmax(420px,.92fr);margin:auto}
+.loginShowcase{position:relative;min-height:100vh;padding:clamp(28px,5vw,76px);display:flex;flex-direction:column;color:#fff;overflow:hidden}
+.loginShowcase:before,.loginShowcase:after{content:"";position:absolute;border:1px solid #65b8ff30;border-radius:50%;pointer-events:none}
+.loginShowcase:before{width:620px;height:620px;right:-240px;bottom:-210px;box-shadow:0 0 0 42px #65b8ff08,0 0 0 95px #65b8ff07}
+.loginShowcase:after{width:400px;height:400px;right:-130px;bottom:-100px;box-shadow:0 0 70px #168dff20 inset}
+.showcaseBrand,.mobileBrand{display:flex;align-items:center;gap:13px;position:relative;z-index:1}
+.showcaseMark{width:52px;height:52px;border-radius:15px;display:grid;place-items:center;position:relative;background:linear-gradient(145deg,#168bff,#0751b8);box-shadow:0 9px 28px #0075ff35;color:#fff;font-size:27px;font-weight:950;font-style:italic}
+.showcaseMark span{position:absolute;right:-7px;top:-8px;color:#4ccaff;font-size:25px}
+.showcaseBrand strong,.mobileBrand strong{display:block;font-size:24px;letter-spacing:4px;line-height:1.1}.showcaseBrand small,.mobileBrand small{display:block;font-size:10px;letter-spacing:2.2px;margin-top:5px;color:#9ec8f4}
+.showcaseCopy{position:relative;z-index:1;margin:auto 0;max-width:610px;padding:54px 0 44px}
+.eyebrow,.formEyebrow{font-size:10px;font-weight:900;letter-spacing:2.5px;color:#57c8ff}
+.showcaseCopy h1{font-size:clamp(38px,4.6vw,68px);line-height:1.05;letter-spacing:-2px;margin:20px 0 18px;font-weight:850}.showcaseCopy h1 em{font-style:normal;color:#65caff}.showcaseCopy p{max-width:450px;color:#c0d6ef;font-size:16px;line-height:1.8;margin:0}
+.showcaseFeatures{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;max-width:720px}
+.feature{display:flex;gap:10px;align-items:center;padding:14px 12px;border:1px solid #ffffff1a;background:#ffffff09;border-radius:13px;backdrop-filter:blur(10px)}
+.feature>span{flex:0 0 34px;width:34px;height:34px;display:grid;place-items:center;border-radius:10px;background:#0b66bd;color:#bfe8ff;font-size:20px}.feature b,.feature small{display:block}.feature b{font-size:12px}.feature small{font-size:10px;color:#a8c4e2;margin-top:5px;line-height:1.4}
+.showcaseFoot{position:relative;z-index:1;color:#7fa9d2;font-size:10px;letter-spacing:3px;margin-top:35px}
+.loginFormSide{min-height:100vh;background:linear-gradient(160deg,#f7faff,#eaf2fc);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:clamp(22px,4vw,64px);position:relative}
+.loginFormSide:before{content:"";position:absolute;top:0;left:0;bottom:0;width:1px;background:#ffffff60}
+#authOverlay .authCard{width:min(430px,100%);padding:0;background:transparent;border-radius:0;box-shadow:none;color:#102747}
+#authOverlay .authLogo{width:54px;height:54px;margin:0 0 23px;border-radius:16px;background:linear-gradient(145deg,#117be9,#073d91);box-shadow:0 8px 22px #075ed32a;font-size:25px}
+#authOverlay .formEyebrow{display:block;color:#1674ce;margin-bottom:11px}
+#authOverlay .authCard h2{font-size:clamp(23px,2.3vw,29px);letter-spacing:-.7px;line-height:1.2;margin:0 0 9px;color:#102747}
+#authOverlay .authCard p{font-size:14px;line-height:1.6;color:#687c97;margin:0 0 29px}
+#authOverlay .authField{gap:8px;margin:17px 0}
+#authOverlay .authField label{font-size:12px;color:#2a3e59}
+#authOverlay .authField input{width:100%;min-height:49px;padding:13px 14px;background:#fff;border:1px solid #d6e0ed;border-radius:11px;outline:none;transition:border-color .15s,box-shadow .15s}
+#authOverlay .authField input:focus{border-color:#2184ed;box-shadow:0 0 0 4px #1684ff18}
+#authOverlay .loginSubmit{display:flex;align-items:center;justify-content:center;gap:12px;min-height:51px;border-radius:11px;background:linear-gradient(100deg,#0878ee,#075bd0);box-shadow:0 8px 18px #126be52b;font-weight:800;transition:transform .15s,box-shadow .15s}
+#authOverlay .loginSubmit:hover{transform:translateY(-1px);box-shadow:0 11px 24px #126be540}
+#authOverlay .loginSubmit span{font-size:20px;line-height:1}
+#authOverlay .authError{font-size:13px;line-height:1.5}
+.secureNote{display:flex;justify-content:center;align-items:center;gap:8px;margin-top:22px;color:#71839a;font-size:11px}.secureNote span{color:#0c8c68;font-size:10px}
+.loginCopyright{margin-top:35px;text-align:center;color:#8b9bb0;font-size:10px;line-height:1.5}
+.mobileBrand{display:none}
+#setupOverlay .authCard{max-width:440px}
+@media(max-width:900px){.loginShell{grid-template-columns:minmax(0,.9fr) minmax(380px,1.1fr)}.loginShowcase{padding:30px}.showcaseCopy h1{font-size:43px}.showcaseFeatures{grid-template-columns:1fr}.feature{padding:10px}.showcaseFoot{margin-top:22px}.loginFormSide{padding:28px}}
+@media(max-width:650px){#authOverlay.authOverlay{overflow-y:auto}.loginShell{display:flex;flex-direction:column;min-height:100vh}.loginShowcase{display:none}.loginFormSide{flex:1;min-height:100vh;padding:28px 23px 20px;justify-content:center}.loginFormSide:before{display:none}.mobileBrand{display:flex;margin-bottom:36px;align-self:flex-start}.mobileBrand .showcaseMark{width:45px;height:45px;font-size:23px}.mobileBrand strong{font-size:21px}.mobileBrand small{font-size:9px}.#authOverlay .authCard{width:100%;max-width:430px}.#authOverlay .authLogo{margin-bottom:18px}.#authOverlay .authCard p{margin-bottom:23px}.loginCopyright{margin-top:27px}}
+@media(prefers-reduced-motion:reduce){#authOverlay .loginSubmit{transition:none}}
+/* ===== END TRON LOGIN REDESIGN ===== */
+/* ===== TRON portal visual polish: CSS only, data and payment logic untouched ===== */
+:root{--bg:#f3f6fb;--card:#fff;--ink:#12243a;--muted:#66758a;--line:#e3eaf2;--nav:#091a31;--blue:#1769d2;--green:#07865b;--red:#c83b35;--orange:#bd6908;--shadow:0 10px 28px #1230520c}
+body{background:radial-gradient(ellipse at 8% 0%,#e9f2ff 0,transparent 32%),var(--bg);letter-spacing:.005em}
+.top{background:linear-gradient(112deg,#07172c 0%,#0c2d53 62%,#10467d 100%);box-shadow:0 8px 25px #071a3326}
+.mark{box-shadow:0 5px 14px #0002}
+.wrap{padding-top:26px;padding-bottom:38px}
+.hero{margin-bottom:22px}.hero h2{letter-spacing:-.035em;font-size:30px}.hero p{line-height:1.55}
+.period{box-shadow:0 3px 10px #10243a08}
+.stat,.card,.panel,.clientList,.customerCard,.queueCard,.sectorCard{border-color:#e4eaf2;box-shadow:0 5px 18px #142d4808;transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
+.stat{position:relative;overflow:hidden;padding:17px;border-radius:17px}.stat:before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:linear-gradient(#2887eb,#65b6ff);opacity:.8}.stat label{font-weight:650;letter-spacing:.02em}.stat strong{letter-spacing:-.04em}
+@media(hover:hover){.stat:hover,.queueCard:hover,.sectorCard:hover{transform:translateY(-2px);box-shadow:0 12px 25px #142d4815;border-color:#cbd9ea}}
+.toolbar{gap:9px;margin-bottom:14px}.search,.select{min-height:43px;box-shadow:0 1px 2px #10182808;transition:border-color .18s,box-shadow .18s}.search:focus,.select:focus,.field input:focus,.field select:focus,.field textarea:focus{outline:0;border-color:#69a7ef;box-shadow:0 0 0 3px #2684ff18}
+.btn,.mini,.payButtons button{transition:transform .16s ease,box-shadow .16s ease,filter .16s ease}.btn{box-shadow:0 2px 5px #1018280b}.btn:active,.mini:active,.payButtons button:active{transform:translateY(1px) scale(.985)}
+.btn.blue,.btn.green,.btn.red{box-shadow:0 5px 13px #175cd31a}.btn.blue:hover,.btn.green:hover,.btn.red:hover{filter:brightness(1.06);box-shadow:0 8px 17px #175cd32b}.mini:hover{filter:brightness(.97)}
+.card{border-radius:17px}.table th,.sectorTable th{letter-spacing:.055em}.table td,.sectorTable td{transition:background-color .16s}.table tbody tr:hover td{background:#f7faff}
+.name{letter-spacing:-.01em}.pill{letter-spacing:.01em}
+.screen{background:linear-gradient(145deg,#f3f7fc,#f7f9fc);overscroll-behavior:contain}.screenTop{background:linear-gradient(110deg,#07172c,#0d315a);box-shadow:0 7px 20px #071a3320}.screenTop h2{letter-spacing:-.025em}
+.clientList,.customerCard,.panel{border-radius:17px}.listItem{transition:background-color .17s,padding-left .17s}.listItem:hover{padding-left:18px}.customerCard{animation:tronRise .32s ease both}.info{border:1px solid #edf1f6}.monthRows{box-shadow:0 2px 8px #10182806}.monthRow{transition:filter .16s}.monthRow:hover{filter:brightness(.985)}.payBox{background:linear-gradient(130deg,#091a31,#10345f);box-shadow:0 12px 25px #071a3320}.payButtons .doPay{box-shadow:0 5px 14px #12b76a38}
+.queueItem{transition:transform .18s,border-color .18s,box-shadow .18s}.queueItem:hover{transform:translateY(-1px);border-color:#cddaea;box-shadow:0 5px 14px #10243a0b}
+.modal.show{animation:tronFade .18s ease both}.modal.show .modalBox{animation:tronRise .24s cubic-bezier(.2,.75,.25,1) both}.modalHead{position:sticky;top:0;z-index:2;background:#fff}.modalBox{box-shadow:0 24px 70px #06172e38}
+.authCard{animation:tronRise .42s cubic-bezier(.2,.75,.25,1) both}
+@keyframes tronRise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes tronFade{from{opacity:0}to{opacity:1}}
+@media(max-width:700px){.wrap{padding-top:14px;padding-bottom:25px}.hero h2{font-size:25px}.stat{padding:12px;border-radius:14px}.screen{overscroll-behavior-y:contain}.screenTop{box-shadow:0 4px 14px #071a3325}.customerCard{animation:none}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+/* ===== End presentation-only polish ===== *//* ===== TRON · second professional identity for access and operations ===== */
+:root{--bg:#f2f5f8;--ink:#182b3d;--muted:#687b8e;--line:#e0e7ed;--nav:#102a3a;--blue:#176d83;--green:#16836f;--shadow:0 8px 24px #1833460c}
+body{background:#f2f5f8;color:#182b3d;font-family:Inter,"Segoe UI",Arial,sans-serif}
+.top{background:#102a3a;box-shadow:0 5px 22px #122d4020}.topin{max-width:1560px;padding-top:12px;padding-bottom:12px}.mark{background:#d6f0e9;color:#123a42;border-radius:13px}.brand h1{font-size:18px;letter-spacing:-.02em}.brand small{color:#b3cbd2;letter-spacing:.045em}.actions{gap:8px}.actions .btn{border-radius:9px}
+.btn.blue{background:#176d83}.btn.green{background:#16836f}.btn.dark{background:#ffffff0d;border-color:#ffffff20}.btn.logoutBtn{color:#183244!important}
+.wrap{max-width:1560px;padding-top:25px}.hero{position:relative;isolation:isolate;overflow:hidden;min-height:176px;padding:28px 30px;border:0;border-radius:20px;background:linear-gradient(110deg,#123747,#155b66 63%,#237b79);color:white;align-items:center;box-shadow:0 15px 34px #12374720}.hero:before{content:"";position:absolute;z-index:-1;width:350px;height:350px;right:8%;top:-225px;border:1px solid #ffffff20;border-radius:50%;box-shadow:0 0 0 38px #ffffff08,0 0 0 82px #ffffff06}.hero:after{content:"";position:absolute;z-index:-1;width:230px;height:230px;right:-60px;bottom:-150px;border-radius:50%;background:#8ce0ce18}.heroEyebrow{display:block;color:#a8e4d5;font-size:10px;font-weight:850;letter-spacing:.19em;margin-bottom:12px}.hero h2{color:white;font-size:clamp(25px,3vw,34px);letter-spacing:-.045em;margin:0 0 7px}.hero p{color:#d2e4e4;line-height:1.55}.heroTools{display:flex;align-items:center;gap:10px;z-index:1}.period{border:1px solid #ffffff26;background:#ffffff12;color:white;border-radius:10px;backdrop-filter:blur(8px)}.heroAction{display:inline-flex;align-items:center;gap:18px;background:#e1f5ef;color:#123b41;border-radius:10px;min-height:44px}.heroAction:hover{background:white;transform:translateY(-1px)}
+.stats{gap:12px;margin-top:16px}.stat{border-radius:15px;box-shadow:0 4px 16px #18334608;border-color:#e5ebef;padding:16px}.stat:before{background:#16836f}.stat label{color:#728394}.stat strong{color:#193549;font-size:26px;letter-spacing:-.035em}.toolbar{padding:10px 0}.search,.select{border-color:#dce5ea;border-radius:9px;min-height:42px}.card,.panel,.clientList,.customerCard,.queueCard{border-color:#e2e9ee;border-radius:15px;box-shadow:0 5px 18px #18334608}.table th{background:#f4f7f8;color:#667b87;letter-spacing:.06em}.table td{padding-top:13px;padding-bottom:13px}.table tbody tr:hover td{background:#f6faf9}.footer{color:#83919d}
+/* Access screen: calm, editorial layout with a clear sign-in panel */
+#authOverlay.authOverlay{background:#0e2938}#authOverlay.authOverlay:before{background:radial-gradient(ellipse at 18% 80%,#1d7774 0,transparent 34%),radial-gradient(ellipse at 76% 0%,#23657a 0,transparent 35%),linear-gradient(135deg,#102c3b,#0b202e 72%)}#authOverlay.authOverlay:after{opacity:.1;background-image:linear-gradient(#d6f0e912 1px,transparent 1px),linear-gradient(90deg,#d6f0e912 1px,transparent 1px);background-size:54px 54px;mask-image:linear-gradient(90deg,#000,transparent 80%)}
+.loginShell{grid-template-columns:minmax(0,1.12fr) minmax(410px,.88fr);max-width:1700px}.loginShowcase{padding:clamp(30px,6vw,92px)}.showcaseMark{background:linear-gradient(145deg,#248b86,#145c67);box-shadow:0 9px 28px #052e3538;border-radius:14px}.showcaseBrand strong,.mobileBrand strong{letter-spacing:.22em}.showcaseBrand small,.mobileBrand small{letter-spacing:.14em;color:#9acac7}.showcaseCopy{max-width:640px}.eyebrow{color:#a8e4d5;letter-spacing:.2em}.showcaseCopy h1{font-size:clamp(40px,5vw,72px);letter-spacing:-.055em;line-height:1.02}.showcaseCopy h1 em{color:#8fe0ce}.showcaseCopy p{color:#c2d8dc;max-width:470px;line-height:1.8}.feature{border-color:#ffffff20;background:#ffffff0a;border-radius:12px}.feature>span{background:#ffffff14;color:#a8e4d5;border:1px solid #ffffff16}.feature b{color:#f2f7f8}.feature small{color:#b5cbd0}.showcaseFoot{color:#8cadb4;letter-spacing:.22em}.loginFormSide{background:#f5f7f7;padding:clamp(25px,5vw,76px)}.loginFormSide:before{background:#ffffff40}.#authOverlay .authCard{max-width:405px}.#authOverlay .authLogo{background:linear-gradient(145deg,#248b86,#145c67);box-shadow:0 8px 22px #145c672c;border-radius:14px}.#authOverlay .formEyebrow{color:#19746f;letter-spacing:.18em}.#authOverlay .authCard h2{font-size:30px;color:#173746;letter-spacing:-.045em}.#authOverlay .authCard p{color:#70818a;line-height:1.7;margin-bottom:27px}.#authOverlay .authField label{color:#314b57}.#authOverlay .authField input{background:#fff;border-color:#d9e3e5;border-radius:9px;min-height:50px}#authOverlay .authField input:focus{border-color:#3c9d96;box-shadow:0 0 0 4px #268b8618}#authOverlay .loginSubmit{background:#176d70;border-radius:9px;min-height:49px;box-shadow:0 7px 18px #176d702b}#authOverlay .loginSubmit:hover{background:#115d61;transform:translateY(-1px)}#authOverlay .secureNote{color:#70818a}.loginCopyright{color:#88979d}
+@media(max-width:1000px){.actions{gap:6px}.actions .btn{padding:9px 10px}.stats{grid-template-columns:repeat(3,minmax(0,1fr))}.hero{padding:23px}}
+@media(max-width:700px){.wrap{padding-top:13px}.hero{min-height:0;padding:19px;border-radius:15px;align-items:stretch}.heroTools{width:100%;justify-content:space-between;flex-wrap:wrap}.heroTools .period{flex:1}.heroAction{justify-content:center}.stats{margin-top:10px}.loginShell{grid-template-columns:1fr}.loginShowcase{display:none}.loginFormSide{min-height:100vh;background:linear-gradient(160deg,#f4f7f6,#e9f0ee);padding:26px 22px}.mobileBrand{margin:0 auto 34px}.mobileBrand .showcaseMark{width:48px;height:48px}.#authOverlay .authCard{width:min(420px,100%)}.loginCopyright{margin-top:35px}}
+@media(prefers-reduced-motion:reduce){#authOverlay *,#authOverlay *:before,#authOverlay *:after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+/* ===== End second professional identity ===== *//* ===== TRON navigation refresh: grouped side menu and directional transitions ===== */
+@media(min-width:1001px){
+  .top{position:fixed;inset:0 auto 0 0;width:258px;height:100dvh;overflow-y:auto;overscroll-behavior:contain;z-index:30}
+  .topin{width:100%;max-width:none;height:100%;min-height:100vh;padding:25px 14px 16px;display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:28px}
+  .brand{padding:0 8px 20px;border-bottom:1px solid #ffffff18}
+  .brand h1{font-size:16px}.brand small{font-size:11px}
+  .actions{width:100%;display:flex;flex-direction:column;align-items:stretch;gap:22px;flex-wrap:nowrap}
+  .navGroup{display:flex;flex-direction:column;gap:5px}
+  .navLabel{padding:0 10px 5px;color:#8da9b6;font-size:9px;font-weight:900;letter-spacing:.17em}
+  .actions .btn{width:100%;min-height:42px;padding:9px 10px;display:flex;align-items:center;justify-content:flex-start;gap:10px;border:1px solid transparent;border-radius:9px;background:transparent;color:#dae7e9;text-align:left;font-size:12px;font-weight:700;box-shadow:none}
+  .actions .btn:hover{transform:translateX(3px);background:#ffffff10;border-color:#ffffff0c;color:#fff}
+  .actions .btn:active{transform:translateX(1px) scale(.985);background:#ffffff18}
+  .actions .btn.navPrimary{background:#1b7775;color:#fff;box-shadow:0 7px 16px #061c2d38}
+  .actions .btn.navPrimary:hover{background:#238a84;box-shadow:0 9px 20px #061c2d4a}
+  .navIcon{flex:0 0 27px;width:27px;height:27px;display:grid;place-items:center;border-radius:7px;background:#ffffff12;color:#bfe4dc;font-size:15px;font-weight:800}
+  .navPrimary .navIcon{background:#ffffff20;color:white}
+  .navArrow{margin-left:auto;opacity:.7;font-size:16px}
+  .navCount{margin-left:auto;background:#ffffff19;border-radius:999px;padding:2px 7px;font-size:10px}
+  .navAccount{margin-top:auto;padding-top:14px;border-top:1px solid #ffffff18;display:flex;flex-direction:column;gap:8px}
+  .actions .userBadge{width:100%;justify-content:flex-start;border:0;background:#ffffff0c;color:#d8e7e9;border-radius:8px;padding:10px;font-size:11px}
+  .actions .logoutBtn{color:#bfd0d4!important}
+  main.wrap{width:auto;max-width:none;margin-left:258px;padding:27px clamp(22px,3vw,48px) 42px}
+  .hero{min-height:190px;padding:31px 36px}
+  .stats{gap:14px;margin:18px 0 20px}
+  .screen{z-index:40}
+}
+.screen.show{animation:portalSlideIn .28s cubic-bezier(.2,.75,.25,1) both}
+.screen.show.leaving{animation:portalSlideOut .22s cubic-bezier(.4,0,.7,.2) both;pointer-events:none}
+@keyframes portalSlideIn{from{opacity:.5;transform:translateX(34px)}to{opacity:1;transform:translateX(0)}}
+@keyframes portalSlideOut{from{opacity:1;transform:translateX(0)}to{opacity:0;transform:translateX(28px)}}
+button{transition:transform .16s cubic-bezier(.2,.75,.25,1),box-shadow .18s ease,background-color .18s ease,filter .18s ease}
+button:hover{filter:brightness(1.045)}
+button:active{transform:scale(.965);filter:brightness(.93)}
+button:focus-visible{outline:3px solid #62c4b7;outline-offset:2px}
+.modal.show .modalBox{animation:portalModalIn .22s cubic-bezier(.2,.75,.25,1) both}
+@keyframes portalModalIn{from{opacity:0;transform:translateY(12px) scale(.99)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(max-width:1000px){
+  .top{position:sticky;inset:auto;width:100%;height:auto;overflow:visible}
+  .topin{height:auto;min-height:0;max-width:1560px;padding:10px 14px;display:flex;flex-direction:column;align-items:stretch;gap:10px}
+  .brand{padding:0;border:0}
+  .actions{width:100%;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;align-items:stretch}
+  .navGroup{display:contents}.navLabel{display:none}
+  .actions .btn{min-width:0;min-height:42px;padding:8px;justify-content:center;gap:6px;border-radius:9px;text-align:center;font-size:12px}
+  .navIcon{width:22px;height:22px;flex-basis:22px;font-size:12px}.navArrow{display:none}.navCount{margin-left:0}
+  .navAccount{display:contents}.actions .userBadge{min-height:40px;justify-content:center;padding:8px;text-align:center;font-size:11px}.actions .logoutBtn{justify-content:center}
+  main.wrap{width:100%;max-width:1560px;margin:0 auto;padding:18px 20px 35px}
+}
+@media(max-width:700px){.actions{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}.actions .btn{min-height:43px;font-size:12px}.navIcon{display:none}.actions .userBadge{font-size:11px}.screen.show{animation-name:portalSlideInMobile}}
+@keyframes portalSlideInMobile{from{opacity:.5;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){.screen.show,.screen.show.leaving,.modal.show .modalBox{animation-duration:.01ms!important}button{transition-duration:.01ms!important}}
+/* ===== End grouped navigation ===== *//* Professional responsive payment charts */
+.chartsGrid{display:grid;grid-template-columns:minmax(0,1.16fr) minmax(0,.84fr);gap:15px;margin:17px 0 12px}
+.chartCard{min-width:0;padding:19px 20px 14px;background:#fff;border:1px solid #e2e9ee;border-radius:16px;box-shadow:0 5px 18px #18334608;animation:tronRise .35s ease both}
+.chartHead{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}.chartEyebrow{color:#218379;font-size:9px;font-weight:900;letter-spacing:.16em}.chartHead h3{margin:5px 0 3px;color:#183649;font-size:16px;letter-spacing:-.02em}.chartHead p{margin:0;color:#81909a;font-size:11px}.chartWindow{flex:0 0 auto;padding:6px 9px;border:1px solid #e7edef;border-radius:8px;background:#f8fafb;color:#74858d;font-size:10px;font-weight:700}.chartContent{min-height:238px;display:flex;align-items:center;justify-content:center;margin:8px 0 2px;overflow:hidden}.barSvg{width:100%;height:auto;max-height:238px;overflow:visible}.axisLabel{fill:#96a3aa;font-size:9px;font-family:inherit}.monthLabel{fill:#687b83;font-size:10px;font-weight:700;font-family:inherit}.barValue{fill:#31545b;font-size:9px;font-weight:800;font-family:inherit}.chartBar{transform-box:fill-box;transform-origin:center bottom;animation:barGrow .55s cubic-bezier(.2,.75,.25,1) both;transition:filter .15s}.chartBar:hover{filter:brightness(1.12)}@keyframes barGrow{from{transform:scaleY(.06);opacity:.55}to{transform:scaleY(1);opacity:1}}
+.chartFoot{display:flex;align-items:center;gap:7px;padding-top:10px;border-top:1px solid #eef2f4;color:#84929a;font-size:10px}.chartDot{width:7px;height:7px;border-radius:50%;background:#238b85}.chartDotAlt{background:#176d83}.donutLayout{width:100%;display:grid;grid-template-columns:minmax(140px,.8fr) minmax(150px,1.2fr);align-items:center;gap:8px}.donutSvg{width:min(100%,220px);height:auto;overflow:visible}.donutSegment{animation:donutReveal .75s cubic-bezier(.2,.75,.25,1) both;transition:stroke-width .16s}.donutSegment:hover{stroke-width:29px}@keyframes donutReveal{from{opacity:.35}to{opacity:1}}.donutCaption{fill:#91a0a7;font-size:9px;font-weight:800;letter-spacing:1.4px;font-family:inherit}.donutTotal{fill:#203e4c;font-size:21px;font-weight:850;font-family:inherit}.methodLegendList{display:flex;flex-direction:column;gap:10px;min-width:0}.methodLegend{display:grid;grid-template-columns:10px minmax(48px,1fr) auto;align-items:center;gap:7px;min-width:0;color:#526874;font-size:10px}.methodSwatch{width:8px;height:8px;border-radius:3px;background:var(--swatch)}.methodName{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.methodLegend b{color:#294551;font-size:10px;white-space:nowrap}.chartEmpty{display:flex;min-height:205px;flex-direction:column;align-items:center;justify-content:center;gap:7px;text-align:center;color:#78909a}.chartEmpty>span{width:38px;height:38px;display:grid;place-items:center;border-radius:12px;background:#eef6f4;color:#24857e;font-size:20px}.chartEmpty b{font-size:12px;color:#405d67}.chartEmpty small{font-size:10px;color:#86959b}
+@media(max-width:1100px){.chartsGrid{grid-template-columns:1fr 1fr}.donutLayout{grid-template-columns:1fr}.donutSvg{width:180px;margin:auto}.methodLegendList{width:100%}}
+@media(max-width:700px){.chartsGrid{grid-template-columns:1fr;gap:10px;margin:10px 0}.chartCard{padding:14px;border-radius:13px}.chartContent{min-height:210px}.barSvg{max-height:215px}.donutLayout{grid-template-columns:minmax(125px,.85fr) minmax(0,1.15fr);gap:3px}.donutSvg{width:100%;max-width:185px}.methodLegendList{gap:8px}.methodLegend{font-size:9px}.methodLegend b{font-size:9px}}
+@media(prefers-reduced-motion:reduce){.chartCard,.chartBar,.donutSegment{animation:none!important}}/* Client directory and monthly payment status */
+.directoryHead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:4px 0 15px}.directoryHead h3{margin:5px 0;color:#193b4a;font-size:20px;letter-spacing:-.03em}.directoryHead p{margin:0}.directoryTable{min-width:900px}.clientStatusCard{grid-column:1/-1}.statusChartContent{padding:17px 0 4px}.statusMetrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.statusMetric{display:flex;align-items:center;gap:12px;min-width:0;padding:15px;border:1px solid #e7edef;border-radius:12px;background:#fafcfc}.statusMetricDot{flex:0 0 10px;width:10px;height:10px;border-radius:50%;background:var(--status-color)}.statusMetric.paid{--status-color:#16836f}.statusMetric.pending{--status-color:#d58b29}.statusMetric.none{--status-color:#9baab3}.statusMetric>div{display:grid;grid-template-columns:1fr auto;align-items:baseline;gap:3px 10px;min-width:0;width:100%}.statusMetric small{color:#72838b;font-size:11px;font-weight:750}.statusMetric strong{grid-row:span 2;color:#193b4a;font-size:25px;letter-spacing:-.04em}.statusPercent{color:#98a5aa;font-size:9px}.statusBarWrap{margin-top:17px}.statusBarLabel{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;color:#73838b;font-size:10px}.statusBarLabel b{color:#405963}.statusBar{display:flex;height:13px;overflow:hidden;border-radius:999px;background:#eef2f3;box-shadow:inset 0 1px 2px #12303a12}.statusSegment{height:100%;transition:width .5s cubic-bezier(.2,.75,.25,1)}.statusSegment.paid{background:linear-gradient(90deg,#16836f,#32a58b)}.statusSegment.pending{background:linear-gradient(90deg,#d58b29,#edb95d)}.statusSegment.none{background:#9baab3}@media(max-width:700px){.directoryHead{align-items:flex-start}.directoryHead .btn{min-height:42px}.statusMetrics{gap:7px}.statusMetric{gap:7px;padding:10px 8px;border-radius:10px}.statusMetric strong{font-size:21px}.statusMetric small{font-size:10px}.statusPercent{font-size:8px}}/* ===== TRON enterprise polish: visual layer only ===== */
+:root{--bg:#f4f6fa;--ink:#17283d;--muted:#6d7b8d;--line:#e3e8f0;--nav:#102136;--blue:#315fe6;--green:#16836f;--shadow:0 10px 30px #10213a0b}
+body{background:linear-gradient(180deg,#f8f9fc 0,#f1f4f8 100%);color:#18283c;font-family:Inter,"Segoe UI",Arial,sans-serif}
+.top{background:linear-gradient(180deg,#102136 0,#0c1c2e 100%);box-shadow:5px 0 24px #10213618}
+.mark{background:linear-gradient(145deg,#f5f8ff,#dce7ff);color:#264bb5;box-shadow:0 5px 15px #06152c35}
+.brand h1{font-weight:750;letter-spacing:-.025em}.brand small{color:#a8b8c9;letter-spacing:.08em}
+.navLabel{color:#8194a8!important}.navGroup{gap:4px}.navAccount{border-color:#ffffff14!important}
+.actions .btn.navPrimary{background:linear-gradient(110deg,#3569ec,#2b55ca)!important;box-shadow:0 8px 18px #244bb540!important}.actions .btn.navPrimary:hover{background:linear-gradient(110deg,#4578f2,#315fdf)!important}.navIcon{background:#ffffff0c;color:#b5c7dc;border:1px solid #ffffff0b}.actions .btn:hover .navIcon{background:#ffffff17;color:#fff}
+.hero{background:linear-gradient(112deg,#142a42 0%,#1e4772 58%,#286c85 100%);box-shadow:0 16px 34px #153b5b22;border-radius:18px}.heroEyebrow{color:#a9d6e4;letter-spacing:.2em}.hero h2{font-weight:760;letter-spacing:-.05em}.heroTools .period{border-color:#ffffff2b;background:#ffffff14}.heroAction{background:#f4f7ff;color:#234ab1;font-weight:800;box-shadow:0 5px 14px #0c234333}.heroAction:hover{background:#fff}
+.stat{position:relative;overflow:hidden;border-radius:14px;background:linear-gradient(150deg,#fff,#fcfdff);box-shadow:0 4px 16px #10213a08}.stat:before{background:linear-gradient(180deg,#4578ec,#70b3d4)}.stat label{font-weight:650;color:#748397}.stat strong{color:#1d344c;letter-spacing:-.045em}
+.chartCard,.card,.panel,.clientList,.customerCard,.queueCard,.sectorCard{border-color:#e3e9f1;border-radius:15px;box-shadow:0 5px 20px #14284108}.chartCard{padding:20px}.chartEyebrow{color:#315fe6;letter-spacing:.17em}.chartHead h3{color:#1b344c;font-size:16px;font-weight:780}.chartWindow{background:#f5f7fc;border-color:#e8edf5;color:#66788f}.chartFoot{color:#8391a1;border-color:#eef1f5}.chartDot{background:#315fe6}.statusMetric{background:#fafbfe;border-color:#e7edf4}.statusMetric strong{color:#1d344c}.statusMetric.paid{--status-color:#16836f}.statusBar{background:#edf1f6}
+.toolbar{gap:8px}.search,.select,.field input,.field select,.field textarea{border-color:#dce4ed;border-radius:9px;background:#fff}.search,.select{min-height:43px}.search:focus,.select:focus,.field input:focus,.field select:focus,.field textarea:focus{border-color:#6a8bea;box-shadow:0 0 0 3px #315fe617}
+.btn.blue{background:#315fe6}.btn.green{background:#16836f}.btn{border-radius:9px;font-weight:750}.btn.blue:hover{background:#264fc9}.btn.green:hover{background:#11725f}.mini{border-radius:7px}.mini.blue{background:#eef2ff;color:#3155c5}.mini.green{background:#eaf7f2;color:#16765f}.mini.red{background:#fff0ee;color:#b33a34}
+.table th,.sectorTable th{background:#f6f8fb;color:#78879a;font-size:10px;letter-spacing:.08em}.table td{border-color:#edf0f4}.table tbody tr:hover td{background:#f7f9fd}.name{color:#1a3047}.pill{padding:5px 9px;font-size:10px;letter-spacing:.025em}
+.screen{background:#f3f6fa}.screenTop{background:linear-gradient(100deg,#12263b,#1c466c);box-shadow:0 7px 20px #0d20341c}.screenTop h2{font-weight:750;letter-spacing:-.035em}.directoryHead h3{color:#1a3149}.directoryTable{min-width:940px}.clientStatusCard{border-left:3px solid #315fe6}.customerCard,.clientList,.panel{background:#fff}.payBox{background:linear-gradient(135deg,#142b44,#20516f);border:1px solid #ffffff12}.payButtons .doPay{background:linear-gradient(100deg,#16836f,#1c9a7d);box-shadow:0 6px 15px #16836f32}
+.modalBox{border:1px solid #e3e9f1;box-shadow:0 24px 70px #0c20353d}.modalHead h3{color:#1b344c}.modalHead,.modalFoot{background:#fff}.field input,.field select,.field textarea{transition:border-color .18s,box-shadow .18s}
+#authOverlay.authOverlay{background:#0d1e32}#authOverlay.authOverlay:before{background:radial-gradient(ellipse at 16% 78%,#1d6678 0,transparent 33%),radial-gradient(ellipse at 82% 8%,#244d83 0,transparent 36%),linear-gradient(135deg,#142a43,#0b1b2d 74%)}#authOverlay.authOverlay:after{opacity:.08}.loginShowcase{padding:clamp(32px,6vw,96px)}.showcaseMark{background:linear-gradient(145deg,#3e71ed,#2853bf);box-shadow:0 10px 25px #091a3d55}.showcaseCopy h1 em{color:#92cbe5}.eyebrow{color:#92cbe5}.showcaseFoot{letter-spacing:.18em}.loginFormSide{background:linear-gradient(160deg,#f7f9fc,#eef2f8)}#authOverlay .authLogo{background:linear-gradient(145deg,#3e71ed,#2853bf);box-shadow:0 8px 22px #315fe62e}#authOverlay .formEyebrow{color:#315fe6}#authOverlay .loginSubmit{background:linear-gradient(100deg,#315fe6,#274fc3);box-shadow:0 7px 18px #315fe632}#authOverlay .loginSubmit:hover{background:linear-gradient(100deg,#3d6df0,#315fe6)}
+button{transition:transform .16s ease,box-shadow .18s ease,background-color .18s ease,filter .18s ease}button:active{transform:translateY(1px) scale(.975)}button:focus-visible{outline:3px solid #71a2f0;outline-offset:2px}
+@media(max-width:1000px){.chartsGrid{gap:12px}.chartCard{padding:16px}.hero{border-radius:15px}}
+@media(max-width:700px){.top{box-shadow:0 5px 18px #10213618}.hero{padding:18px}.stat{border-radius:12px}.chartCard{padding:14px}.directoryTable{min-width:850px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}}
+/* ===== End enterprise polish ===== */</style><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><style id="tron-modern-refresh-2026">
+/* TRON modern refresh — presentation only. No billing/data/auth code changed. */
+:root{--tron-accent:#4f6df5;--tron-accent-2:#17a6a0;--tron-surface:#fff;--tron-focus:#93b4ff}
+html{scroll-behavior:smooth;scroll-padding-top:18px}
+body{font-feature-settings:"cv11","ss01";-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+::selection{background:#dce7ff;color:#172d55}
+.top{background:linear-gradient(180deg,#101e35 0%,#0b172a 100%);border-right:1px solid #ffffff0d}
+.brand{position:relative}
+.brand .mark{background:linear-gradient(145deg,#fff,#dce7ff);color:#3157c8;border:1px solid #ffffff70}
+.brand h1{letter-spacing:-.04em}
+.navLabel{padding-top:3px}
+.actions .btn{position:relative;overflow:hidden}
+.actions .btn:before{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent,#ffffff0c,transparent);transform:translateX(-110%);transition:transform .45s ease;pointer-events:none}
+.actions .btn:hover:before{transform:translateX(110%)}
+.actions .btn.navPrimary{background:linear-gradient(110deg,#4768f5,#3151ce)!important}
+main.wrap{background:transparent}
+.hero{isolation:isolate;background:linear-gradient(112deg,#14263f 0%,#204d7d 57%,#287f8b 100%);box-shadow:0 18px 42px #1b3b641c;overflow:hidden}
+.hero:before{border-color:#ffffff25;box-shadow:0 0 0 44px #ffffff08,0 0 0 94px #ffffff05}
+.hero:after{background:radial-gradient(circle,#83e3d326,transparent 68%);width:370px;height:370px;right:-110px;bottom:-245px}
+.hero h2{line-height:1.1;text-wrap:balance}
+.hero p{max-width:680px}
+.heroAction{transition:transform .2s ease,box-shadow .2s ease,background .2s ease}
+.heroAction:hover{box-shadow:0 9px 22px #06172c35;transform:translateY(-2px)}
+.stats{align-items:stretch}
+.stat{border:1px solid #e4eaf3;background:linear-gradient(145deg,#fff,#fbfcff);box-shadow:0 5px 18px #122b4808;transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
+.stat:before{width:4px;background:linear-gradient(180deg,#4f6df5,#39b4ba)}
+.stat label{font-size:11px;text-transform:uppercase;letter-spacing:.065em}
+.stat strong{font-variant-numeric:tabular-nums}
+@media(hover:hover){.stat:hover{transform:translateY(-3px);box-shadow:0 13px 28px #152e4b12;border-color:#cdd9f0}}
+.card,.panel,.chartCard,.clientList,.customerCard,.queueCard,.sectorCard{box-shadow:0 7px 24px #152b4608;border-color:#e3eaf3}
+.chartCard{background:linear-gradient(155deg,#fff 0%,#fcfdff 100%)}
+.chartHead h3{letter-spacing:-.035em}
+.chartWindow{border-radius:999px}
+.chartBar{transform-box:fill-box;transform-origin:center bottom}
+.search,.select,.field input,.field select,.field textarea,.listHead input,.payLine input,.payLine select{transition:border-color .18s ease,box-shadow .18s ease,background-color .18s ease}
+.btn,.mini,.payButtons button{will-change:transform}
+.btn.blue,.btn.green,.btn.red,.heroAction,.payButtons .doPay{transition:transform .18s ease,filter .18s ease,box-shadow .18s ease,background .18s ease}
+.btn.blue:hover,.btn.green:hover,.btn.red:hover,.payButtons .doPay:hover{transform:translateY(-2px)}
+.table tbody tr{transition:background-color .15s ease}
+.table tbody tr:hover td{background:#f4f7ff}
+.pill{white-space:nowrap}
+.screen{background:linear-gradient(145deg,#f4f7fc,#f8faff)}
+.screenTop{background:linear-gradient(100deg,#10223a,#1c4772 75%,#256d83)}
+.customerCard,.panel,.clientList{box-shadow:0 9px 28px #152b460a}
+.listItem{border-left:3px solid transparent;transition:background .16s ease,border-color .16s ease,padding .16s ease}
+.listItem.active{border-left-color:#4168ed;background:#f0f4ff}
+.payBox{background:linear-gradient(130deg,#12243d,#1d4b70 72%,#216b79)}
+.payButtons .doPay{background:linear-gradient(110deg,#118b75,#1ca88a)}
+.modal{backdrop-filter:blur(5px)}
+.modalBox{border-radius:18px}
+.modalHead h3{letter-spacing:-.025em}
+#authOverlay.authOverlay:before{background:radial-gradient(ellipse at 15% 78%,#176f83 0,transparent 34%),radial-gradient(ellipse at 82% 8%,#365fd4 0,transparent 36%),linear-gradient(135deg,#14253f,#0b182b 75%)}
+#authOverlay.authOverlay:after{opacity:.12;background-size:42px 42px}
+.showcaseMark{background:linear-gradient(145deg,#5579ff,#3152c9);box-shadow:0 12px 28px #081a4a55}
+.showcaseCopy h1{max-width:660px;text-wrap:balance}
+.showcaseCopy h1 em{color:#8edfdc}
+.feature{transition:transform .2s ease,border-color .2s ease,background .2s ease}
+@media(hover:hover){.feature:hover{transform:translateY(-3px);border-color:#ffffff38;background:#ffffff10}}
+#authOverlay .authLogo{background:linear-gradient(145deg,#5579ff,#3152c9)}
+#authOverlay .loginSubmit{background:linear-gradient(105deg,#4268ed,#294fc5);box-shadow:0 9px 22px #315fe632}
+#authOverlay .loginSubmit:hover{transform:translateY(-2px);box-shadow:0 13px 27px #315fe644}
+.authError{border:1px solid #ffd2ce}
+.footer{letter-spacing:.025em}
+@media(min-width:1001px){main.wrap{padding-top:32px}.topin{gap:24px}.navAccount{padding-top:18px}.actions .btn{min-height:44px}.hero{min-height:205px}}
+@media(max-width:1000px){.hero{box-shadow:0 12px 28px #1b3b6418}.actions .btn{border:1px solid #ffffff12}.actions .btn.navPrimary{border-color:#5274ff}}
+@media(max-width:700px){.hero{gap:15px}.hero h2{font-size:24px}.heroTools{gap:8px}.stat{min-height:91px}.stat label{line-height:1.4}.chartCard{box-shadow:0 4px 15px #152b4608}.directoryHead{flex-wrap:wrap}.screenTopIn{gap:8px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+/* ===== TRON · Professional tables across every section ===== */
+:root{--table-ink:#1b3048;--table-muted:#718198;--table-border:#dfe7f1;--table-head:#edf3fb;--table-row:#ffffff;--table-row-alt:#f7f9fd;--table-accent:#315fe6}
+.tableWrap{position:relative;overflow:auto;border:1px solid var(--table-border);border-radius:15px;background:#fff;box-shadow:0 8px 24px #152b460a;scrollbar-width:thin;scrollbar-color:#bdcce0 #f2f5fa;-webkit-overflow-scrolling:touch}
+.tableWrap:focus-within{outline:2px solid #315fe633;outline-offset:2px}
+.table,.tableSmall,.sectorTable,.userTable{width:100%;border-collapse:separate;border-spacing:0;background:#fff;color:var(--table-ink);border:1px solid var(--table-border);border-radius:14px;overflow:hidden;box-shadow:0 7px 22px #152b4609}
+.tableWrap>.table,.tableWrap>.tableSmall,.tableWrap>.sectorTable,.tableWrap>.userTable{border:0;border-radius:0;box-shadow:none;margin:0}
+.table th,.tableSmall th,.sectorTable th,.userTable th{position:sticky;top:0;z-index:1;padding:14px 13px;background:linear-gradient(180deg,#f5f8fd,#eaf0f8);color:#526782;border-bottom:1px solid #dbe4f0;text-transform:uppercase;letter-spacing:.075em;font-size:10px;font-weight:850;white-space:nowrap}
+.table td,.tableSmall td,.sectorTable td,.userTable td{padding:12px 13px;border-bottom:1px solid #eaf0f6;vertical-align:middle;transition:background-color .18s ease,color .18s ease}
+.table tbody tr:last-child td,.tableSmall tr:last-child td,.sectorTable tbody tr:last-child td,.userTable tr:last-child td{border-bottom:0}
+.table tbody tr:nth-child(even) td,.tableSmall tr:nth-child(even) td,.userTable tr:nth-child(even) td{background:var(--table-row-alt)}
+.table tbody tr,.tableSmall tr,.sectorTable tbody tr,.userTable tr{animation:tronTableIn .28s ease both;transition:transform .18s ease,box-shadow .18s ease}
+.table tbody tr:nth-child(2),.tableSmall tr:nth-child(2),.sectorTable tbody tr:nth-child(2),.userTable tr:nth-child(2){animation-delay:.025s}
+.table tbody tr:nth-child(3),.tableSmall tr:nth-child(3),.sectorTable tbody tr:nth-child(3),.userTable tr:nth-child(3){animation-delay:.045s}
+.table tbody tr:nth-child(4),.tableSmall tr:nth-child(4),.sectorTable tbody tr:nth-child(4),.userTable tr:nth-child(4){animation-delay:.065s}
+.table tbody tr:hover td,.tableSmall tr:hover td,.sectorTable tbody tr:hover td,.userTable tr:hover td{background:#edf4ff;color:#1b3d68}
+.table tbody tr:hover,.tableSmall tr:hover,.sectorTable tbody tr:hover,.userTable tr:hover{box-shadow:inset 3px 0 0 #4774e8}
+.table .rowBtns{gap:6px}
+.table .mini,.tableSmall .mini,.sectorTable .mini,.userTable .mini{border:1px solid #dfe7f2;box-shadow:0 2px 5px #1b30480a;white-space:nowrap}
+.table .pill,.tableSmall .pill,.sectorTable .pill,.userTable .pill{border:1px solid #ffffffa6;box-shadow:inset 0 0 0 1px #ffffff40}
+.sectorTable tr.sectorCerro td{background:#fff9ed}.sectorTable tr.sectorTorre td{background:#f0f5ff}.sectorTable tr.sectorUnknown td{background:#f8fafc}
+.sectorTable tr:hover td{filter:saturate(1.05);background:#eaf2ff}
+.userTable{min-width:620px}
+.tableSmall{min-width:540px}
+.directoryTable{min-width:940px}
+.panel>.tableSmall,.panel>.sectorTable,.panel>.userTable{margin-top:10px}
+.panel:has(>.tableSmall),.panel:has(>.userTable){overflow-x:auto}
+.card:has(.tableWrap),.panel:has(.tableWrap){overflow:hidden}
+.tableWrap::-webkit-scrollbar{height:9px;width:9px}.tableWrap::-webkit-scrollbar-track{background:#f2f5fa;border-radius:99px}.tableWrap::-webkit-scrollbar-thumb{background:#c4d1e2;border:2px solid #f2f5fa;border-radius:99px}.tableWrap::-webkit-scrollbar-thumb:hover{background:#9eafc6}
+@keyframes tronTableIn{from{opacity:.25;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:700px){.tableWrap{border-radius:12px}.table,.tableSmall,.sectorTable,.userTable{border-radius:12px}.table th,.tableSmall th,.sectorTable th,.userTable th{padding:11px 10px;font-size:9px}.table td,.tableSmall td,.sectorTable td,.userTable td{padding:10px;font-size:12px}.tableSmall{min-width:540px}.directoryTable{min-width:850px}.userTable{min-width:580px}.table tbody tr:hover,.tableSmall tr:hover,.sectorTable tbody tr:hover,.userTable tr:hover{transform:none}}
+@media(prefers-reduced-motion:reduce){.table tbody tr,.tableSmall tr,.sectorTable tbody tr,.userTable tr{animation:none!important;transition:none!important}}
+/* ===== End professional tables ===== */
+
+/* ===== TRON · Edición estacional Día de Muertos · solo presentación ===== */
+:root{--bg:#fff8ef;--card:#fffdf9;--ink:#30233a;--muted:#806f7a;--line:#f0dfd0;--nav:#24162f;--blue:#7b3f91;--green:#28785e;--red:#b93c48;--orange:#d97726;--shadow:0 10px 30px #4a20300e;--table-ink:#39283f;--table-muted:#806f7a;--table-border:#efd9c5;--table-head:#fff0d8;--table-row:#fffdf9;--table-row-alt:#fff8ef;--table-accent:#a64c76}
+html{scroll-behavior:smooth;scroll-padding-top:20px}
+body{background:radial-gradient(ellipse at 90% 2%,#ffdcae55,transparent 25%),radial-gradient(ellipse at 3% 35%,#f4c7d133,transparent 28%),linear-gradient(180deg,#fffaf3,#f8f1eb 72%,#fff8ef);color:#30233a}
+::selection{background:#f5c66e;color:#34203b}
+.top{background:linear-gradient(180deg,#2a1935,#211329 80%);border-right:1px solid #ffffff13;box-shadow:5px 0 25px #28132c20}
+.mark,.brand .mark{background:linear-gradient(145deg,#ffe4a8,#f7b84b)!important;color:#492b4d!important;border:1px solid #ffe9bd;box-shadow:0 5px 15px #12071935}
+.brand small{color:#e6c9d9}.navLabel{color:#d0a8b9!important}
+.actions .btn{color:#f7eaf0}.actions .btn:hover{background:#ffffff12;border-color:#ffffff12;color:#fff}
+.actions .btn.navPrimary{background:linear-gradient(110deg,#b14e76,#8c3d78)!important;box-shadow:0 8px 20px #10081950!important}
+.navIcon{background:#ffffff0e;color:#ffd18a;border-color:#ffffff0b}.navPrimary .navIcon{background:#ffffff1c;color:#fff2d5}
+main.wrap{background:transparent}
+.hero{background:linear-gradient(112deg,#2b1b38 0%,#61365e 54%,#9b4c62 100%);border:1px solid #ffffff15;box-shadow:0 18px 42px #5a2c411f}
+.hero:before{border-color:#ffdc9e40;box-shadow:0 0 0 44px #ffdc9e0d,0 0 0 94px #ffdc9e08}
+.hero:after{background:radial-gradient(circle,#ffc96c40,transparent 68%)}
+.heroEyebrow,.chartEyebrow{color:#ffd78f}.hero h2{color:#fff8ed}.hero p{color:#f0dce5}.period{background:#ffffff15;border-color:#ffffff32;color:#fff5e7}
+.heroAction{background:linear-gradient(110deg,#ffe3a0,#ffc65e);color:#482847;box-shadow:0 7px 18px #1c0f2b33}.heroAction:hover{background:#fff0c9}
+.stat,.card,.panel,.chartCard,.clientList,.customerCard,.queueCard,.sectorCard{border-color:#efdfd1;box-shadow:0 7px 24px #4922380b;background:linear-gradient(150deg,#fffefa,#fffaf4)}
+.stat{border-radius:16px}.stat:before{background:linear-gradient(180deg,#e9a33d,#b64f78)}.stat strong{color:#392641}.stat label{color:#87717c}
+@media(hover:hover){.stat:hover,.queueCard:hover,.sectorCard:hover{border-color:#e9bf8b;box-shadow:0 14px 28px #49223815;transform:translateY(-3px)}}
+.search,.select,.field input,.field select,.field textarea,.listHead input{border-color:#ead9cc;background:#fffefa;color:#39283f}.search:focus,.select:focus,.field input:focus,.field select:focus,.field textarea:focus{border-color:#d89b49;box-shadow:0 0 0 3px #e9a33d24}
+.btn.blue{background:linear-gradient(110deg,#8050ad,#69408f);color:#fff}.btn.green{background:linear-gradient(110deg,#258264,#1d6a56);color:#fff}.btn.red{background:linear-gradient(110deg,#c64c55,#a92f48);color:#fff}
+.mini.blue{background:#f1e8fb;color:#67418a;border-color:#e5d4f4}.mini.green{background:#e7f6ed;color:#216d53;border-color:#d0eadb}.mini.red{background:#fff0ef;color:#a72f3e;border-color:#f4d5d2}
+.tableWrap{border-color:#ead5c2;background:#fffdf9;box-shadow:0 9px 25px #4a20300d;scrollbar-color:#d7ae91 #fff5e9}
+.table,.tableSmall,.sectorTable,.userTable{color:#39283f;border-color:#ead5c2;background:#fffdf9;box-shadow:0 8px 24px #4a20300a}
+.table th,.tableSmall th,.sectorTable th,.userTable th{background:linear-gradient(180deg,#fff3df,#fbe7d1);color:#76526a;border-bottom-color:#edd7c2}
+.table td,.tableSmall td,.sectorTable td,.userTable td{border-bottom-color:#f3e6db}
+.table tbody tr:nth-child(even) td,.tableSmall tr:nth-child(even) td,.userTable tr:nth-child(even) td{background:#fff8f0}
+.table tbody tr:hover td,.tableSmall tr:hover td,.sectorTable tbody tr:hover td,.userTable tr:hover td{background:#fff0d9;color:#512b4c}
+.table tbody tr:hover,.tableSmall tr:hover,.sectorTable tr:hover,.userTable tr:hover{box-shadow:inset 3px 0 0 #d98b36}
+.table .mini,.tableSmall .mini,.sectorTable .mini,.userTable .mini{border-color:#ead8c9}
+.pill.green{background:#e7f6ed;color:#216d53}.pill.orange{background:#fff0d7;color:#94520d}.pill.red{background:#ffeded;color:#a62d40}.pill.gray{background:#f3edf0;color:#746371}
+.screen{background:linear-gradient(145deg,#fff8ef,#f8f0ea)}.screenTop{background:linear-gradient(100deg,#2b1937,#63345e 72%,#97485f)}
+.listItem:hover,.listItem.active{background:#fff1db}.listItem.active{border-left-color:#d88a35}.customerCard{border-color:#edd9c6}.info{background:#fff8ef;border-color:#f0dfd0}.payBox{background:linear-gradient(130deg,#2b1b38,#62345e 72%,#91465f);border:1px solid #ffffff12}.payButtons .doPay{background:linear-gradient(110deg,#2b8b68,#1d6c53)}
+.modal{backdrop-filter:blur(7px)}.modalBox{border:1px solid #edd9c6;box-shadow:0 24px 70px #321b3540}.modalHead,.modalFoot{background:#fffdf9}.modalHead h3{color:#392641}
+.chartCard{background:linear-gradient(155deg,#fffefa,#fff7ed)}.chartWindow{background:#fff4e4;border-color:#f0dfcd;color:#806b78}.chartFoot{border-color:#f1e4d8;color:#8a7880}.chartDot{background:#d98a36}.chartDotAlt{background:#a64c76}.chartEmpty>span{background:#fff0d7;color:#a75d32}
+.statusMetric{background:#fffaf3;border-color:#efdfd1}.statusBar{background:#f5e8dc}.statusSegment.paid{background:linear-gradient(90deg,#258264,#4aab80)}.statusSegment.pending{background:linear-gradient(90deg,#d88b31,#f2be60)}.statusSegment.none{background:#c6b7bd}
+.sectorCerro{background:#fff3de}.sectorTorre{background:#f7eafa}.sectorUnknown{background:#fff8ef}.sectorWarn{background:#fff0d7;border-color:#f0cc8d;color:#8a4c13}.sectorGood{background:#e7f6ed;border-color:#b7e1c8;color:#216d53}
+#authOverlay.authOverlay{background:#24152f}#authOverlay.authOverlay:before{background:radial-gradient(ellipse at 15% 78%,#9c4565 0,transparent 35%),radial-gradient(ellipse at 82% 8%,#d78a39 0,transparent 31%),linear-gradient(135deg,#2d1a3a,#201329 76%)}
+#authOverlay.authOverlay:after{opacity:.2;background-image:linear-gradient(#ffdba318 1px,transparent 1px),linear-gradient(90deg,#ffdba318 1px,transparent 1px);background-size:42px 42px}
+.showcaseMark{background:linear-gradient(145deg,#ffd77e,#e9a13d)!important;color:#45264b!important;box-shadow:0 10px 25px #12071955}.showcaseMark span{color:#fff1bc}.showcaseBrand small,.mobileBrand small{color:#e8c4d2}.eyebrow{color:#ffd58a}.showcaseCopy h1 em{color:#ffc56e}.showcaseCopy p{color:#f0dce4}.showcaseFoot{color:#d0a4b7}.feature{border-color:#ffffff20;background:#ffffff0b}.feature>span{background:#ffffff12;color:#ffd58a}.feature b{color:#fff7ef}.feature small{color:#e2c8d5}
+.loginFormSide{background:linear-gradient(160deg,#fffaf3,#f7eee8)}#authOverlay .authLogo{background:linear-gradient(145deg,#b65377,#7d3d7b);box-shadow:0 8px 22px #6b30542e}#authOverlay .formEyebrow{color:#a64c76}#authOverlay .authCard h2{color:#392641}#authOverlay .authCard p{color:#806f7a}#authOverlay .authField label{color:#594252}#authOverlay .authField input{border-color:#ead9cc;background:#fffefa}#authOverlay .authField input:focus{border-color:#d89b49;box-shadow:0 0 0 4px #e9a33d24}#authOverlay .loginSubmit{background:linear-gradient(105deg,#a64c76,#783b7e);box-shadow:0 8px 20px #8b3d6b30}#authOverlay .loginSubmit:hover{background:linear-gradient(105deg,#b65b82,#89488b)}#authOverlay .secureNote{color:#806f7a}#authOverlay .secureNote span{color:#28785e}.loginCopyright{color:#927c87}
+.authError{border-color:#f1c9c4}.footer{color:#8d7883}
+/* Festive cempasúchil-like decorative accents, deliberately subtle */
+.hero,.chartCard,.modalBox,.customerCard{position:relative;isolation:isolate}.hero:after{pointer-events:none}.hero .heroCopy:before{content:'✿  ·  ✦  ·  ✿';display:block;margin-bottom:8px;color:#ffd37b;font-size:13px;letter-spacing:.22em;opacity:.85}.showcaseCopy:after{content:'✦  ✿  ✦  ✿  ✦';display:block;margin-top:24px;color:#ffcf75;font-size:15px;letter-spacing:.34em;opacity:.72}
+button{transition:transform .18s ease,box-shadow .2s ease,background-color .2s ease,filter .2s ease}button:focus-visible{outline:3px solid #e5a13d;outline-offset:3px}
+@keyframes diaMuertosGlow{0%,100%{box-shadow:0 0 0 0 #f4b34a00}50%{box-shadow:0 0 0 4px #f4b34a16}}
+.heroAction{animation:diaMuertosGlow 4s ease-in-out infinite}
+@media(max-width:1000px){.hero{box-shadow:0 12px 28px #5a2c4118}.actions .btn.navPrimary{border-color:#d38e9e}}
+@media(max-width:700px){.hero .heroCopy:before{font-size:11px}.showcaseCopy:after{margin-top:16px}.tableWrap{border-radius:12px}.table th,.tableSmall th,.sectorTable th,.userTable th{background:#ffefd8}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+/* ===== Fin edición Día de Muertos ===== */
+
+</style>
+</head><body>
+<div class="authOverlay" id="setupOverlay" style="display:none"><div class="authCard"><div class="authLogo">N</div><h2>Crear administrador</h2><p>Primer acceso: crea tu propio usuario y contraseña. No existe una cuenta administrativa predeterminada.</p><div class="authField"><label>Tu nombre</label><input id="setupName" autocomplete="name"></div><div class="authField"><label>Usuario</label><input id="setupUser" autocomplete="username"></div><div class="authField"><label>Contraseña</label><input id="setupPass" type="password" autocomplete="new-password"></div><div class="authField"><label>Confirmar contraseña</label><input id="setupPass2" type="password" autocomplete="new-password"></div><div class="authError" id="setupError"></div><button class="btn blue" style="width:100%;margin-top:8px" onclick="createFirstAdmin()">Crear administrador</button></div></div><div class="authOverlay" id="authOverlay"><div class="loginShell"><aside class="loginShowcase"><div class="showcaseBrand"><div class="showcaseMark">T<span>⌁</span></div><div><strong>TRON</strong><small>TELECOMUNICACIONES</small></div></div><div class="showcaseCopy"><span class="eyebrow">PORTAL ADMINISTRATIVO</span><h1>Tu operación,<br><em>siempre conectada.</em></h1><p>Una plataforma centralizada para administrar clientes, pagos y el servicio de internet.</p></div><div class="showcaseFeatures"><div class="feature"><span>↗</span><div><b>Control de cobranza</b><small>Pagos y adeudos organizados</small></div></div><div class="feature"><span>▤</span><div><b>Historial confiable</b><small>Seguimiento de movimientos</small></div></div><div class="feature"><span>⌁</span><div><b>Red y soporte</b><small>Todo desde un solo lugar</small></div></div></div><div class="showcaseFoot">TRON · CONECTANDO TU MUNDO</div></aside><section class="loginFormSide"><div class="mobileBrand"><div class="showcaseMark">T<span>⌁</span></div><div><strong>TRON</strong><small>TELECOMUNICACIONES</small></div></div><div class="authCard"><div class="authLogo">T</div><span class="formEyebrow">BIENVENIDO DE NUEVO</span><h2>Telecomunicaciones TRON</h2><p>Inicia sesión para continuar al portal de pagos.</p><div class="authField"><label>Correo electrónico</label><input id="loginUser" type="email" autocomplete="email" placeholder="tu@correo.com"></div><div class="authField"><label>Contraseña</label><input id="loginPass" type="password" autocomplete="current-password" placeholder="Tu contraseña" onkeydown="if(event.key==='Enter')login()"></div><div class="authError" id="loginError"></div><button class="btn blue loginSubmit" style="width:100%;margin-top:8px" onclick="login()">Iniciar sesión <span aria-hidden="true">→</span></button><div class="secureNote"><span>◆</span> Acceso privado para personal autorizado</div></div><div class="loginCopyright">© <span id="loginYear">2026</span> Telecomunicaciones TRON · Portal de pagos</div></section></div></div></div>
+<header class="top"><div class="topin"><div class="brand"><div class="mark">T</div><div><h1>Telecomunicaciones</h1><small>Ilimitadas TRON</small></div></div><nav class="actions" aria-label="Navegación principal"><div class="navGroup"><span class="navLabel">COBRANZA</span><button class="btn dark" onclick="openClientes()"><span class="navIcon">♙</span><span>Clientes</span></button><button class="btn green navPrimary" onclick="openCobrar()"><span class="navIcon">$</span><span>Cobrar</span><span class="navArrow">→</span></button><button id="btnCaja" class="btn blue adminOnly" onclick="openCaja()"><span class="navIcon">▤</span><span>Corte de caja</span></button><button id="btnTransfers" class="btn adminOnly" onclick="openTransfers()"><span class="navIcon">⇄</span><span>Transferencias</span></button></div><div class="navGroup"><span class="navLabel">SERVICIO</span><button class="btn dark" onclick="openInstalaciones()"><span class="navIcon">⌂</span><span>Instalaciones</span><span id="instCountTop" class="navCount"></span></button><button class="btn dark" onclick="openReportes()"><span class="navIcon">◇</span><span>Reportes</span><span id="repCountTop" class="navCount"></span></button><button id="btnSolicitudes" class="btn adminOnly" onclick="openPlanRequests()"><span class="navIcon">♧</span><span>Solicitudes</span><span id="planReqCount" class="navCount"></span></button></div><div class="navGroup"><span class="navLabel">ADMINISTRACIÓN</span><button id="btnSectores" class="btn adminOnly" onclick="openSectores()"><span class="navIcon">⌁</span><span>Sectoriales</span></button><button id="btnNew" class="btn blue adminOnly" onclick="openClient()"><span class="navIcon">＋</span><span>Nuevo cliente</span></button><button class="btn dark" onclick="openBulk()"><span class="navIcon">◌</span><span>WhatsApp</span></button></div><div class="navAccount"><span id="userBadge" class="userBadge">—</span><button class="btn logoutBtn" onclick="logout()"><span class="navIcon">↪</span><span>Cerrar sesión</span></button></div></nav></div></header>
+<main class="wrap"><section class="hero"><div class="heroCopy"><span class="heroEyebrow">CENTRO DE OPERACIONES</span><h2>Resumen de cobranza</h2><p>Consulta el estado de tus clientes y registra pagos desde un solo lugar.</p></div><div class="heroTools"><div class="period" id="periodLabel"></div><button class="btn heroAction" onclick="openCobrar()">Registrar pago <span aria-hidden="true">→</span></button></div></section>
+<section class="stats"><div class="stat"><label>Clientes</label><strong id="sClients">0</strong></div><div class="stat"><label>Con adeudo</label><strong id="sPending">0</strong></div><div class="stat"><label>Deuda total</label><strong id="sDebt">$0</strong></div><div class="stat"><label>Cobrado hoy</label><strong id="sToday">$0</strong></div><div class="stat"><label>Transferencias hoy</label><strong id="sTransfers">$0</strong></div><div class="stat"><label>Cobrado histórico</label><strong id="sCollected">$0</strong></div></section>
+<section class="chartsGrid" aria-label="Gráficas de cobranza">
+  <article class="chartCard"><div class="chartHead"><div><span class="chartEyebrow">TENDENCIA</span><h3>Pagos recibidos</h3><p>Importe registrado por mes</p></div><span id="chartWindow" class="chartWindow">Últimos 6 meses</span></div><div id="collectionChart" class="chartContent" role="img" aria-label="Gráfica de pagos registrados por mes"></div><div class="chartFoot"><span class="chartDot"></span> Pagos vigentes por fecha de registro</div></article>
+  <article class="chartCard"><div class="chartHead"><div><span class="chartEyebrow">COMPOSICIÓN</span><h3>Métodos de pago</h3><p>Distribución del historial vigente</p></div><span id="paymentCount" class="chartWindow">0 movimientos</span></div><div id="methodChart" class="chartContent" role="img" aria-label="Gráfica de distribución de métodos de pago"></div><div class="chartFoot"><span class="chartDot chartDotAlt"></span> Importes acumulados por método</div></article>
+</section><div class="toolbar"><input id="search" class="search" placeholder="🔎 Buscar por nombre o WhatsApp..." oninput="render()"><select id="filter" class="select" onchange="render()"><option value="active" selected>Activos</option><option value="all">Todos</option><option value="debt">Con adeudo</option><option value="paid">Sin adeudo</option><option value="inactive">Inactivos</option></select><button class="btn light adminOnly" onclick="openCaja()">🧾 Caja</button><button class="btn light adminOnly" onclick="openTransfers()">🏦 Transferencias</button><button class="btn light adminOnly" onclick="openImport()">⬆ Importar CSV</button><button class="btn light adminOnly" onclick="exportCSV()">⬇ Exportar CSV</button><button class="btn light adminOnly" onclick="backup()">💾 Respaldo</button><button class="btn light adminOnly" onclick="restore()">↩ Restaurar</button><button class="btn light adminOnly" onclick="openUsers()">👤 Usuarios</button></div>
+<div class="card"><div class="tableWrap"><table class="table"><thead><tr><th>Cliente</th><th>Plan</th><th>Sectorial</th><th>Meses pendientes</th><th>Adeudo total</th><th>WhatsApp</th><th>Acciones</th></tr></thead><tbody id="tbody"></tbody></table></div></div><div class="footer">NEXU • Cobranza, instalaciones y soporte. Los datos se guardan en este dispositivo. Usa Respaldo periódicamente.</div></main>
+
+<section class="screen" id="clientesScreen"><div class="screenTop"><div class="screenTopIn"><div><h2>♙ Clientes</h2><small>Directorio completo y estado de cuenta.</small></div><button class="btn" onclick="closeScreen('clientesScreen')">✕ Cerrar</button></div></div><div class="wrap"><div class="directoryHead"><div><span class="chartEyebrow">DIRECTORIO</span><h3>Todos los clientes</h3><p id="directoryCount" class="muted">Cargando clientes…</p></div><button class="btn blue adminOnly" onclick="openClient()">＋ Nuevo cliente</button></div><section class="clientStatusCard chartCard" aria-label="Estado de pago de clientes"><div class="chartHead"><div><span class="chartEyebrow">SEGUIMIENTO DEL PERIODO</span><h3>Clientes que pagaron y pendientes</h3><p>Estado de la mensualidad actual para clientes activos.</p></div><span id="clientStatusPeriod" class="chartWindow">—</span></div><div id="clientStatusChart" class="statusChartContent" role="img" aria-label="Clientes pagados, pendientes y sin mensualidad generada"></div><div class="chartFoot"><span class="chartDot"></span> Pendientes incluye abonos parciales; sin cargo se muestra aparte.</div></section><div class="toolbar"><input id="directorySearch" class="search" placeholder="🔎 Buscar por nombre o WhatsApp…" oninput="renderClientsDirectory()"><select id="directoryFilter" class="select" onchange="renderClientsDirectory()"><option value="all" selected>Todos</option><option value="active">Activos</option><option value="inactive">Inactivos</option><option value="debt">Con adeudo</option><option value="clear">Sin adeudo</option></select></div><div class="card"><div class="tableWrap"><table class="table directoryTable"><thead><tr><th>Cliente</th><th>Plan</th><th>Sectorial</th><th>Estado</th><th>Adeudo</th><th>Acciones</th></tr></thead><tbody id="directoryBody"></tbody></table></div></div></div></section><section class="screen" id="cobrarScreen"><div class="screenTop"><div class="screenTopIn"><div><h2>💰 Cobrar</h2><small>Revisa exactamente qué debe cada cliente y registra el pago.</small></div><button class="btn" onclick="closeScreen('cobrarScreen')">✕ Cerrar</button></div></div><div class="cobrarGrid"><div class="clientList"><div class="listHead"><input id="cobrarSearch" placeholder="Buscar cliente..." oninput="renderCobrarList()"></div><div id="cobrarList" class="list"></div></div><div id="customerPanel" class="customerCard"><div class="empty">Selecciona un cliente.</div></div></div></section>
+<section class="screen" id="cajaScreen"><div class="screenTop"><div class="screenTopIn"><div><h2>🧾 Corte de caja</h2><small>Control diario y acumulado de lo cobrado.</small></div><button class="btn" onclick="closeScreen('cajaScreen')">✕ Cerrar</button></div></div><div class="wrap"><div class="toolbar"><input id="cajaDate" class="select" type="date" onchange="renderCaja()"><button class="btn green" onclick="closeCajaDay()">🔒 Cerrar corte del día</button><button class="btn light" onclick="printCaja()">🖨 Imprimir</button><button class="btn light" onclick="exportPayments()">⬇ Exportar movimientos</button></div><div id="cajaBody"></div></div></section>
+<section class="screen" id="transferScreen"><div class="screenTop"><div class="screenTopIn"><div><h2>🏦 Transferencias</h2><small>Clientes que pagaron por transferencia y cuánto pagaron.</small></div><button class="btn" onclick="closeScreen('transferScreen')">✕ Cerrar</button></div></div><div class="wrap"><div id="transferBody"></div></div></section>
+<section class="screen" id="sectoresScreen"><div class="screenTop"><div class="screenTopIn"><div><h2>📡 Sectoriales y antenas</h2><small>Control de clientes por sectorial, ubicación y espacio disponible.</small></div><button class="btn" onclick="closeScreen('sectoresScreen')">✕ Cerrar</button></div></div><div class="wrap"><div id="sectoresBody"></div></div></section>
+
+<section class="screen" id="instalacionesScreen"><div class="screenTop"><div class="screenTopIn"><div><h2>🔧 Instalaciones pendientes</h2><small>Nuevos clientes capturados por cobranza antes de realizar la instalación.</small></div><button class="btn" onclick="closeScreen('instalacionesScreen')">✕ Cerrar</button></div></div><div class="wrap"><div class="toolbar"><button class="btn blue" onclick="openInstalacionModal()">＋ Nueva instalación</button><input id="instSearch" class="search" placeholder="🔎 Buscar por nombre o WhatsApp..." oninput="renderInstalaciones()"></div><div id="instalacionesBody"></div></div></section>
+<section class="screen" id="reportesScreen"><div class="screenTop"><div class="screenTopIn"><div><h2>🛠 Reportes de clientes</h2><small>Registra fallas, visitas y seguimiento de soporte.</small></div><button class="btn" onclick="closeScreen('reportesScreen')">✕ Cerrar</button></div></div><div class="wrap"><div class="toolbar"><button class="btn blue" onclick="openReporteModal()">＋ Nuevo reporte</button><select id="repFilter" class="select" onchange="renderReportes()"><option value="all">Todos</option><option value="pendiente">Pendientes</option><option value="proceso">En proceso</option><option value="resuelto">Resueltos</option></select><input id="repSearch" class="search" placeholder="🔎 Buscar cliente o reporte..." oninput="renderReportes()"></div><div id="reportesBody"></div></div></section>
+<section class="screen" id="planRequestsScreen"><div class="screenTop"><div class="screenTopIn"><div><h2>🔔 Solicitudes</h2><small>Instalaciones nuevas y cambios de plan enviados desde la página pública.</small></div><button class="btn" onclick="closeScreen('planRequestsScreen')">✕ Cerrar</button></div></div><div class="wrap"><div id="planRequestsBody"></div></div></section><section class="screen" id="usersScreen"><div class="screenTop"><div class="screenTopIn"><div><h2>👤 Usuarios y permisos</h2><small>El administrador controla clientes, pagos, respaldos y configuración.</small></div><button class="btn" onclick="closeScreen('usersScreen')">✕ Cerrar</button></div></div><div class="wrap"><div class="panel"><div class="toolbar"><button class="btn blue" onclick="openUserModal()">＋ Crear usuario</button></div><div id="usersBody"></div></div></div></section>
+<div class="modal" id="userModal"><div class="modalBox" style="max-width:600px"><div class="modalHead"><h3 id="userModalTitle">Crear empleado</h3><button class="mini" onclick="closeModal('userModal')">✕</button></div><div class="modalBody"><div class="grid"><div class="field full"><label>Nombre</label><input id="uName" placeholder="Nombre del empleado"></div><div class="field full"><label>Correo electrónico</label><input id="uUser" type="email" autocomplete="username" placeholder="empleado@correo.com"></div><div class="field"><label>Contraseña</label><input id="uPass" type="password" autocomplete="new-password" placeholder="Mínimo 8 caracteres"></div><div class="field full"><label>Rol</label><select id="uRole"><option value="employee">Empleado — solo cobranza</option><option value="admin">Administrador</option></select></div></div><div class="permBox"><b>Empleado</b><div class="muted">Puede buscar clientes, ver su información, abrir WhatsApp y registrar cobros/abonos. No puede agregar clientes, editar información, borrar/modificar pagos anteriores, ver cortes, transferencias, sectoriales, respaldos ni usuarios.</div></div></div><div class="modalFoot"><button class="btn light" onclick="closeModal('userModal')">Cancelar</button><button class="btn blue" onclick="saveUser()">Guardar usuario</button></div></div></div>
+<div class="modal" id="instalacionModal"><div class="modalBox"><div class="modalHead"><h3>Nueva instalación pendiente</h3><button class="mini" onclick="closeModal('instalacionModal')">✕</button></div><div class="modalBody"><div class="grid"><div class="field full"><label>Nombre completo *</label><input id="iName"></div><div class="field"><label>WhatsApp</label><input id="iPhone" inputmode="tel"></div><div class="field"><label>Plan</label><select id="iPlan"><option value="10/2">10/2 — $350</option><option value="20/5">20/5 — $500</option><option value="Personalizado">Personalizado</option></select></div><div class="field"><label>Cuota mensual</label><input id="iPrice" type="number" value="350"></div><div class="field"><label>Fecha solicitada</label><input id="iDate" type="date"></div><div class="field"><label>Antena prevista</label><input id="iAntenna" placeholder="LiteBeam M5, NanoStation AC..."></div><div class="field full"><label>Dirección</label><input id="iAddress"></div><div class="field full"><label>Notas / referencias</label><textarea id="iNotes"></textarea></div></div></div><div class="modalFoot"><button class="btn light" onclick="closeModal('instalacionModal')">Cancelar</button><button class="btn blue" onclick="saveInstalacion()">Guardar instalación</button></div></div></div>
+<div class="modal" id="reporteModal"><div class="modalBox"><div class="modalHead"><h3 id="reporteTitle">Nuevo reporte</h3><button class="mini" onclick="closeModal('reporteModal')">✕</button></div><div class="modalBody"><div class="grid"><div class="field full"><label>Cliente existente (opcional)</label><select id="rClient"><option value="">— Cliente no seleccionado —</option></select></div><div class="field"><label>Nombre completo del cliente *</label><input id="rName"></div><div class="field"><label>WhatsApp</label><input id="rPhone" inputmode="tel"></div><div class="field full"><label>Dirección *</label><input id="rAddress" placeholder="Calle, colonia, localidad y referencias"></div><div class="field"><label>Trabajo requerido</label><select id="rTask"><option value="Alinear antena">Alinear antena</option><option value="Cambiar antena">Cambiar antena</option><option value="Subir altura">Subir altura</option><option value="Revisar antena">Revisar antena</option><option value="Otro trabajo">Otro trabajo</option></select></div><div class="field"><label>Prioridad</label><select id="rPriority"><option value="media">Media</option><option value="alta">Alta</option><option value="baja">Baja</option></select></div><div class="field"><label>Estado</label><select id="rStatus"><option value="pendiente">Pendiente</option><option value="proceso">En proceso</option><option value="resuelto">Resuelto</option></select></div><div class="field full"><label>Descripción del trabajo *</label><input id="rIssue" placeholder="Ej. Reorientar antena hacia el sectorial"></div><div class="field full"><label>Descripción / seguimiento</label><textarea id="rNotes"></textarea></div></div></div><div class="modalFoot"><button class="btn light" onclick="closeModal('reporteModal')">Cancelar</button><button class="btn blue" onclick="saveReporte()">Guardar reporte</button></div></div></div>
+<div class="modal" id="clientModal"><div class="modalBox"><div class="modalHead"><h3 id="clientTitle">Nuevo cliente</h3><button class="mini" onclick="closeModal('clientModal')">✕</button></div><div class="modalBody"><div class="grid"><div class="field full"><label>Nombre completo *</label><input id="fName"></div><div class="field"><label>WhatsApp</label><input id="fPhone" inputmode="tel" placeholder="7351234567"></div><div class="field"><label>Correo electrónico (opcional)</label><input id="fEmail" type="email" autocomplete="email" placeholder="cliente@correo.com"></div><div class="field"><label>Plan</label><select id="fPlan"><option value="350">10/2 — $350</option><option value="500">20/5 — $500</option><option value="0">Personalizado</option></select></div><div class="field"><label>Cuota mensual</label><input id="fPrice" type="number" value="350"></div><div class="field"><label>Estado</label><select id="fActive"><option value="1">Activo</option><option value="0">Inactivo</option></select></div><div class="field"><label>Fecha instalación</label><input id="fInstall" type="date"></div><div class="field"><label>Antena</label><input id="fAntenna" placeholder="LiteBeam M5, NanoStation AC..."></div><div class="field"><label>Sectorial</label><select id="fSectorial"><option value="">— Sin sectorial asignada —</option></select></div><div class="field full"><label>Dirección</label><input id="fAddress"></div><div class="field full"><label>Notas</label><textarea id="fNotes"></textarea></div></div></div><div class="modalFoot"><button id="deleteClientBtn" class="btn red" style="display:none" onclick="deleteClient()">🗑 Cancelar servicio</button><button id="hardDeleteClientBtn" class="btn red" style="display:none" onclick="hardDeleteClient()">🗑 Eliminar definitivamente</button><button class="btn light" onclick="closeModal('clientModal')">Cancelar</button><button class="btn blue" onclick="saveClient()">Guardar cliente</button></div></div></div>
+<div class="modal" id="importModal"><div class="modalBox"><div class="modalHead"><h3>Importar clientes</h3><button class="mini" onclick="closeModal('importModal')">✕</button></div><div class="modalBody"><div class="notice">CSV: Nombre, WhatsApp, Plan, Cuota, Activo, Dirección, Instalación, Antena</div><input type="file" accept=".csv" onchange="importCSV(event)"></div></div></div>
+<div class="modal" id="bulkModal"><div class="modalBox"><div class="modalHead"><h3>📲 Cobranza WhatsApp</h3><button class="mini" onclick="closeModal('bulkModal')">✕</button></div><div class="modalBody" id="bulkBody"></div></div></div>
+<script>
+const MONTHS=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+const KEY='nexu_v6_2026'; let clients=[],editId=null,selectedCobrarId=null;
+const USER_KEY='nexu_usuarios_v2'; const INST_KEY='nexu_instalaciones_v1'; const REP_KEY='nexu_reportes_v1'; let currentUser=null,editingUserId=null,editingInstId=null,editingRepId=null;
+function users(){try{let x=JSON.parse(localStorage.getItem(USER_KEY)||'null');if(Array.isArray(x))return x}catch(e){}return []}
+function ensureAccess(){let arr=users();if(!arr.length){setupOverlay.style.display='flex';authOverlay.style.display='none'}else{setupOverlay.style.display='none';authOverlay.style.display='flex'}}
+function createFirstAdmin(){let name=setupName.value.trim(),username=setupUser.value.trim(),pass=setupPass.value,pass2=setupPass2.value;if(!name||!username||!pass){setupError.textContent='Completa todos los campos.';setupError.style.display='block';return}if(pass.length<6){setupError.textContent='La contraseña debe tener al menos 6 caracteres.';setupError.style.display='block';return}if(pass!==pass2){setupError.textContent='Las contraseñas no coinciden.';setupError.style.display='block';return}saveUsers([{id:uid(),name,username,password:pass,role:'admin',active:true}]);setupOverlay.style.display='none';authOverlay.style.display='flex';loginUser.value=username;loginPass.value='';loginError.textContent='Administrador creado. Ahora inicia sesión.';loginError.style.display='block'}
+function saveUsers(x){localStorage.setItem(USER_KEY,JSON.stringify(x))}
+function isAdmin(){return currentUser?.role==='admin'}
+function requireAdmin(){if(!isAdmin()){alert('Esta función es exclusiva del administrador.');return false}return true}
+function login(){let u=(loginUser.value||'').trim(),p=loginPass.value||'',x=users().find(a=>a.active&&a.username.toLowerCase()===u.toLowerCase()&&a.password===p);if(!x){loginError.textContent='Usuario o contraseña incorrectos.';loginError.style.display='block';return}currentUser=x;loginError.style.display='none';authOverlay.style.display='none';updatePermissions();load();render();updateQueueBadges()}
+function logout(){currentUser=null;authOverlay.style.display='flex';loginUser.value='';loginPass.value='';updatePermissions()}
+function updatePermissions(){document.querySelectorAll('.adminOnly').forEach(el=>el.classList.toggle('hidden',!isAdmin()));if(userBadge)userBadge.textContent=currentUser?`👤 ${currentUser.name} · ${isAdmin()?'Administrador':'Cobrador'}`:'—'}
+async function cloudUsers(){
+  if(!requireAdmin())return [];
+  const {data,error}=await supabaseClient.rpc('nexu_list_profiles');
+  if(error)throw error;
+  return (data||[]).map(u=>({id:u.id,name:u.nombre||u.name||u.username||'Usuario',username:u.username||'',role:u.rol||u.role||'employee',active:u.activo!==false}));
+}
+async function openUsers(){if(!requireAdmin())return;try{await renderUsers();showScreen('usersScreen')}catch(e){alert('No se pudieron cargar los usuarios: '+cloudError(e));}}
+async function renderUsers(){
+  if(!requireAdmin())return;
+  try{
+    const arr=await cloudUsers();
+    window.__cloudUsers=arr;
+    usersBody.innerHTML='<table class="userTable"><tr><th>Nombre</th><th>Correo</th><th>Rol</th><th>Estado</th><th>Acciones</th></tr>'+arr.map(u=>{
+      const actions=u.id===currentUser?.id
+        ? `<button class="mini blue" onclick="editUser('${u.id}')">Editar</button>`
+        : `<button class="mini blue" onclick="editUser('${u.id}')">Editar</button><button class="mini" onclick="toggleUser('${u.id}')">${u.active?'Desactivar':'Activar'}</button>`;
+      return '<tr><td><b>'+esc(u.name)+'</b></td><td>'+esc(u.username)+'</td><td>'+(u.role==='admin'?'Administrador':'Empleado')+'</td><td>'+(u.active?'<span class="pill green">Activo</span>':'<span class="pill gray">Inactivo</span>')+'</td><td><div class="rowBtns">'+actions+'</div></td></tr>';
+    }).join('')+'</table>';
+  }catch(e){usersBody.innerHTML='<div class="notice">No se pudieron cargar los usuarios: '+esc(cloudError(e))+'</div>';throw e;}
+}
+async function openUserModal(id){
+  if(!requireAdmin())return;
+  editingUserId=id||null;
+  let u=null;
+  if(id){
+    u=(window.__cloudUsers||[]).find(x=>x.id===id);
+    if(!u){try{const arr=await cloudUsers();u=arr.find(x=>x.id===id)}catch(e){return alert('No se pudo cargar el usuario: '+cloudError(e));}}
+  }
+  userModalTitle.textContent=id?'Editar usuario':'Crear usuario';
+  uName.value=u?.name||'';uUser.value=u?.username||'';uPass.value='';uRole.value=u?.role||'employee';uRole.disabled=id===currentUser?.id;
+  showModal('userModal');
+}
+function editUser(id){openUserModal(id)}
+async function saveUser(){
+  if(!requireAdmin())return;
+  const name=uName.value.trim(),email=uUser.value.trim().toLowerCase(),pass=uPass.value,role=uRole.value;
+  if(!name||!email)return alert('Completa nombre y correo electrónico.');
+  if(!/^\S+@\S+\.\S+$/.test(email))return alert('Escribe un correo electrónico válido. Ejemplo: empleado@gmail.com');
+  if(!editingUserId && pass.length<8)return alert('La contraseña debe tener al menos 8 caracteres.');
+  if(!editingUserId){
+    if(!confirm('Se creará una cuenta real de Supabase para '+email+'. ¿Continuar?'))return;
+    try{
+      const {data:{session:adminSession}}=await supabaseClient.auth.getSession();
+      const {data,error}=await supabaseClient.auth.signUp({email,password:pass,options:{data:{name,role}}});
+      if(error)throw error;
+      if(!data?.user)throw new Error('Supabase no devolvió el usuario creado.');
+      if(adminSession){
+        const {error:restoreError}=await supabaseClient.auth.setSession({access_token:adminSession.access_token,refresh_token:adminSession.refresh_token});
+        if(restoreError)throw restoreError;
+      }
+      const {error:profileError}=await supabaseClient.rpc('nexu_upsert_profile',{p_user_id:data.user.id,p_name:name,p_username:email,p_role:role,p_active:true});
+      if(profileError)throw profileError;
+      closeModal('userModal');await renderUsers();alert('Usuario creado correctamente. Ya puede iniciar sesión con ese correo y contraseña.');
+    }catch(e){
+      try{const {data:{session}}=await supabaseClient.auth.getSession();if(session&&session.user?.id!==currentUser?.id&&currentUser?.id){/* best effort: current session is restored above when possible */}}catch(_){ }
+      alert('No se pudo crear el usuario: '+cloudError(e));
+    }
+    return;
+  }
+  try{
+    const {error}=await supabaseClient.rpc('nexu_upsert_profile',{p_user_id:editingUserId,p_name:name,p_username:email,p_role:editingUserId===currentUser?.id?'admin':role,p_active:true});
+    if(error)throw error;
+    closeModal('userModal');await renderUsers();alert('Usuario actualizado.');
+  }catch(e){alert('No se pudo actualizar el usuario: '+cloudError(e));}
+}
+async function toggleUser(id){
+  if(!requireAdmin()||id===currentUser?.id)return;
+  const u=(window.__cloudUsers||[]).find(x=>x.id===id);if(!u)return;
+  try{
+    const {error}=await supabaseClient.rpc('nexu_set_profile_active',{p_user_id:id,p_active:!u.active});
+    if(error)throw error;
+    await renderUsers();
+  }catch(e){alert('No se pudo cambiar el estado: '+cloudError(e));}
+}
+function deleteUser(id){alert('Para evitar borrar una cuenta de acceso accidentalmente, esta versión no elimina usuarios. Puedes desactivarlos desde Usuarios.');}
+
+const money=n=>new Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN',maximumFractionDigits:0}).format(Math.round(n||0));
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const uid=()=>crypto.randomUUID?crypto.randomUUID():Date.now()+Math.random();
+const NEXU_TIMEZONE='America/Mexico_City';
+
+const localDateKey=d=>{
+  try{
+    const parts=new Intl.DateTimeFormat('en-CA',{timeZone:NEXU_TIMEZONE,year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(d);
+    const y=parts.find(x=>x.type==='year')?.value;
+    const m=parts.find(x=>x.type==='month')?.value;
+    const day=parts.find(x=>x.type==='day')?.value;
+    return `${y}-${m}-${day}`;
+  }catch(e){
+    return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+  }
+};
+
+const now=()=>{
+  const d=new Date();
+  try{
+    const parts=new Intl.DateTimeFormat('en-CA',{timeZone:NEXU_TIMEZONE,year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(d);
+    const y=Number(parts.find(x=>x.type==='year')?.value);
+    const m=Number(parts.find(x=>x.type==='month')?.value)-1;
+    const day=parts.find(x=>x.type==='day')?.value;
+    return{y,m,day:`${y}-${String(m+1).padStart(2,'0')}-${day}`};
+  }catch(e){
+    return{y:d.getFullYear(),m:d.getMonth(),day:localDateKey(d)};
+  }
+};
+const key=(y,m)=>y+'-'+String(m+1).padStart(2,'0');
+function migrate(c){c.months=c.months||{};c.payments=c.payments||[];c.price=Number(c.price)||350;c.plan=c.plan||'10/2';c.phone=(c.phone||'').replace(/\D/g,'').slice(-10);c.address=c.address||'';c.installDate=c.installDate||'';c.antenna=c.antenna||'';c.notes=c.notes||'';c.active=c.active!==false;c.sectorialId=c.sectorialId||c.sectorial_id||null;return c}
+function buildSeed(){return window.SEED_NAMES.map(name=>migrate({id:uid(),name,phone:'',plan:'10/2',price:350,active:true,months:{},payments:[]}))}
+function setMonth(c,m,paid=0,charged=true){let p=now();c.months[key(p.y,m)]={charged,paid:Number(paid)||0}}
+function applySheetSnapshot(){let p=now();clients.forEach(c=>{c.months={};c.payments=[];if(c.active)setMonth(c,p.m,0,true)});
+ // Octubre marcado como pagado en las hojas visibles.
+ ['Juan Antonio Vargas','Artemia Gutierrez','Xochil Rubi Carmona','Karen Rosas Franco','Alfonzo Ayala Sanchez','Eder Lopez Ramos'].forEach(n=>{let c=findName(n);if(c)setMonth(c,p.m,c.price,true)});
+ // Casos claramente visibles con meses anteriores pendientes en las hojas: Itzel Rubi Bobadilla y Francisco Javier.
+ ['Itzel Rubi Bobadilla','Francisco Javier'].forEach(n=>{let c=findName(n);if(c){for(let m=4;m<=p.m;m++)setMonth(c,m,0,true)}});
+ // Registros cancelados/no activos visibles.
+ ['Fernando Pineda','Dulce Morales Nestor','Celia Pineda Najera','Tzayuna Sanchez','Armando Junior Escobar'].forEach(n=>{let c=findName(n);if(c)c.active=false});
+ save();
+}
+function findName(n){return clients.find(c=>c.name.toLowerCase().replace(/[^a-z0-9ñáéíóúü ]/gi,'').trim()===n.toLowerCase().replace(/[^a-z0-9ñáéíóúü ]/gi,'').trim())||clients.find(c=>c.name.toLowerCase().includes(n.toLowerCase().split(' ')[0]+' '+n.toLowerCase().split(' ')[1]))}
+function load(){let raw=localStorage.getItem(KEY);if(raw){try{clients=JSON.parse(raw).map(migrate);return}catch(e){}}clients=buildSeed();applySheetSnapshot()}
+function save(){localStorage.setItem(KEY,JSON.stringify(clients))}
+function md(c,m){let p=now();return c.months?.[key(p.y,m)]||{charged:false,paid:0}}
+function debt(c){let p=now(),t=0;for(let m=0;m<=p.m;m++){let x=md(c,m);if(x.charged)t+=Math.max(0,c.price-(x.paid||0))}return t}
+function pending(c){let p=now(),a=[];for(let m=0;m<=p.m;m++){let x=md(c,m),r=Math.max(0,c.price-(x.paid||0));if(x.charged&&r>0)a.push({m,rem:r})}return a}
+function activeCloudPayments(){
+  return (window.__cloudPayments||[]).filter(p=>p && !p.voided && p.status!=='voided');
+}
+function paymentsAll(){
+  const cloud=activeCloudPayments();
+  if(cloud.length){
+    return cloud.map(p=>{
+      const c=clients.find(x=>x.id===p.client_id);
+      const allocations=Array.isArray(p.payment_months)?p.payment_months:[];
+      const periods=allocations.map(pm=>(pm.client_months?.period||'').slice(0,7)).filter(Boolean);
+      return {
+        id:p.id,
+        date:p.created_at,
+        amount:Number(p.amount||0),
+        method:p.method||'Efectivo',
+        period:periods.join(', ')||((p.created_at||'').slice(0,7)),
+        client:c?.name||'Cliente',
+        clientId:p.client_id||null,
+        registeredBy:paymentEmployeeName(p.employee_id||p.user_id||'')
+      };
+    }).sort((a,b)=>new Date(b.date)-new Date(a.date));
+  }
+  return clients.flatMap(c=>(c.payments||[]).map(p=>({...p,client:c.name,clientId:c.id}))).sort((a,b)=>new Date(b.date)-new Date(a.date));
+}
+function sameDay(iso,day){
+  if(!iso)return false;
+  const d=new Date(iso);
+  return !Number.isNaN(d.getTime())&&localDateKey(d)===day;
+}
+function paymentMethodKind(value){
+  const m=String(value??'').trim().normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+  if(['transfer','transferencia','transferencias','bank transfer','bank_transfer'].includes(m))return 'transferencia';
+  if(['deposito','deposit'].includes(m))return 'deposito';
+  return m;
+}
+function todayTotal(method){
+  const d=now().day;
+  return paymentsAll().filter(p=>{
+    const pm=paymentMethodKind(p.method);
+    const wanted=paymentMethodKind(method);
+    return sameDay(p.date,d)&&(!wanted||pm===wanted);
+  }).reduce((s,p)=>s+Number(p.amount||0),0);
+}
+function totalCollected(){
+  return paymentsAll().reduce((s,p)=>s+Number(p.amount||0),0);
+}
+function render(){let p=now();periodLabel.textContent=MONTHS[p.m]+' '+p.y;sClients.textContent=clients.filter(c=>c.active).length;sPending.textContent=clients.filter(c=>c.active&&debt(c)>0).length;sDebt.textContent=money(clients.filter(c=>c.active).reduce((s,c)=>s+debt(c),0));sToday.textContent=money(todayTotal());sTransfers.textContent=money(todayTotal('Transferencia'));sCollected.textContent=money(totalCollected());let q=search.value.toLowerCase(),f=filter.value;let arr=clients.filter(c=>(!q||c.name.toLowerCase().includes(q)||c.phone.includes(q))&&(f==='all'||(f==='active'&&c.active)||(f==='debt'&&c.active&&debt(c)>0)||(f==='paid'&&c.active&&debt(c)<=0)||(f==='inactive'&&!c.active)));tbody.innerHTML=arr.map(c=>{let ps=pending(c),sec=getSectorialById(c.sectorialId);return `<tr><td><div class="name">${esc(c.name)}</div><div class="muted">${esc(c.antenna||'Sin antena registrada')}</div></td><td>${esc(c.plan)}<div class="muted">${money(c.price)}/mes</div></td><td>${sec?`<b>${esc(sec.name)}</b><div class="muted">${esc(sec.zone||'')}</div>`:'<span class="muted">Sin asignar</span>'}</td><td>${ps.length?ps.map(x=>MONTHS[x.m]).join(', '):'—'}</td><td class="money">${money(debt(c))}<br><span class="pill ${c.active?(debt(c)>0?'red':'green'):'gray'}">${c.active?(debt(c)>0?'Pendiente':'Pagado'):'Inactivo'}</span></td><td>${c.phone||'<span class="muted">Sin número</span>'}</td><td><div class="rowBtns"><button class="mini green" onclick="openCobrar('${c.id}')">Cobrar</button>${isAdmin()?`<button class="mini blue" onclick="editClient('${c.id}')">Editar</button>`:''}</div></td></tr>`}).join('')||'<tr><td colspan="7" class="empty">No hay clientes.</td></tr>'}
+function openCobrar(id){cobrarScreen.classList.add('show');selectedCobrarId=id||clients.find(c=>c.active&&debt(c)>0)?.id||clients.find(c=>c.active)?.id;renderCobrarList();renderCustomer()}
+function renderCobrarList(){let q=(cobrarSearch.value||'').toLowerCase();let arr=clients.filter(c=>c.active&&(!q||c.name.toLowerCase().includes(q)||c.phone.includes(q)));cobrarList.innerHTML=arr.map(c=>`<div class="listItem ${c.id===selectedCobrarId?'active':''}" onclick="selectCobrar('${c.id}')"><span class="amt">${money(debt(c))}</span><b>${esc(c.name)}</b><span>${esc(c.plan)} • ${c.phone||'Sin WhatsApp'}</span></div>`).join('')||'<div class="empty">No encontrado.</div>'}
+function selectCobrar(id){selectedCobrarId=id;renderCobrarList();renderCustomer()}
+function clientPaymentRows(client){
+  const cloud=(window.__cloudPayments||[]).filter(p=>p&&!p.voided&&p.status!=='voided'&&String(p.client_id)===String(client.id));
+  if(cloud.length)return cloud.map(p=>{const a=Array.isArray(p.payment_months)?p.payment_months:[],periods=[...new Set(a.map(x=>(x.client_months?.period||'').slice(0,7)).filter(Boolean))];return{id:String(p.id),date:p.created_at,amount:Number(p.amount||0),method:p.method||'—',periods,concept:p.concept||'',registeredBy:paymentEmployeeName(p.employee_id||p.user_id||'')}}).sort((a,b)=>new Date(b.date)-new Date(a.date));
+  const grouped=new Map();(client.payments||[]).forEach((p,i)=>{const id=String(p.id||`local-${i}`);let r=grouped.get(id);if(!r){r={id,date:p.date,amount:0,method:p.method||'—',periods:[],concept:p.concept||'',registeredBy:p.registeredBy||'Sin registrar'};grouped.set(id,r)}r.amount+=Number(p.amount||0);if(p.period&&!r.periods.includes(p.period))r.periods.push(p.period)});return [...grouped.values()].sort((a,b)=>new Date(b.date)-new Date(a.date));
+}
+function printPaymentReceipt(clientId,paymentId){
+ const c=clients.find(x=>String(x.id)===String(clientId));if(!c)return alert('No se encontró el cliente de este pago.');const p=clientPaymentRows(c).find(x=>String(x.id)===String(paymentId));if(!p)return alert('No se encontró el movimiento de pago.');
+ const sector=getSectorialById(c.sectorialId),d=new Date(p.date),when=Number.isNaN(d.getTime())?'Fecha no disponible':new Intl.DateTimeFormat('es-MX',{dateStyle:'long',timeStyle:'medium',timeZone:NEXU_TIMEZONE}).format(d),periods=p.periods.join(', ')||'No especificado',folio=String(p.id||'').slice(0,8).toUpperCase();
+ const w=window.open('','_blank','width=480,height=760');if(!w)return alert('El navegador bloqueó la ventana del recibo. Permite las ventanas emergentes para imprimir.');const row=(k,v)=>`<div class="row"><span>${esc(k)}</span><b>${esc(v||'No registrado')}</b></div>`;
+ const html=`<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Recibo ${esc(folio)} · TRON</title><style>*{box-sizing:border-box}body{margin:0;padding:16px;background:#eef2f4;color:#1e3038;font:12px/1.45 Arial,sans-serif}.receipt{width:min(100%,360px);margin:0 auto;padding:22px;background:#fff;border:1px solid #dce4e7;border-radius:12px}.brand{text-align:center;padding-bottom:15px;border-bottom:1px dashed #b9c6ca}.mark{width:38px;height:38px;margin:0 auto 8px;border-radius:11px;background:#123747;color:#fff;display:grid;place-items:center;font-size:21px;font-weight:900}.brand b{font-size:14px;letter-spacing:1.5px}.brand small{display:block;color:#687c83;letter-spacing:1px;margin-top:2px}.title{text-align:center;padding:15px 0 12px}.title h1{font-size:17px;margin:0 0 4px}.title p{margin:0;color:#74868c}.section{margin-top:12px;padding-top:11px;border-top:1px solid #e7ecee}.sectionTitle{font-size:9px;font-weight:800;letter-spacing:1.4px;color:#258078;margin:0 0 7px}.row{display:flex;justify-content:space-between;gap:12px;padding:4px 0}.row span{color:#718189}.row b{text-align:right;overflow-wrap:anywhere}.amount{margin:15px 0;padding:13px;border-radius:9px;background:#eff7f5;text-align:center}.amount small{display:block;color:#61777d;font-weight:700;letter-spacing:1px}.amount strong{display:block;color:#176d70;font-size:25px;margin-top:4px}.thanks{text-align:center;color:#708189;font-size:10px;margin:16px 0 0}.tools{text-align:center;margin:14px auto 0}.tools button{padding:9px 16px;border:0;border-radius:8px;background:#176d70;color:white;font-weight:700;cursor:pointer}@media print{@page{margin:4mm}body{background:white;padding:0}.receipt{width:100%;max-width:none;margin:0;padding:4mm;border:0;border-radius:0}.tools{display:none}}/* ===== TRON enterprise polish: visual layer only ===== */
+:root{--bg:#f4f6fa;--ink:#17283d;--muted:#6d7b8d;--line:#e3e8f0;--nav:#102136;--blue:#315fe6;--green:#16836f;--shadow:0 10px 30px #10213a0b}
+body{background:linear-gradient(180deg,#f8f9fc 0,#f1f4f8 100%);color:#18283c;font-family:Inter,"Segoe UI",Arial,sans-serif}
+.top{background:linear-gradient(180deg,#102136 0,#0c1c2e 100%);box-shadow:5px 0 24px #10213618}
+.mark{background:linear-gradient(145deg,#f5f8ff,#dce7ff);color:#264bb5;box-shadow:0 5px 15px #06152c35}
+.brand h1{font-weight:750;letter-spacing:-.025em}.brand small{color:#a8b8c9;letter-spacing:.08em}
+.navLabel{color:#8194a8!important}.navGroup{gap:4px}.navAccount{border-color:#ffffff14!important}
+.actions .btn.navPrimary{background:linear-gradient(110deg,#3569ec,#2b55ca)!important;box-shadow:0 8px 18px #244bb540!important}.actions .btn.navPrimary:hover{background:linear-gradient(110deg,#4578f2,#315fdf)!important}.navIcon{background:#ffffff0c;color:#b5c7dc;border:1px solid #ffffff0b}.actions .btn:hover .navIcon{background:#ffffff17;color:#fff}
+.hero{background:linear-gradient(112deg,#142a42 0%,#1e4772 58%,#286c85 100%);box-shadow:0 16px 34px #153b5b22;border-radius:18px}.heroEyebrow{color:#a9d6e4;letter-spacing:.2em}.hero h2{font-weight:760;letter-spacing:-.05em}.heroTools .period{border-color:#ffffff2b;background:#ffffff14}.heroAction{background:#f4f7ff;color:#234ab1;font-weight:800;box-shadow:0 5px 14px #0c234333}.heroAction:hover{background:#fff}
+.stat{position:relative;overflow:hidden;border-radius:14px;background:linear-gradient(150deg,#fff,#fcfdff);box-shadow:0 4px 16px #10213a08}.stat:before{background:linear-gradient(180deg,#4578ec,#70b3d4)}.stat label{font-weight:650;color:#748397}.stat strong{color:#1d344c;letter-spacing:-.045em}
+.chartCard,.card,.panel,.clientList,.customerCard,.queueCard,.sectorCard{border-color:#e3e9f1;border-radius:15px;box-shadow:0 5px 20px #14284108}.chartCard{padding:20px}.chartEyebrow{color:#315fe6;letter-spacing:.17em}.chartHead h3{color:#1b344c;font-size:16px;font-weight:780}.chartWindow{background:#f5f7fc;border-color:#e8edf5;color:#66788f}.chartFoot{color:#8391a1;border-color:#eef1f5}.chartDot{background:#315fe6}.statusMetric{background:#fafbfe;border-color:#e7edf4}.statusMetric strong{color:#1d344c}.statusMetric.paid{--status-color:#16836f}.statusBar{background:#edf1f6}
+.toolbar{gap:8px}.search,.select,.field input,.field select,.field textarea{border-color:#dce4ed;border-radius:9px;background:#fff}.search,.select{min-height:43px}.search:focus,.select:focus,.field input:focus,.field select:focus,.field textarea:focus{border-color:#6a8bea;box-shadow:0 0 0 3px #315fe617}
+.btn.blue{background:#315fe6}.btn.green{background:#16836f}.btn{border-radius:9px;font-weight:750}.btn.blue:hover{background:#264fc9}.btn.green:hover{background:#11725f}.mini{border-radius:7px}.mini.blue{background:#eef2ff;color:#3155c5}.mini.green{background:#eaf7f2;color:#16765f}.mini.red{background:#fff0ee;color:#b33a34}
+.table th,.sectorTable th{background:#f6f8fb;color:#78879a;font-size:10px;letter-spacing:.08em}.table td{border-color:#edf0f4}.table tbody tr:hover td{background:#f7f9fd}.name{color:#1a3047}.pill{padding:5px 9px;font-size:10px;letter-spacing:.025em}
+.screen{background:#f3f6fa}.screenTop{background:linear-gradient(100deg,#12263b,#1c466c);box-shadow:0 7px 20px #0d20341c}.screenTop h2{font-weight:750;letter-spacing:-.035em}.directoryHead h3{color:#1a3149}.directoryTable{min-width:940px}.clientStatusCard{border-left:3px solid #315fe6}.customerCard,.clientList,.panel{background:#fff}.payBox{background:linear-gradient(135deg,#142b44,#20516f);border:1px solid #ffffff12}.payButtons .doPay{background:linear-gradient(100deg,#16836f,#1c9a7d);box-shadow:0 6px 15px #16836f32}
+.modalBox{border:1px solid #e3e9f1;box-shadow:0 24px 70px #0c20353d}.modalHead h3{color:#1b344c}.modalHead,.modalFoot{background:#fff}.field input,.field select,.field textarea{transition:border-color .18s,box-shadow .18s}
+#authOverlay.authOverlay{background:#0d1e32}#authOverlay.authOverlay:before{background:radial-gradient(ellipse at 16% 78%,#1d6678 0,transparent 33%),radial-gradient(ellipse at 82% 8%,#244d83 0,transparent 36%),linear-gradient(135deg,#142a43,#0b1b2d 74%)}#authOverlay.authOverlay:after{opacity:.08}.loginShowcase{padding:clamp(32px,6vw,96px)}.showcaseMark{background:linear-gradient(145deg,#3e71ed,#2853bf);box-shadow:0 10px 25px #091a3d55}.showcaseCopy h1 em{color:#92cbe5}.eyebrow{color:#92cbe5}.showcaseFoot{letter-spacing:.18em}.loginFormSide{background:linear-gradient(160deg,#f7f9fc,#eef2f8)}#authOverlay .authLogo{background:linear-gradient(145deg,#3e71ed,#2853bf);box-shadow:0 8px 22px #315fe62e}#authOverlay .formEyebrow{color:#315fe6}#authOverlay .loginSubmit{background:linear-gradient(100deg,#315fe6,#274fc3);box-shadow:0 7px 18px #315fe632}#authOverlay .loginSubmit:hover{background:linear-gradient(100deg,#3d6df0,#315fe6)}
+button{transition:transform .16s ease,box-shadow .18s ease,background-color .18s ease,filter .18s ease}button:active{transform:translateY(1px) scale(.975)}button:focus-visible{outline:3px solid #71a2f0;outline-offset:2px}
+@media(max-width:1000px){.chartsGrid{gap:12px}.chartCard{padding:16px}.hero{border-radius:15px}}
+@media(max-width:700px){.top{box-shadow:0 5px 18px #10213618}.hero{padding:18px}.stat{border-radius:12px}.chartCard{padding:14px}.directoryTable{min-width:850px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}}
+/* ===== End enterprise polish ===== */</style></head><body><main class="receipt"><header class="brand"><div class="mark">T</div><b>TELECOMUNICACIONES TRON</b><small>COMPROBANTE DE PAGO</small></header><div class="title"><h1>RECIBO DE PAGO</h1><p>Folio: ${esc(folio||'—')}</p></div><div class="section"><div class="sectionTitle">DATOS DEL PAGO</div>${row('Fecha y hora',when)}${row('Método de pago',p.method)}${row('Periodo(s) aplicado(s)',periods)}${p.concept?row('Concepto',p.concept):''}${row('Recibido por',p.registeredBy)}${row('Referencia completa',p.id)}</div><div class="amount"><small>TOTAL RECIBIDO</small><strong>${esc(money(p.amount))}</strong></div><div class="section"><div class="sectionTitle">DATOS DEL CLIENTE</div>${row('Nombre',c.name)}${row('Teléfono / WhatsApp',c.phone)}${row('Correo',c.email)}${row('Dirección',c.address)}${row('Plan',c.plan)}${row('Cuota mensual',money(c.price||0))}${row('Sectorial',sector?`${sector.name}${sector.zone?' · '+sector.zone:''}`:'')}${row('Antena',c.antenna)}${row('Instalación',c.installDate)}</div><p class="thanks">Gracias por su pago. Conserve este comprobante.</p><div class="tools"><button onclick="window.print()">Imprimir recibo</button></div></main><script>window.addEventListener('load',()=>setTimeout(()=>window.print(),250));<\/script></body></html>`;w.document.open();w.document.write(html);w.document.close();
+}function renderCustomer(){let c=clients.find(x=>x.id===selectedCobrarId);if(!c){customerPanel.innerHTML='<div class="empty">Selecciona un cliente.</div>';return}let p=now(),d=debt(c),ps=pending(c),rows='';for(let m=0;m<12;m++){let x=md(c,m),r=Math.max(0,c.price-(x.paid||0));let futurePaid=m>p.m&&x.charged&&r<=0;let cls=m>p.m?(futurePaid?'paid':'none'):!x.charged?'none':r<=0?'paid':'pending';let txt=m>p.m?(futurePaid?'Pagado por adelantado':'No generado'):!x.charged?'No generado':r<=0?'Pagado':x.paid>0?'Abono '+money(x.paid)+' • falta '+money(r):'Pendiente '+money(r);rows+=`<div class="monthRow ${cls}"><div><b>${MONTHS[m]}</b><div class="muted">${txt}</div></div><div>${m<=p.m&&x.charged?money(r):futurePaid?'$0':'—'}</div><div>${m>p.m&&futurePaid?'<span class="pill green">Adelantado</span>':m<=p.m&&x.charged&&r>0?'<span class="pill red">Debe</span>':m<=p.m&&x.charged?'<span class="pill green">Pagado</span>':'<span class="pill gray">No generado</span>'}</div><div>${isAdmin()&&m<=p.m?`<button class="mini ${x.charged?'red':'green'}" onclick="toggleMonth('${c.id}',${m})">${x.charged?'Quitar':'Generar'}</button>`:''}</div></div>`}
+customerPanel.innerHTML=`<div class="customerHead"><div><h2>${esc(c.name)}</h2><div class="muted">${esc(c.plan)} • ${money(c.price)} mensuales</div></div><div class="bigDebt">${money(d)}<div class="muted" style="text-align:right">adeudo total</div></div></div><div class="infoGrid"><div class="info"><b>WhatsApp</b>${c.phone||'No registrado'}</div><div class="info"><b>Dirección</b>${esc(c.address)||'No registrada'}</div><div class="info"><b>Antena</b>${esc(c.antenna)||'No registrada'}</div><div class="info"><b>Instalación</b>${c.installDate||'No registrada'}</div><div class="info"><b>Plan</b>${esc(c.plan)}</div><div class="info"><b>Cuota</b>${money(c.price)} / mes</div></div><div class="rowBtns">${isAdmin()?`<button class="btn green" onclick="editClient('${c.id}')">Editar información</button>`:''}${c.phone?`<button class="btn blue" onclick="wa('${c.id}')">📲 WhatsApp</button>`:''}</div><div class="payBox"><h3>Registrar pago</h3><div class="muted" style="color:#c9d7ee">El pago se aplica primero al mes pendiente más antiguo.</div><div class="payLine" style="margin-top:10px"><input id="payAmount" type="number" min="0" max="${d}" value="${Math.min(d,c.price)||0}"><select id="payMethod"><option>Efectivo</option><option>Transferencia</option><option>Depósito</option><option>Otro</option></select></div><div class="muted" style="color:#c9d7ee;margin-top:7px">Máximo permitido: ${money(d)}. Los abonos se aplican al adeudo más antiguo y quedan en el historial.</div><div class="payButtons"><button class="quick" onclick="setPay(${c.price})">Pagar 1 mes (${money(c.price)})</button><button class="quick" onclick="setPay(${c.price*2})">Pagar 2 meses (${money(c.price*2)})</button><button class="quick" onclick="setPay(${d})">Liquidar (${money(d)})</button><button class="doPay" onclick="registerPayment()">✓ Registrar pago</button><button class="quick" style="margin-top:8px" onclick="registerAdvancePayment()">💳 Registrar meses pagados por adelantado</button></div></div><div class="monthsTitle"><h3 style="margin:0">Exactamente qué debe</h3><span class="muted">${ps.length} mensualidad(es) pendientes</span></div><div class="monthRows">${rows}</div><div class="monthsTitle"><h3 style="margin:0">Historial de pagos</h3><span class="muted">${clientPaymentRows(c).length} movimiento(s)</span></div><div class="panel" style="padding:0;margin-bottom:15px"><div class="tableWrap"><table class="tableSmall"><tr><th>Fecha y hora</th><th>Método</th><th>Periodo</th><th>Monto</th><th>Recibo</th></tr>${clientPaymentRows(c).slice(0,20).map(pay=>`<tr><td>${new Date(pay.date).toLocaleString('es-MX',{timeZone:NEXU_TIMEZONE})}</td><td>${esc(pay.method||'—')}</td><td>${esc(pay.periods.join(', ')||'—')}</td><td class="money">${money(pay.amount)}</td><td><button class="mini blue" onclick="printPaymentReceipt('${c.id}','${pay.id}')">🖨 Imprimir</button></td></tr>`).join('')||'<tr><td colspan="5" class="muted">Sin pagos registrados.</td></tr>'}</table></div></div>`}
+function setPay(n){payAmount.value=Math.min(Math.max(0,n),debt(clients.find(x=>x.id===selectedCobrarId)))}
+function addMonthsForAdvance(client, count){
+  const p=now();
+  const existing=new Map();
+  Object.entries(client.months||{}).forEach(([k,x])=>existing.set(k,x));
+  let added=[];
+  let cursor=new Date(p.y,p.m+1,1);
+  let guard=0;
+  while(added.length<count && guard<36){
+    const y=cursor.getFullYear(), m=cursor.getMonth(), k=key(y,m);
+    const x=existing.get(k);
+    if(x && x.charged && Number(x.paid||0)>0 && Number(x.paid||0) < Number(x.amount||client.price||0)){
+      throw new Error('Existe una mensualidad futura con un abono parcial. Debe revisarse antes de registrar otro pago adelantado.');
+    }
+    if(!x || !x.charged){
+      added.push({period:k+'-01',key:k});
+    }
+    cursor.setMonth(cursor.getMonth()+1); guard++;
+  }
+  return added;
+}
+async function registerAdvancePayment(){
+  if(!requireAdmin())return;
+  const c=clients.find(x=>x.id===selectedCobrarId);
+  if(!c)return;
+  const currentDebt=debt(c);
+  if(currentDebt>0){
+    return alert('Este cliente todavía tiene un adeudo de '+money(currentDebt)+'. Primero registra ese pago. El pago adelantado se habilita cuando esté al corriente.');
+  }
+  const raw=prompt('¿Cuántos meses pagó por adelantado?\n\nEscribe un número de 1 a 12.');
+  if(raw===null)return;
+  const count=Math.floor(Number(raw));
+  if(!Number.isFinite(count)||count<1||count>12)return alert('Escribe un número de meses entre 1 y 12.');
+  const paymentMethod=(document.getElementById('payMethod')?.value||'Transferencia');
+  let monthsToAdd;
+  try{monthsToAdd=addMonthsForAdvance(c,count);}catch(e){return alert(e.message||'No se puede registrar el pago adelantado.');}
+  if(monthsToAdd.length!==count)return alert('No se pudieron preparar todas las mensualidades adelantadas. No se registró ningún pago.');
+  const total=Number(c.price||0)*count;
+  if(total<=0)return alert('La cuota mensual del cliente no es válida.');
+  if(!confirm(`Se registrarán ${count} meses pagados por adelantado por ${money(total)}.\n\nMétodo: ${paymentMethod}\n\nLos meses quedarán pagados y cuando llegue cada mes no generarán adeudo. ¿Continuar?`))return;
+  try{
+    for(const item of monthsToAdd){
+      const {error}=await supabaseClient.from('client_months').upsert({
+        client_id:c.id,
+        period:item.period,
+        charged:true,
+        amount:Number(c.price||0),
+        paid:0
+      },{onConflict:'client_id,period'});
+      if(error)throw error;
+    }
+    const {error:payError}=await supabaseClient.rpc('register_nexu_payment',{
+      p_client_id:c.id,
+      p_amount:total,
+      p_method:paymentMethod,
+      p_concept:'Pago adelantado',
+      p_notes:`${count} mes(es) pagados por adelantado`
+    });
+    if(payError)throw payError;
+    await cloudLoad();
+    render();
+    renderCobrarList();
+    renderCustomer();
+    renderCaja();
+    renderTransfers();
+    alert(`Pago adelantado registrado correctamente. ${count} mes(es) quedaron pagados.`);
+  }catch(e){
+    alert('No se pudo registrar el pago adelantado: '+cloudError(e));
+    await cloudLoad();
+    render();
+    renderCobrarList();
+    renderCustomer();
+  }
+}
+function registerPayment(){let c=clients.find(x=>x.id===selectedCobrarId);if(!c)return;let amt=Number(payAmount.value)||0;let totalDebt=debt(c);if(amt<=0)return alert('Escribe un monto válido.');if(totalDebt<=0)return alert('Este cliente no tiene adeudo pendiente.');if(amt>totalDebt)return alert('El monto no puede ser mayor al adeudo total de '+money(totalDebt)+'.');let rem=amt,p=now(),method=payMethod.value,stamp=new Date().toISOString();for(let m=0;m<=p.m&&rem>0;m++){let k=key(p.y,m),x=c.months?.[k];if(!x?.charged)continue;let due=Math.max(0,c.price-(x.paid||0));if(due<=0)continue;let add=Math.min(due,rem);x.paid=(x.paid||0)+add;rem-=add;c.payments.push({id:uid(),date:stamp,amount:add,method,period:k,registeredBy:currentUser?.name||''})}save();render();renderCobrarList();renderCustomer();renderCaja();renderTransfers();alert('Pago registrado correctamente. Adeudo restante: '+money(debt(c))+'.')}
+function toggleMonth(id,m){if(!requireAdmin())return;let c=clients.find(x=>x.id===id);if(!c)return;let p=now(),k=key(p.y,m),x=c.months?.[k];if(x?.charged){delete c.months[k]}else{c.months[k]={charged:true,paid:0}}save();render();renderCobrarList();renderCustomer()}
+function wa(id){let c=clients.find(x=>x.id===id);if(!c?.phone)return alert('Este cliente no tiene WhatsApp.');let d=debt(c),ps=pending(c);let lines=ps.map(x=>`• ${MONTHS[x.m]}: ${money(x.rem)}`).join('%0A');let msg=`Estimado cliente ${encodeURIComponent(c.name)} Te recordamos que tu servicio de internet está próximo a vencer. Para evitar la suspensión del servicio, te invitamos a realizar tu pago. 
+Fecha límite de pago 8 de octubre`;window.open('https://wa.me/52'+c.phone+'?text='+msg,'_blank')}
+function openCaja(){
+  if(!requireAdmin())return;
+  cajaScreen.classList.add('show');
+  cajaDate.value=now().day;
+  renderCaja();
+}
+function closeCajaDay(){
+  if(!requireAdmin())return;
+  const d=cajaDate.value||now().day;
+  const arr=paymentsAll().filter(p=>sameDay(p.date,d));
+  const total=arr.reduce((s,p)=>s+Number(p.amount||0),0);
+  if(!total)return alert('No hay movimientos en esa fecha.');
+  const efectivo=arr.filter(p=>paymentMethodKind(p.method)==='efectivo').reduce((s,p)=>s+Number(p.amount||0),0);
+  const transferencia=arr.filter(p=>paymentMethodKind(p.method)==='transferencia').reduce((s,p)=>s+Number(p.amount||0),0);
+  const deposito=arr.filter(p=>paymentMethodKind(p.method)==='deposito').reduce((s,p)=>s+Number(p.amount||0),0);
+  const cuts=JSON.parse(localStorage.getItem('nexu_cortes')||'[]');
+  cuts.push({date:d,total,efectivo,transferencia,deposito});
+  localStorage.setItem('nexu_cortes',JSON.stringify(cuts));
+  renderCaja();
+  alert('Corte guardado correctamente. Total del corte: '+money(total));
+}
+function renderCaja(){
+  const d=cajaDate.value||now().day;
+  const arr=paymentsAll().filter(p=>sameDay(p.date,d));
+  const total=arr.reduce((s,p)=>s+Number(p.amount||0),0);
+  const efectivo=arr.filter(p=>paymentMethodKind(p.method)==='efectivo').reduce((s,p)=>s+Number(p.amount||0),0);
+  const transferencia=arr.filter(p=>paymentMethodKind(p.method)==='transferencia').reduce((s,p)=>s+Number(p.amount||0),0);
+  const deposito=arr.filter(p=>paymentMethodKind(p.method)==='deposito').reduce((s,p)=>s+Number(p.amount||0),0);
+  const otros=Math.max(0,total-efectivo-transferencia-deposito);
+  const acumulado=totalCollected();
+  const cuts=JSON.parse(localStorage.getItem('nexu_cortes')||'[]').filter(x=>x.date===d);
+  cajaBody.innerHTML=`
+    <div class="dashGrid">
+      <div class="panel"><h3>Total del corte / día</h3><div class="big">${money(total)}</div><div class="muted">${arr.length} cobro(s)</div></div>
+      <div class="panel"><h3>💵 Efectivo</h3><div class="big">${money(efectivo)}</div></div>
+      <div class="panel"><h3>🏦 Transferencias</h3><div class="big">${money(transferencia)}</div></div>
+      <div class="panel"><h3>📄 Depósito / otros</h3><div class="big">${money(deposito+otros)}</div></div>
+      <div class="panel"><h3>💰 Total acumulado</h3><div class="big">${money(acumulado)}</div><div class="muted">Todos los pagos registrados</div></div>
+    </div>
+    <div class="panel" style="margin-top:12px">
+      <h3>Movimientos del día (${arr.length})</h3>
+      ${arr.length?`<table class="tableSmall"><tr><th>Hora</th><th>Cliente</th><th>Método</th><th>Periodo</th><th>Cobrado por</th><th>Monto</th></tr>
+      ${arr.map(p=>`<tr><td>${new Date(p.date).toLocaleTimeString('es-MX',{timeZone:NEXU_TIMEZONE,hour:'2-digit',minute:'2-digit'})}</td><td>${esc(p.client)}</td><td>${esc(p.method)}</td><td>${esc(p.period||'—')}</td><td><b>${esc(p.registeredBy||'Sin registrar')}</b></td><td class="money">${money(p.amount)}</td></tr>`).join('')}</table>`:'<div class="empty">Sin movimientos en esta fecha.</div>'}
+    </div>
+    <div class="panel" style="margin-top:12px">
+      <h3>Historial de cortes</h3>
+      ${cuts.length?cuts.map(x=>`<div style="padding:9px;border-bottom:1px solid var(--line)"><b>${x.date}</b> — ${money(x.total)} <span class="muted">Efectivo ${money(x.efectivo)} • Transferencia ${money(x.transferencia)} • Depósito ${money(x.deposito)}</span></div>`).join(''):'<div class="muted">Todavía no hay cortes guardados para esta fecha.</div>'}
+    </div>`;
+}
+function printCaja(){window.print()}
+function exportPayments(){let arr=paymentsAll(),rows=[['Fecha','Cliente','Método','Periodo','Cobrado por','Monto']].concat(arr.map(p=>[p.date,p.client,p.method,p.period,p.registeredBy||'Sin registrar',p.amount]));let csv=rows.map(r=>r.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\n');download(new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8'}),'nexu_movimientos.csv')}
+function openTransfers(){if(!requireAdmin())return;transferScreen.classList.add('show');renderTransfers()}
+function renderTransfers(){let arr=paymentsAll().filter(p=>paymentMethodKind(p.method)==='transferencia'),total=arr.reduce((s,p)=>s+p.amount,0),today=arr.filter(p=>sameDay(p.date,now().day)).reduce((s,p)=>s+p.amount,0);transferBody.innerHTML=`<div class="dashGrid"><div class="panel"><h3>Total transferido histórico</h3><div class="big">${money(total)}</div></div><div class="panel"><h3>Transferencias de hoy</h3><div class="big">${money(today)}</div></div><div class="panel"><h3>Movimientos</h3><div class="big">${arr.length}</div></div><div class="panel"><h3>Clientes</h3><div class="big">${new Set(arr.map(x=>x.clientId)).size}</div></div></div><div class="panel" style="margin-top:12px"><h3>Detalle de transferencias</h3>${arr.length?`<table class="tableSmall"><tr><th>Fecha</th><th>Cliente</th><th>Periodo</th><th>Monto</th><th>Cobrado por</th></tr>${arr.map(p=>`<tr><td>${new Date(p.date).toLocaleString('es-MX')}</td><td>${esc(p.client)}</td><td>${p.period}</td><td class="money">${money(p.amount)}</td><td>${esc(p.registeredBy||'Sin registrar')}</td></tr>`).join('')}</table>`:'<div class="empty">Aún no hay pagos por transferencia.</div>'}</div>`}
+function openBulk(){let arr=clients.filter(c=>c.active&&debt(c)>0);bulkBody.innerHTML=arr.length?`<div class="notice">Solo aparecen clientes con adeudo.</div>`+arr.map(c=>`<div style="padding:11px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:10px;align-items:center"><div><b>${esc(c.name)}</b><div class="muted">${money(debt(c))} • ${c.phone||'Sin número'}</div></div>${c.phone?`<button class="mini green" onclick="wa('${c.id}')">Abrir WhatsApp</button>`:'<span class="pill gray">Agregar número</span>'}</div>`).join(''):'<div class="empty">No hay clientes con adeudo.</div>';showModal('bulkModal')}
+function getInstalaciones(){return window.__cloudInstallations||[]}
+function saveInstalaciones(x){window.__cloudInstallations=Array.isArray(x)?x:[];return true}
+function openInstalaciones(){renderInstalaciones();showScreen('instalacionesScreen')}
+function openInstalacionModal(id){editingInstId=id||null;let x=id?getInstalaciones().find(a=>a.id===id):null;iName.value=x?.name||'';iPhone.value=x?.phone||'';iPlan.value=x?.plan||'10/2';iPrice.value=x?.price??350;iDate.value=x?.requested_date||x?.date||now().day;iAntenna.value=x?.antenna||'';iAddress.value=x?.address||'';iNotes.value=x?.notes||'';showModal('instalacionModal')}
+async function saveInstalacion(){
+  if(!requireAdmin())return;
+  let name=iName.value.trim();if(!name)return alert('Escribe el nombre del nuevo cliente.');
+  const row={name,phone:iPhone.value.replace(/\D/g,'').slice(-10),plan:iPlan.value,price:Number(iPrice.value)||350,requested_date:iDate.value||null,antenna:iAntenna.value.trim(),address:iAddress.value.trim(),notes:iNotes.value.trim(),status:'pending'};
+  try{
+    let result;
+    if(editingInstId){
+      result=await supabaseClient.from('installations').update(row).eq('id',editingInstId);
+    }else{
+      result=await supabaseClient.from('installations').insert(row);
+    }
+    if(result.error)throw result.error;
+    await cloudLoad();closeModal('instalacionModal');renderInstalaciones();updateQueueBadges();alert(editingInstId?'Instalación actualizada correctamente.':'Instalación guardada en la nube.');
+  }catch(e){alert('No se pudo guardar: '+cloudError(e));}
+}
+function renderInstalaciones(){let arr=getInstalaciones(),q=(instSearch?.value||'').toLowerCase().trim();arr=arr.filter(x=>!q||(x.name||'').toLowerCase().includes(q)||(x.phone||'').includes(q));instalacionesBody.innerHTML=arr.length?arr.map(x=>`<div class="queueItem"><div class="queueTop"><div><div class="queueTitle">${esc(x.name)}</div><div class="queueMeta">📱 ${esc(x.phone||'Sin WhatsApp')} · 📅 ${esc(x.requested_date||x.date||'Sin fecha')} · ${esc(x.plan||'—')} · ${money(x.price)}</div><div class="queueMeta">📍 ${esc(x.address||'Sin dirección')} · 📡 ${esc(x.antenna||'Antena por definir')}</div><div class="queueMeta">📝 ${esc(x.notes||'Sin notas')}</div></div><span class="pill ${String(x.status||'').toLowerCase()==='instalado'?'green':'orange'}">${String(x.status||'').toLowerCase()==='instalado'?'Instalado':'Pendiente'}</span></div><div class="rowBtns" style="margin-top:9px"><button class="mini blue" onclick="openInstalacionModal('${x.id}')">Editar</button>${String(x.status||'').toLowerCase()!=='instalado'?`<button class="mini green" onclick="convertInstalacion('${x.id}')">✓ Convertir en cliente</button>`:''}${isAdmin()?`<button class="mini red" onclick="deleteInstalacion('${x.id}')">Eliminar</button>`:''}</div></div>`).join(''):'<div class="empty">No hay instalaciones pendientes.</div>'}
+async function convertInstalacion(id){
+  if(!requireAdmin())return;
+  const x=getInstalaciones().find(a=>a.id===id);if(!x)return;
+  if(!confirm(`¿Agregar a ${x.name} como cliente activo?`))return;
+  try{
+    const row={name:x.name,phone:x.phone||'',email:((x.notes||'').match(/Correo:\s*([^|\n]+)/i)||[])[1]?.trim().toLowerCase()||'',plan:x.plan||'10/2',price:Number(x.price||350),active:true,address:x.address||'',install_date:x.requested_date||null,antenna:x.antenna||'',notes:x.notes||'',sectorial_id:null};
+    const {data,error}=await supabaseClient.from('clients').insert(row).select('id').single();
+    if(error)throw error;
+    await supabaseClient.rpc('ensure_nexu_current_month');
+    const {error:upErr}=await supabaseClient.from('installations').update({status:'instalado'}).eq('id',id);if(upErr)throw upErr;
+    await cloudLoad();render();renderInstalaciones();updateQueueBadges();alert('Solicitud convertida en cliente correctamente.');
+  }catch(e){alert('No se pudo convertir la solicitud: '+cloudError(e));}
+}
+async function deleteInstalacion(id){if(!requireAdmin())return;if(!confirm('¿Eliminar esta solicitud de instalación?'))return;try{const {error}=await supabaseClient.from('installations').delete().eq('id',id);if(error)throw error;await cloudLoad();renderInstalaciones();updateQueueBadges();}catch(e){alert('No se pudo eliminar: '+cloudError(e));}}
+function openReportes(){renderReportes();showScreen('reportesScreen')}
+function openReporteModal(id){editingRepId=id||null;let x=id?getReportes().find(a=>a.id===id):null;rClient.innerHTML='<option value="">— Cliente no seleccionado —</option>'+clients.map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('');rClient.value=x?.client_id||x?.clientId||'';rName.value=x?.name||'';rPhone.value=x?.phone||'';rAddress.value=x?.address||((x?.notes||'').match(/\[DIRECCION\] (.*)/)?.[1]||'');rTask.value=x?.task||((x?.issue||'').split(':')[0]||'Alinear antena');rPriority.value=x?.priority||'media';rStatus.value=(x?.status||'pendiente').toLowerCase();rIssue.value=x?.description||((x?.issue||'').includes(':')?x.issue.split(':').slice(1).join(':').trim():x?.issue||'');rNotes.value=(x?.notes||'').replace(/\[DIRECCION\] .*\n?/,'');showModal('reporteModal')}
+rClient.onchange=function(){let c=clients.find(x=>x.id===rClient.value);if(c){rName.value=c.name;rPhone.value=c.phone||'';rAddress.value=c.address||''}}
+async function saveReporte(){let name=rName.value.trim(),address=rAddress.value.trim(),description=rIssue.value.trim();if(!name||!address||!description)return alert('Escribe el nombre completo, la dirección y la descripción del trabajo.');if(!cloudReady)return alert('El portal todavía no está conectado a la nube.');const payload={client_id:rClient.value||null,name,phone:rPhone.value.replace(/\D/g,'').slice(-10),priority:rPriority.value,status:rStatus.value,issue:`${rTask.value}: ${description}`,notes:`[DIRECCION] ${address}${rNotes.value.trim()?'\n'+rNotes.value.trim():''}`};try{const result=editingRepId?await supabaseClient.from('service_reports').update(payload).eq('id',editingRepId):await supabaseClient.from('service_reports').insert({...payload,created_by:currentUser?.id||null});if(result.error)throw result.error;await cloudLoad();closeModal('reporteModal');renderReportes();updateQueueBadges();alert('Reporte de trabajo de antena guardado correctamente.')}catch(e){alert('No se pudo guardar el reporte: '+cloudError(e))}}
+function renderReportes(){let arr=getReportes(),q=(repSearch?.value||'').toLowerCase().trim(),f=repFilter?.value||'all';arr=arr.filter(x=>(f==='all'||x.status===f)&&(!q||`${x.name} ${x.phone} ${x.issue} ${x.notes}`.toLowerCase().includes(q)));reportesBody.innerHTML=arr.length?arr.map(x=>`<div class="queueItem"><div class="queueTop"><div><div class="queueTitle">${esc(x.name)}</div><div class="queueMeta">📱 ${esc(x.phone||'Sin WhatsApp')} · ${esc(x.issue)}</div><div class="queueMeta">📍 ${esc(x.address||((x.notes||'').match(/\[DIRECCION\] (.*)/)?.[1]?.split('\n')[0])||'Sin dirección')}</div><div class="queueMeta">📝 ${esc(x.notes||'Sin seguimiento')} · Capturó: ${esc(x.createdBy||'—')} · Actualizó: ${esc(x.updatedBy||'—')}</div></div><div><span class="pill ${x.priority==='alta'?'priorityAlta':x.priority==='baja'?'priorityBaja':'priorityMedia'}">Prioridad ${esc(x.priority)}</span> <span class="pill ${x.status==='resuelto'?'statusResuelto':x.status==='proceso'?'statusProceso':'statusPendiente'}">${x.status==='resuelto'?'Resuelto':x.status==='proceso'?'En proceso':'Pendiente'}</span></div></div><div class="rowBtns" style="margin-top:9px"><button class="mini blue" onclick="openReporteModal('${x.id}')">Editar / actualizar</button>${x.phone?`<button class="mini green" onclick="window.open('https://wa.me/52${x.phone}','_blank')">WhatsApp</button>`:''}${isAdmin()?`<button class="mini red" onclick="deleteReporte('${x.id}')">Eliminar</button>`:''}</div></div>`).join(''):'<div class="empty">No hay reportes con este filtro.</div>'}
+function deleteReporte(id){if(!requireAdmin())return;if(!confirm('¿Eliminar este reporte?'))return;saveReportes(getReportes().filter(x=>x.id!==id));renderReportes();updateQueueBadges()}
+function updateQueueBadges(){let a=getInstalaciones().filter(x=>x.status!=='instalado').length,b=getReportes().filter(x=>x.status!=='resuelto').length;if(instCountTop)instCountTop.textContent=a?`(${a})`:'';if(repCountTop)repCountTop.textContent=b?`(${b})`:''}
+
+function sectorialList(){return (window.__cloudSectors&&window.__cloudSectors.length)?window.__cloudSectors:loadSectors();}
+function getSectorialById(id){return id?sectorialList().find(x=>String(x.id)===String(id)):null;}
+function linkedSectorialCount(id,excludeClientId){return clients.filter(c=>c.active&&String(c.sectorialId||'')===String(id)&&String(c.id)!==String(excludeClientId||'')).length;}
+function sectorialStatus(count){return count>=18?'red':count<=10?'green':'yellow';}
+function sectorialStatusLabel(count){return count>=18?'🔴 LLENO':count<=10?'🟢 BIEN':'🟡 MEDIO';}
+function fillSectorialSelect(currentId){if(!fSectorial)return;const list=sectorialList();const exclude=editId;fSectorial.innerHTML='<option value="">— Sin sectorial asignada —</option>'+list.map(x=>{const currentClient=editId?clients.find(c=>String(c.id)===String(editId)):null;const n=linkedSectorialCount(x.id,exclude)+(currentClient?.active&&String(x.id)===String(currentId)?1:0);const isCurrent=String(x.id)===String(currentId);const blocked=!isCurrent&&n>=18;return `<option value="${esc(String(x.id))}" ${isCurrent?'selected':''} ${blocked?'disabled':''}>${esc(x.name)} — ${n} clientes ${sectorialStatusLabel(n)}${blocked?' — NO DISPONIBLE':''}</option>`}).join('');}
+function validateSectorialAssignment(targetId,clientId,willBeActive){if(!willBeActive||!targetId)return true;const c=linkedSectorialCount(targetId,clientId);if(c>=18){const sec=getSectorialById(targetId);alert(`🚫 ${sec?sec.name:'Esta sectorial'} ya tiene ${c} clientes activos.\n\nNo se pueden agregar más clientes a esta sectorial.\n\nAsigna al cliente a otra sectorial disponible.`);return false;}return true;}
+function openClient(){if(!requireAdmin())return;editId=null;clientTitle.textContent='Nuevo cliente';['fName','fPhone','fEmail','fAntenna','fAddress','fNotes','fInstall'].forEach(id=>document.getElementById(id).value='');fPlan.value='350';fPrice.value=350;fActive.value='1';deleteClientBtn.style.display='none';hardDeleteClientBtn.style.display='none';fillSectorialSelect('');showModal('clientModal')}
+function editClient(id){if(!requireAdmin())return;let c=clients.find(x=>x.id===id);if(!c)return;editId=id;clientTitle.textContent='Editar cliente';fName.value=c.name;fPhone.value=c.phone||'';fEmail.value=c.email||'';fAntenna.value=c.antenna||'';fPlan.value=c.plan==='10/2'?'350':c.plan==='20/5'?'500':'0';fPrice.value=c.price;fActive.value=c.active?'1':'0';fAddress.value=c.address||'';fNotes.value=c.notes||'';fInstall.value=c.installDate||'';deleteClientBtn.style.display=c.active?'inline-flex':'none';hardDeleteClientBtn.style.display=(!c.active && !(c.payments||[]).length && debt(c)<=0)?'inline-flex':'none';fillSectorialSelect(c.sectorialId||'');showModal('clientModal')}
+fPlan.addEventListener('change',e=>{if(e.target.value==='350')fPrice.value=350;if(e.target.value==='500')fPrice.value=500});
+async function deleteClient(){
+  if(!requireAdmin()||!editId)return;
+  const c=clients.find(x=>x.id===editId);if(!c)return;
+  const d=debt(c),payments=(c.payments||[]).length;
+  const warning=d>0||payments>0
+    ? `Este cliente tiene ${payments} pago(s) registrado(s)${d>0?' y un adeudo de '+money(d):''}.\n\nSe cancelará el servicio y pasará a INACTIVO. No se borrarán sus pagos, mensualidades ni historial.\n\nAsí podrás conservarlo para una futura reconexión. ¿Confirmas?`
+    : `¿Confirmas cancelar el servicio de ${c.name}?\n\nEl cliente quedará INACTIVO y conservará su registro.`;
+  if(!confirm(warning))return;
+  try{
+    const {error}=await supabaseClient.from('clients').update({active:false}).eq('id',editId);
+    if(error)throw error;
+    await cloudLoad();
+    closeModal('clientModal');
+    if(selectedCobrarId===editId){selectedCobrarId=null;renderCobrarList();renderCustomer()}
+    render();
+    alert('Servicio cancelado. El cliente quedó INACTIVO y su historial se conservó.');
+  }catch(e){alert('No se pudo cancelar el servicio: '+cloudError(e));}
+}
+
+async function hardDeleteClient(){
+  if(!requireAdmin()||!editId)return;
+  const c=clients.find(x=>x.id===editId);if(!c)return;
+  const payments=(c.payments||[]).length;
+  if(c.active)return alert('Primero cancela el servicio para poder eliminarlo definitivamente.');
+  if(payments>0)return alert('Este cliente tiene pagos registrados. No se puede eliminar definitivamente; mantenlo INACTIVO para conservar su historial.');
+  if(debt(c)>0)return alert('Este cliente todavía tiene adeudo. No se puede eliminar definitivamente; mantenlo INACTIVO para conservar su deuda e historial.');
+  const ok=confirm(`⚠️ ELIMINACIÓN DEFINITIVA\n\nSe borrará ${c.name} de la base de datos y ya no podrás recuperar su registro desde el portal.\n\nÚsalo únicamente para clientes de PRUEBA o registros duplicados.\n\n¿Continuar?`);
+  if(!ok)return;
+  try{
+    // Primero quitamos sus mensualidades generadas; no hay pagos porque arriba se verificó payments===0.
+    const {error:monthError}=await supabaseClient.from('client_months').delete().eq('client_id',editId);
+    if(monthError)throw monthError;
+    const {error}=await supabaseClient.from('clients').delete().eq('id',editId);
+    if(error)throw error;
+    await cloudLoad();
+    closeModal('clientModal');
+    if(selectedCobrarId===editId){selectedCobrarId=null;renderCobrarList();renderCustomer()}
+    render();
+    alert('Cliente de prueba eliminado definitivamente.');
+  }catch(e){alert('No se pudo eliminar definitivamente. Si Supabase protege este registro por relaciones, déjalo INACTIVO para conservarlo.\n\n'+cloudError(e));}
+}
+async function saveClient(){
+  if(!requireAdmin())return;
+  let name=fName.value.trim();if(!name)return alert('Escribe el nombre.');
+  const email=fEmail.value.trim().toLowerCase();
+  if(email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))return alert('Escribe un correo electrónico válido del cliente.');
+  const active=fActive.value==='1';
+  const sectorialId=fSectorial.value||null;
+  if(!validateSectorialAssignment(sectorialId,editId,active))return;
+  const row={
+    name,
+    phone:fPhone.value.replace(/\D/g,'').slice(-10),
+    email:email||null,
+    plan:fPlan.value==='350'?'10/2':fPlan.value==='500'?'20/5':'Personalizado',
+    price:Number(fPrice.value)||0,
+    active,
+    antenna:fAntenna.value.trim(),
+    address:fAddress.value.trim(),
+    notes:fNotes.value.trim(),
+    install_date:fInstall.value||null,
+    sectorial_id:sectorialId
+  };
+  try{
+    let id=editId;
+    if(editId){
+      const {error}=await supabaseClient.from('clients').update(row).eq('id',editId);
+      if(error)throw error;
+    }else{
+      const {data,error}=await supabaseClient.from('clients').insert(row).select('id').single();
+      if(error)throw error;
+      id=data.id;
+    }
+    await supabaseClient.rpc('ensure_nexu_current_month');
+    await cloudLoad();
+    closeModal('clientModal');render();
+    if(cobrarScreen.classList.contains('show')){selectedCobrarId=id;renderCobrarList();renderCustomer()}
+    alert(editId?'Cliente actualizado correctamente.':'Cliente agregado correctamente a la nube.');
+  }catch(e){alert('No se pudo guardar el cliente: '+cloudError(e));}
+}
+function openImport(){if(!requireAdmin())return;showModal('importModal')}
+function parseCSVLine(line){let out=[],cur='',q=false;for(let i=0;i<line.length;i++){let ch=line[i];if(ch==='"'){if(q&&line[i+1]==='"'){cur+='"';i++}else q=!q}else if(ch===','&&!q){out.push(cur.trim());cur=''}else cur+=ch}out.push(cur.trim());return out}
+async function importCSV(e){
+  if(!requireAdmin())return;
+  let file=e.target.files[0];if(!file)return;
+  let r=new FileReader();
+  r.onload=async()=>{
+    try{
+      let lines=r.result.replace(/^\uFEFF/,'').split(/\r?\n/).filter(Boolean);
+      let h=parseCSVLine(lines[0]).map(x=>x.toLowerCase()),ix=k=>h.indexOf(k),count=0;
+      for(let line of lines.slice(1)){
+        let a=parseCSVLine(line),name=a[ix('nombre')]||a[0];if(!name)continue;
+        const row={name,phone:(a[ix('whatsapp')]||'').replace(/\D/g,'').slice(-10),plan:a[ix('plan')]||'10/2',price:Number(a[ix('cuota')])||350,active:(a[ix('activo')]||'1')!=='0',address:a[ix('dirección')]||a[ix('direccion')]||'',install_date:a[ix('instalación')]||a[ix('instalacion')]||null,antenna:a[ix('antena')]||'',notes:''};
+        const {error}=await supabaseClient.from('clients').insert(row);if(error)throw error;count++;
+      }
+      await supabaseClient.rpc('ensure_nexu_current_month');
+      await cloudLoad();closeModal('importModal');render();alert('Importación terminada. '+count+' clientes guardados en la nube.');
+    }catch(err){alert('No se pudo completar la importación: '+cloudError(err));}
+  };
+  r.readAsText(file,'UTF-8');
+}
+function exportCSV(){if(!requireAdmin())return;let rows=[['Nombre','WhatsApp','Plan','Cuota','Activo','Dirección','Instalación','Antena','Adeudo']];clients.forEach(c=>rows.push([c.name,c.phone,c.plan,c.price,c.active?1:0,c.address,c.installDate,c.antenna,debt(c)]));let csv=rows.map(r=>r.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\n');download(new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8'}),'nexu_clientes.csv')}
+function backup(){if(!requireAdmin())return;download(new Blob([JSON.stringify({version:8,exportedAt:new Date().toISOString(),clients,cortes:JSON.parse(localStorage.getItem('nexu_cortes')||'[]'),users:users(),instalaciones:getInstalaciones(),reportes:getReportes(),sectoriales:loadSectors()},null,2)],{type:'application/json'}),'nexu_respaldo_cloud.json')}
+function restore(){if(!requireAdmin())return;let i=document.createElement('input');i.type='file';i.accept='.json';i.onchange=e=>{let r=new FileReader();r.onload=()=>{try{let d=JSON.parse(r.result);if(!Array.isArray(d.clients))throw 0;clients=d.clients.map(migrate);localStorage.setItem('nexu_cortes',JSON.stringify(d.cortes||[]));if(Array.isArray(d.users)&&d.users.length)saveUsers(d.users);if(Array.isArray(d.instalaciones))saveInstalaciones(d.instalaciones);if(Array.isArray(d.reportes))saveReportes(d.reportes);if(Array.isArray(d.sectoriales))saveSectorsData(d.sectoriales);save();render();updateQueueBadges();alert('Respaldo restaurado correctamente.')}catch(_){alert('Respaldo inválido.')}};r.readAsText(e.target.files[0])};i.click()}
+function download(blob,name){let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
+function showModal(id){document.getElementById(id).classList.add('show')}function closeModal(id){document.getElementById(id).classList.remove('show')}function closeScreen(id){const screen=document.getElementById(id);if(!screen)return;clearTimeout(screen.__closeTimer);screen.classList.add('leaving');screen.__closeTimer=window.setTimeout(()=>{if(screen.classList.contains('leaving'))screen.classList.remove('show','leaving')},220)}
+window.SEED_NAMES=["Mayte Monge", "Mayra Ayala", "Javier Cazares", "Daniela Belen Lopez", "David Ayala", "Erika Jazmin Galicia", "Jahir Morales", "Ana Laura Camacho", "Noemi Lopez C.", "Tomas Moctezuma", "Isabel Carmona", "Lorenzo Romero R.", "Jorge Ayala", "Luis Alberto Carmona", "Celia Sanchez Cazares", "Hodalys Ayala", "Irma Gutierrez", "Tereza Campos", "Abigail Aroche", "Francisco Javier", "Maria Maribel Ayala", "Misael Camacho", "Araceli Sanchez Rivas", "Ines Camacho Monge", "Maria Keidi Montes", "Aldo Rodrigo Lopez", "Fernanda Jimena Torres", "Eugenio Rosas Galicia", "Neyzer Galicia Escobar", "Mauro Monge Ayala", "Clara Lopez Ayala", "Ramon Moctezuma M", "Santa Aguilar Rivas", "Juan Antonio Vargas", "Maria Guadalupe Galicia", "Lorena Ramos Ayala", "Rosa Maria Reyes Ruiz", "Yatzelli Castillo", "Artemia Gutierrez", "Agustina Vergara", "Fernando Ayala G.", "Maria Elena Cazares", "Inocencio Monge", "Alondra Sanchez Galicia", "Leticia Ayala Camacho", "Ana Guadalupe Ocadiz", "Cirino Cazares", "Esthefane Lopez", "Indra Itzel Sanchez", "Leticia Rivera Ramirez", "Mario Alfredo", "Ramon Pineda", "Diana Itzel", "Victor Daniel Aroche", "Marlen Hernandez", "Ana Leticia Camacho", "Erika Liliana Lopez", "America Cristal", "Fredi David Gutierrez", "Basiliza Neri Flores", "Laura Ofelia Franco", "Cecilia Ayala Galicia", "Itzel Rubi Bobadilla", "Xochil Rubi Carmona", "Aldo Espinoza", "Naydelin Gutierrez", "Jorge Cazares Rivas", "Araceli Morales Sanchez", "Noemi Sanchez Anzures", "Fidel Monge Ayala", "Nayeli Monge Garcia", "Mariam Carmona Pineda", "Armando Junior Escobar", "Rogelia Galicia Sanchez", "Adalina Gutierrez Monge", "Diego German Valerio", "Anabel Sanchez Moc", "Armando Duvan", "Esmeralda Camacho M.", "Catalina Pizarro Escobar", "Gabriela Gallardo Anzures", "Sandra Elizabeth Cazares", "Juan Carlos Sanchez R", "Hugo Ayala Gutierrez", "Marta De La Torre Castro", "Luis Antonio Ayala Garcia", "Maria Paz Moctezuma A", "Floricela Sanchez Galicia", "Karen Rosas Franco", "Hodalys Gutierrez", "Yuliana Villalba Vargas", "Rodrigo Sanchez", "Raul Vargas Alcantar", "Dora Alejandra Garcia C.", "Aurelio Garcia Aguilar", "Esmeralda Anzures Yañez", "Brenda Anai Monge Ayala", "Noemi Sanchez Anzures F.", "Celia Pineda Najera", "Leticia Espinoza Galicia", "Angel Arturo Ayala", "Miguel Monge Yañez", "Chrystian Amaury Bernave", "Norma Sanchez Morales", "Anayeli Sanchez Gutierrez", "Alexander Sanchez C.", "Vicente Sanchez Galicia", "Ulices Israel Moctezuma", "Miriam Sanchez Cazares", "Sofia Sanchez Camacho", "Brayan Camacho F.", "Hortencia Estrada Lopez", "Rubi Denisse Ayala", "Jorge Luis Sanchez", "Jonathan Uriel Fonseca", "Tzayuna Sanchez", "Rosalva Gutierrez", "Suzana Colon", "Moyra Gatica Ayala", "O Fer Gabia", "Mercedes Ayala", "Ethel Alejandra Villalobos", "Imelda Ramos Ramos", "Epifania Yañez", "Alfonzo Ayala Sanchez", "Gustavo Sanchez", "Gloria Camacho Yañez", "Yessica Escobar", "Belem Ayala Pineda", "Dulce Morales Nestor", "Reyna Ayala", "Hernaldo Pineda", "Jonathan Alexis Sanchez", "Itzel Elizabeth Gutierrez", "Celia Sanchez (Casa)", "Claudia Moctezuma Rivas", "Alvaro Sanchez", "Liliana Monge", "Victor Hugo Trujillo", "Daniel Farias", "Maria del Rosario Sanchez", "Armando Uri Ayala", "Anayeli Vargas", "Luis Antonio Cazares", "Fernando Pineda", "Armando Aguilar", "Luis Javier Heredia", "Alma Yolanda", "Bertha", "Veronica Ayala", "Maria Elena Camacho", "Lorena Ayala", "Laura Yucan Zuniga", "Yoravet Jimenez", "Ximena Sanchez Anzures", "Luciana Arenas", "Mona del Carmen", "Fatima Isabel Garcia", "Adriana Garcia Pura", "Yuliza Sanchez", "Eder Lopez Ramos", "Laura Monse Ayala", "Elsa Ayala", "Maria Fernanda Sanchez", "Javier Sanchez", "Adriana Ayala Ayala", "Laura Fonseca Rivas", "Martha Patricia Flores", "Elizabeth Torres I", "Deysi Jazmin Gutierrez", "Mario Eloisa Flores", "Alfredo Maldonado", "Isabel Camacho Diaz", "Livia Rosas Rosas", "Oscar Monco Sarmiento", "Alejandro Escobar", "Noe Armando Monge", "German Lisandro Moc", "Melan Monserrat A", "Alejandro Cazares", "Maria Pilar Sanchez", "Marco Leonor Ayala", "Lucia Cazares", "Yasmith Sanchez", "Alma Gabriela Carmona"];
+const SECTOR_STORAGE='nexu_sectoriales_v1';
+const DEFAULT_SECTORS=[
+ {id:'s8',name:'Sectorial 8',posicion:'Magle',clients:16,zone:'Cerro'},
+ {id:'s18',name:'Sectorial 18',posicion:'',clients:18,zone:'Cerro'},
+ {id:'s10',name:'Sectorial 10',posicion:'',clients:19,zone:'Cerro'},
+ {id:'s1',name:'Sectorial 1',posicion:'Arriba',clients:15,zone:'Torre'},
+ {id:'s3',name:'Sectorial 3',posicion:'Izquierda',clients:18,zone:'Torre'},
+ {id:'s5',name:'Sectorial 5',posicion:'Abajo',clients:20,zone:'Torre'},
+ {id:'s4',name:'Sectorial 4',posicion:'Derecha',clients:16,zone:'Torre'},
+ {id:'s12',name:'Sectorial 12',posicion:'Derecha',clients:6,zone:'Torre'},
+ {id:'s2',name:'Sectorial 2',posicion:'Abajo',clients:13,zone:'Torre'},
+ {id:'s7',name:'Sectorial 7',posicion:'Central',clients:16,zone:'Torre'},
+ {id:'s6',name:'Sectorial 6',posicion:'Arriba',clients:11,zone:'Torre'},
+ {id:'s9',name:'Sectorial 9',posicion:'Derecha',clients:7,zone:'Torre'},
+ {id:'s11',name:'Sectorial 11',posicion:'Abajo',clients:5,zone:'Torre'},
+ {id:'s13',name:'Sectorial 13',posicion:'Extra',clients:2,zone:'Cerro'},
+ {id:'s17',name:'Sectorial 17',posicion:'',clients:null,zone:'Cerro'}
+];
+function loadSectors(){if(Array.isArray(window.__cloudSectors)&&window.__cloudSectors.length)return window.__cloudSectors;try{let d=JSON.parse(localStorage.getItem(SECTOR_STORAGE)||'null');return Array.isArray(d)?d:DEFAULT_SECTORS.map(x=>({...x}));}catch(e){return DEFAULT_SECTORS.map(x=>({...x}));}}
+function saveSectorsData(arr){localStorage.setItem(SECTOR_STORAGE,JSON.stringify(arr));}
+function openSectores(){if(!requireAdmin())return;renderSectores();showScreen('sectoresScreen');}
+function showScreen(id){const screen=document.getElementById(id);if(!screen)return;clearTimeout(screen.__closeTimer);screen.classList.remove('leaving');screen.classList.add('show')}
+function renderSectores(){
+ const arr=sectorialList();
+ const activos=clients.filter(c=>c.active).length;
+ const linkedTotal=clients.filter(c=>c.active&&c.sectorialId).length;
+ const sinSectorial=activos-linkedTotal;
+ const cerro=arr.filter(x=>x.zone==='Cerro').reduce((a,x)=>a+linkedSectorialCount(x.id),0);
+ const torre=arr.filter(x=>x.zone==='Torre').reduce((a,x)=>a+linkedSectorialCount(x.id),0);
+ const diff=activos-linkedTotal;
+ sectoresBody.innerHTML=`<div class="sectorGrid"><div><div class="sectorCards"><div class="sectorCard"><small>Clientes activos en el portal</small><strong>${activos}</strong><span class="muted">clientes reales activos</span></div><div class="sectorCard"><small>Clientes vinculados</small><strong>${linkedTotal}</strong><span class="muted">asignados a una sectorial</span></div><div class="sectorCard"><small>Sin sectorial</small><strong>${sinSectorial}</strong><span class="muted">pendientes de asignar</span></div><div class="sectorCard"><small>Cerro / Torre</small><strong>${cerro} / ${torre}</strong><span class="muted">clientes vinculados</span></div></div><div class="${diff===0?'sectorGood':'sectorWarn'}" style="margin-top:12px">${diff===0?'✅ Los clientes activos están vinculados a una sectorial.':'⚠️ Hay '+diff+' cliente(s) activo(s) sin sectorial asignada. Así podrás cuadrar exactamente tus clientes reales.'}</div><div class="panel"><h3>Clientes por sectorial</h3><div class="tableWrap"><table class="sectorTable"><thead><tr><th>Sectorial</th><th>Posición</th><th>Zona</th><th>Clientes activos</th><th>Estado</th></tr></thead><tbody>${arr.map((x)=>{const n=linkedSectorialCount(x.id),st=sectorialStatus(n);return `<tr class="${x.zone==='Cerro'?'sectorCerro':x.zone==='Torre'?'sectorTorre':'sectorUnknown'}"><td><b>${esc(x.name)}</b></td><td>${esc(x.position||x.posicion||'—')}</td><td class="sectorZone">${esc(x.zone||'')}</td><td><strong style="font-size:20px">${n}</strong><div class="muted">${Number.isFinite(Number(x.clients))?`Registrados: ${Number(x.clients)}`:'Sin cantidad previa'}</div></td><td><span class="pill ${st==='green'?'green':st==='yellow'?'orange':'red'}">${sectorialStatusLabel(n)}</span></td></tr>`}).join('')}</tbody></table></div><div class="notice" style="margin-top:12px">🟢 0–10: bien · 🟡 11–17: capacidad media · 🔴 18 o más: llena. Una sectorial con 18 clientes no permitirá agregar otro.</div><div class="toolbar" style="margin-top:12px"><button class="btn green" onclick="saveSectoriales()">💾 Guardar sectoriales</button><button class="btn light" onclick="resetSectoriales()">↩ Restaurar lista original</button></div></div></div><div><div class="panel"><h3>📊 Resumen</h3><p class="muted">Cada cliente activo puede quedar vinculado a una sectorial desde <b>Editar cliente</b>. El número de esta pantalla se calcula directamente de esos vínculos.</p><div class="notice">Clientes activos: <b>${activos}</b><br>Vinculados: <b>${linkedTotal}</b><br>Sin sectorial: <b>${sinSectorial}</b></div></div><div class="panel" style="margin-top:12px"><h3>🚦 Capacidad</h3><p class="muted">Cuando una sectorial llega a 18 clientes, queda en rojo y el portal bloquea nuevas asignaciones a esa sectorial.</p></div></div></div>`;
+}
+function updateSector(i,v){let arr=loadSectors();arr[i].clients=v===''?null:Number(v);window.__sectorsDraft=arr;}
+function saveSectoriales(){if(!requireAdmin())return;let arr=window.__sectorsDraft||loadSectors();saveSectorsData(arr);renderSectores();alert('Sectoriales guardadas correctamente.');}
+function resetSectoriales(){if(!requireAdmin())return;if(!confirm('¿Restaurar las cantidades originales registradas?'))return;window.__sectorsDraft=null;saveSectorsData(DEFAULT_SECTORS.map(x=>({...x})));renderSectores();}
+
+/* ==========================================================
+   NEXU CLOUD - Supabase
+   Project: ddfnrowhxsnyhqceglsm
+   ========================================================== */
+const NEXU_SUPABASE_URL='https://ddfnrowhxsnyhqceglsm.supabase.co';
+const NEXU_SUPABASE_KEY='sb_publishable_qb8lMFVg3ZJO3W2jrw0pxg_8k_NTVR5';
+const supabaseClient=window.supabase.createClient(NEXU_SUPABASE_URL,NEXU_SUPABASE_KEY);
+let cloudMode=true, cloudProfile=null, cloudReady=false;
+window.__cloudProfileMap={};
+
+function paymentEmployeeName(id){
+  if(!id) return 'Sin registrar';
+  const map=window.__cloudProfileMap||{};
+  if(map[id]) return map[id];
+  if(cloudProfile?.id===id) return cloudProfile.name||cloudProfile.email||'Usuario';
+  return 'Usuario';
+}
+
+function cloudError(err){ console.error('NEXU CLOUD',err); return err?.message||String(err||'Error de conexión'); }
+function cloudNotice(msg,ok=false){
+  let x=document.getElementById('cloudStatus');
+  if(!x){x=document.createElement('div');x.id='cloudStatus';x.style='position:fixed;right:14px;bottom:14px;z-index:9999;padding:10px 14px;border-radius:12px;background:#071a33;color:#fff;font:700 12px Arial;box-shadow:0 8px 24px #0003';document.body.appendChild(x)}
+  x.textContent=(ok?'☁️ ':'⚠️ ')+msg;x.style.background=ok?'#067647':'#b42318';
+  clearTimeout(window.__cloudTimer);window.__cloudTimer=setTimeout(()=>x.remove(),3500);
+}
+function setAuthTexts(mode){
+  const yearEl=document.getElementById('loginYear');if(yearEl)yearEl.textContent=String(new Date().getFullYear());
+  if(mode==='login'){
+    document.querySelector('#authOverlay h2').textContent='Telecomunicaciones TRON';
+    document.querySelector('#authOverlay p').textContent='Iniciar sesión .';
+    document.querySelector('#authOverlay label').textContent='Correo electrónico';
+    loginUser.type='email';loginUser.autocomplete='email';loginUser.placeholder='tu@correo.com';
+  } else {
+    document.querySelector('#setupOverlay h2').textContent='Crear administrador NEXU';
+    document.querySelector('#setupOverlay p').textContent='Primer acceso: crea la cuenta que administrará el portal en la nube.';
+    document.querySelectorAll('#setupOverlay .authField label')[0].textContent='Tu nombre';
+    document.querySelectorAll('#setupOverlay .authField label')[1].textContent='Correo electrónico';
+    setupUser.type='email';setupUser.autocomplete='email';setupUser.placeholder='tu@correo.com';
+  }
+}
+async function getCloudProfile(){
+  const {data:{user}}=await supabaseClient.auth.getUser();
+  if(!user) return null;
+  const {data,error}=await supabaseClient.from('profiles').select('*').eq('id',user.id).maybeSingle();
+  if(error) throw error;
+  if(!data){
+    console.warn('NEXU: el usuario autenticado no tiene un perfil visible en public.profiles. Revisa la fila del usuario y la política SELECT de profiles.');
+    return {id:user.id,name:user.email||'Usuario',username:user.email,role:'employee',active:true,email:user.email,_profileMissing:true};
+  }
+  /* NEXU supports the Spanish profile schema used by this project:
+     nombre / rol / activo. Normalize it to the internal names used by the UI. */
+  return {
+    ...data,
+    id:data.id||user.id,
+    name:data.name||data.nombre||user.email||'Usuario',
+    username:data.username||data.usuario||user.email,
+    role:data.role||data.rol||'employee',
+    active:data.active!==undefined ? data.active : (data.activo!==undefined ? data.activo : true),
+    email:user.email
+  };
+}
+function cloudIsAdmin(){
+  const r=String(cloudProfile?.role||'').toLowerCase();
+  return r==='admin' || r==='administrador';
+}
+function syncCurrentUser(){currentUser=cloudProfile?{id:cloudProfile.id,name:cloudProfile.name||cloudProfile.email||'Usuario',username:cloudProfile.username||cloudProfile.email,role:cloudIsAdmin()?'admin':'employee',active:cloudProfile.active!==false}:null;}
+
+async function createFirstAdmin(){
+  const name=setupName.value.trim(), email=setupUser.value.trim(), pass=setupPass.value, pass2=setupPass2.value;
+  if(!name||!email||!pass)return alert('Completa todos los campos.');
+  if(pass.length<8)return alert('La contraseña debe tener al menos 8 caracteres.');
+  if(pass!==pass2)return alert('Las contraseñas no coinciden.');
+  try{
+    const {data,error}=await supabaseClient.auth.signUp({email,password:pass});
+    if(error)throw error;
+    if(!data.session){alert('Cuenta creada. Si Supabase pide confirmar el correo, confirma el correo y después inicia sesión.');setAuthTexts('login');setupOverlay.style.display='none';authOverlay.style.display='flex';loginUser.value=email;return;}
+    const {error:rpcError}=await supabaseClient.rpc('bootstrap_nexu_admin',{p_name:name,p_username:email});
+    if(rpcError)throw rpcError;
+    cloudProfile=await getCloudProfile();syncCurrentUser();await cloudLoad();authOverlay.style.display='none';setupOverlay.style.display='none';updatePermissions();render();cloudNotice('NEXU conectado a la nube',true);
+  }catch(e){alert('No se pudo crear el administrador: '+cloudError(e));}
+}
+async function login(){
+  const email=(loginUser.value||'').trim(),pass=loginPass.value||'';
+  if(!email||!pass)return;
+  try{
+    const {error}=await supabaseClient.auth.signInWithPassword({email,password:pass});
+    if(error)throw error;
+    cloudProfile=await getCloudProfile();
+    if(cloudProfile?.active===false)throw new Error('Este usuario está desactivado.');
+    syncCurrentUser();
+    await cloudLoad();
+    authOverlay.style.display='none';setupOverlay.style.display='none';updatePermissions();render();updateQueueBadges();
+    if(cloudProfile?._profileMissing){
+      cloudNotice('NEXU conectado, pero falta el perfil visible en public.profiles.',false);
+    }else{
+      cloudNotice('NEXU conectado a la nube',true);
+    }
+  }catch(e){loginError.textContent=cloudError(e);loginError.style.display='block';}
+}
+async function logout(){await supabaseClient.auth.signOut();cloudProfile=null;currentUser=null;clients=[];authOverlay.style.display='flex';setAuthTexts('login');updatePermissions();}
+
+async function cloudLoad(){
+  cloudReady=false;
+  try{
+    const {error:monthErr}=await supabaseClient.rpc('ensure_nexu_current_month');
+    if(monthErr) console.warn('No se pudo asegurar mes actual:',monthErr.message);
+    const [cr,mr,sr,pr,ir,rr]=await Promise.all([
+      supabaseClient.from('clients').select('*').order('name'),
+      supabaseClient.from('client_months').select('*').order('period'),
+      supabaseClient.from('sectorials').select('*').order('name'),
+      supabaseClient.from('payments').select('*,payment_months(amount,client_month_id,client_months(period))').order('created_at',{ascending:false}),
+      supabaseClient.from('installations').select('*').order('created_at',{ascending:false}),
+      supabaseClient.from('service_reports').select('*').order('created_at',{ascending:false})
+    ]);
+    if(cr.error)throw cr.error;if(mr.error)throw mr.error;
+    if(sr.error)console.warn('Sectoriales:',sr.error.message);
+    if(pr.error)throw new Error('No se pudieron cargar los pagos: '+pr.error.message);
+    if(ir.error)console.warn('Instalaciones:',ir.error.message);
+    if(rr.error)console.warn('Reportes:',rr.error.message);
+    const months=mr.data||[], pays=pr.data||[];
+
+    // Los pagos guardan employee_id = auth.uid().
+    // El administrador puede consultar los perfiles mediante la RPC segura
+    // nexu_list_profiles y así mostrar el nombre real de quien cobró.
+    window.__cloudProfileMap={};
+    if(cloudIsAdmin()){
+      try{
+        const {data:profileRows,error:profileError}=await supabaseClient.rpc('nexu_list_profiles');
+        if(!profileError){
+          (profileRows||[]).forEach(u=>{
+            window.__cloudProfileMap[u.id]=u.nombre||u.name||u.username||'Usuario';
+          });
+        }else{
+          console.warn('No se pudieron cargar nombres de cobradores:',profileError.message);
+        }
+      }catch(e){
+        console.warn('No se pudieron cargar nombres de cobradores:',e);
+      }
+    }
+    if(cloudProfile?.id && !window.__cloudProfileMap[cloudProfile.id]){
+      window.__cloudProfileMap[cloudProfile.id]=cloudProfile.name||cloudProfile.email||'Usuario';
+    }
+
+    clients=(cr.data||[]).map(c=>{
+      const cm={};months.filter(m=>m.client_id===c.id).forEach(m=>cm[m.period.slice(0,7)]={id:m.id,charged:m.charged,paid:Number(m.paid||0),amount:Number(m.amount||c.price||0)});
+      const cp=pays.filter(p=>p.client_id===c.id && !p.voided).flatMap(p=>{
+        const allocations=Array.isArray(p.payment_months)?p.payment_months:[];
+        if(allocations.length){
+          return allocations.map(pm=>({
+            id:p.id,
+            date:p.created_at,
+            amount:Number(pm.amount||0),
+            method:p.method||'',
+            period:(pm.client_months?.period||'').slice(0,7),
+            registeredBy:paymentEmployeeName(p.employee_id||p.user_id||'')
+          }));
+        }
+        // Fallback: the payments table itself contains amount/client_id/method/created_at.
+        // This is also what the dashboard uses for "Cobrado hoy".
+        return [{
+          id:p.id,
+          date:p.created_at,
+          amount:Number(p.amount||0),
+          method:p.method||'',
+          period:p.created_at?String(p.created_at).slice(0,7):'',
+          registeredBy:paymentEmployeeName(p.employee_id||p.user_id||'')
+        }];
+      });
+      return migrate({id:c.id,name:c.name,phone:c.phone||'',plan:c.plan||'10/2',price:Number(c.price||0),active:c.active!==false,address:c.address||'',installDate:c.install_date||'',antenna:c.antenna||'',notes:c.notes||'',email:c.email||'',months:cm,payments:cp,sectorialId:c.sectorial_id||null});
+    });
+    window.__cloudSectors=(sr.data||[]).map(x=>({id:x.id,name:x.name,zone:x.zone||'',position:x.position||'',clients:x.client_count??null,notes:x.notes||''}));
+    window.__cloudInstallations=ir.data||[];window.__cloudReports=rr.data||[];window.__cloudPayments=pays||[];
+    cloudReady=true;
+    return true;
+  }catch(e){cloudReady=false;throw e;}
+}
+
+/* Replace local persistence with cloud persistence for the core collection data. */
+async function save(){ return true; }
+function load(){ return; }
+function paymentsAll(){return clients.flatMap(c=>(c.payments||[]).map(p=>({...p,client:c.name,clientId:c.id}))).sort((a,b)=>new Date(b.date)-new Date(a.date));}
+
+async function registerPayment(){
+  if(!cloudReady)return alert('El portal todavía no está conectado a la nube.');
+  let c=clients.find(x=>x.id===selectedCobrarId);if(!c)return;
+  let amt=Number(payAmount.value)||0,totalDebt=debt(c);
+  if(amt<=0)return alert('Escribe un monto válido.');
+  if(totalDebt<=0)return alert('Este cliente no tiene adeudo pendiente.');
+  if(amt>totalDebt)return alert('El monto no puede ser mayor al adeudo total de '+money(totalDebt)+'.');
+  const method=payMethod.value;
+  if(!confirm('Registrar '+money(amt)+' a '+c.name+' por '+method+'?'))return;
+  try{
+    const {error}=await supabaseClient.rpc('register_nexu_payment',{p_client_id:c.id,p_amount:amt,p_method:method,p_concept:'Cobranza mensual',p_notes:''});
+    if(error)throw error;
+    await cloudLoad();render();renderCobrarList();renderCustomer();renderCaja();renderTransfers();
+    alert('Pago registrado correctamente. Adeudo restante: '+money(debt(clients.find(x=>x.id===c.id)))+'.');
+  }catch(e){alert('No se pudo registrar el pago: '+cloudError(e));}
+}
+
+async function reverseCloudPayment(paymentId){
+  if(!cloudIsAdmin())return alert('Solo el administrador puede anular pagos.');
+  if(!confirm('¿Anular este pago? Esta acción revierte su aplicación a las mensualidades.'))return;
+  const {error}=await supabaseClient.rpc('void_nexu_payment',{p_payment_id:paymentId});
+  if(error)return alert('No se pudo anular: '+cloudError(error));
+  await cloudLoad();render();renderCaja();renderTransfers();alert('Pago anulado correctamente.');
+}
+
+/* Cloud sectorials */
+function loadSectors(){return window.__cloudSectors||[];}
+async function saveSectorsData(arr){
+  if(!cloudIsAdmin())return alert('Solo el administrador.');
+  for(const x of arr){const {error}=await supabaseClient.from('sectorials').update({name:x.name,zone:x.zone||'',position:x.position||'',client_count:x.clients,notes:x.notes||''}).eq('id',x.id);if(error)throw error;}
+  window.__cloudSectors=arr;return true;
+}
+function saveSectors(x){return saveSectorsData(x);}
+
+/* Keep installations/reports visible; write new records to cloud. */
+function getInstalaciones(){return window.__cloudInstallations||[];}
+function getReportes(){return window.__cloudReports||[];}
+async function saveInstalacion(){
+  let name=iName.value.trim();if(!name)return alert('Escribe el nombre del nuevo cliente.');
+  const row={name,phone:iPhone.value.replace(/\D/g,'').slice(-10),plan:iPlan.value,price:Number(iPrice.value)||350,requested_date:iDate.value||null,antenna:iAntenna.value.trim(),address:iAddress.value.trim(),notes:iNotes.value.trim(),status:'pending'};
+  try{const {error}=await supabaseClient.from('installations').insert(row);if(error)throw error;await cloudLoad();closeModal('instalacionModal');renderInstalaciones();updateQueueBadges();alert('Instalación guardada en la nube.');}catch(e){alert('No se pudo guardar: '+cloudError(e));}
+}
+
+
+async function openPlanRequests(){if(!requireAdmin())return;try{await renderPlanRequests();showScreen('planRequestsScreen')}catch(e){alert('No se pudieron cargar las solicitudes: '+cloudError(e))}}
+async function renderPlanRequests(){
+  const host=planRequestsBody;
+  const {data,error}=await supabaseClient.rpc('nexu_list_plan_requests');
+  if(error)throw error;
+  const plans=data||[];
+  const installs=getInstalaciones().filter(x=>String(x.status||'').toLowerCase()!=='instalado');
+  const planHtml=plans.length?plans.map(r=>`<div class="queueItem"><div class="queueTop"><div><div class="queueTitle">🔄 ${esc(r.client_name)}</div><div class="queueMeta">Plan actual: <b>${esc(r.current_plan)}</b> · Solicita: <b>${esc(r.requested_plan)}</b></div><div class="queueMeta">${new Date(r.created_at).toLocaleString('es-MX')}</div></div><span class="pill orange">Cambio de plan</span></div><div class="rowBtns" style="margin-top:9px"><button class="mini green" onclick="reviewPlanRequest('${r.id}',true)">✓ Aceptar</button><button class="mini red" onclick="reviewPlanRequest('${r.id}',false)">Rechazar</button></div></div>`).join(''):'<div class="empty">No hay cambios de plan pendientes.</div>';
+  const installHtml=installs.length?installs.map(r=>`<div class="queueItem"><div class="queueTop"><div><div class="queueTitle">🆕 ${esc(r.name||'Solicitud de instalación')}</div><div class="queueMeta">📱 ${esc(r.phone||'Sin WhatsApp')} · ${esc(r.plan||'—')} · ${money(r.price||0)}</div><div class="queueMeta">📍 ${esc(r.address||'Sin dirección')}</div><div class="queueMeta">📝 ${esc(r.notes||'Sin notas')}</div></div><span class="pill orange">Nueva instalación</span></div><div class="rowBtns" style="margin-top:9px"><button class="mini blue" onclick="openInstalacionModal('${r.id}')">Ver / editar</button><button class="mini green" onclick="convertInstalacion('${r.id}')">✓ Convertir en cliente</button></div></div>`).join(''):'<div class="empty">No hay solicitudes de instalación pendientes.</div>';
+  host.innerHTML=`<div class="panel"><h3>🆕 Solicitudes de instalación</h3>${installHtml}</div><div class="panel" style="margin-top:12px"><h3>🔄 Cambios de plan</h3>${planHtml}</div>`;
+  const badge=document.getElementById('planReqCount');const total=plans.length+installs.length;if(badge)badge.textContent=total?`(${total})`:'';
+}
+async function reviewPlanRequest(id,approve){if(!requireAdmin())return;if(!confirm(approve?'¿Aceptar el cambio de plan?':'¿Rechazar esta solicitud?'))return;try{const {error}=await supabaseClient.rpc('nexu_review_plan_request',{p_request_id:id,p_approve:approve});if(error)throw error;await cloudLoad();render();await renderPlanRequests();alert(approve?'Plan actualizado correctamente.':'Solicitud rechazada.')}catch(e){alert('No se pudo actualizar la solicitud: '+cloudError(e))}}
+
+/* Cloud status and safe boot */
+async function cloudBoot(){
+  setAuthTexts('login');
+  const {data:{session}}=await supabaseClient.auth.getSession();
+  if(session){
+    try{
+      cloudProfile=await getCloudProfile();
+      if(cloudProfile?.active===false)throw new Error('Usuario desactivado');
+      syncCurrentUser();
+      await cloudLoad();
+      authOverlay.style.display='none';
+      setupOverlay.style.display='none';
+      updatePermissions();
+      render();
+      updateQueueBadges();
+      if(cloudProfile?._profileMissing){
+        cloudNotice('NEXU conectado, pero el perfil administrativo no es visible en Supabase. Revisa public.profiles y sus permisos.',false);
+      }else{
+        cloudNotice('NEXU conectado a la nube',true);
+      }
+      return;
+    }catch(e){console.error(e);}
+  }
+
+  /* Production already has an administrator in Supabase.
+     Do not infer "first access" from profiles while unauthenticated:
+     RLS intentionally hides profiles from anonymous users, which can make
+     a real production account look like zero profiles on a new device. */
+  setAuthTexts('login');
+  setupOverlay.style.display='none';
+  authOverlay.style.display='flex';
+}
+
+/* Persistencia segura de mensualidades generadas en Supabase.
+   La versión local anterior solo modificaba clients en memoria porque save() está desactivado
+   en producción. Esta función guarda únicamente el registro de client_months seleccionado;
+   no toca clientes ni pagos. */
+async function toggleMonth(id,m){
+  if(!cloudIsAdmin())return alert('Esta función es exclusiva del administrador.');
+  const c=clients.find(x=>x.id===id);
+  if(!c)return;
+  const p=now();
+  if(m>p.m)return alert('No se pueden generar meses futuros.');
+  const period=key(p.y,m)+'-01';
+  const current=c.months?.[key(p.y,m)];
+  try{
+    if(current?.charged){
+      // Nunca borrar una mensualidad que ya tenga dinero aplicado.
+      if(Number(current.paid||0)>0)return alert('No se puede quitar esta mensualidad porque ya tiene un pago aplicado.');
+      if(!current.id)return alert('No se encontró el registro de esta mensualidad en la nube.');
+      const {error}=await supabaseClient.from('client_months').delete().eq('id',current.id);
+      if(error)throw error;
+    }else{
+      const {error}=await supabaseClient.from('client_months').upsert({
+        client_id:id,
+        period,
+        charged:true,
+        amount:Number(c.price||0),
+        paid:0
+      },{onConflict:'client_id,period'});
+      if(error)throw error;
+    }
+    await cloudLoad();
+    render();
+    renderCobrarList();
+    renderCustomer();
+  }catch(e){
+    alert('No se pudo guardar la mensualidad: '+cloudError(e));
+  }
+}
+
+/* Override local permission gate with cloud role. */
+function isAdmin(){return cloudIsAdmin();}
+function requireAdmin(){if(!cloudIsAdmin()){alert('Esta función es exclusiva del administrador.');return false}return true;}
+
+/* Avoid local seed generation: all production data comes from Supabase. */
+/* ===== Dashboard charts: read-only views of existing payments ===== */
+function renderPaymentCharts(){
+  const monthHost=document.getElementById('collectionChart'),methodHost=document.getElementById('methodChart');
+  if(!monthHost||!methodHost)return;
+  const records=paymentsAll().filter(p=>p&&p.date&&Number.isFinite(Number(p.amount))&&Number(p.amount)>0);
+  const clock=now(), monthTotals=Array(6).fill(0), monthLabels=[];
+  const monthFmt=new Intl.DateTimeFormat('es-MX',{month:'short',timeZone:NEXU_TIMEZONE});
+  const keyFmt=new Intl.DateTimeFormat('en-US',{year:'numeric',month:'2-digit',timeZone:NEXU_TIMEZONE});
+  const bucketKeys=[];
+  for(let i=5;i>=0;i--){const d=new Date(clock.y,clock.m-i,1);bucketKeys.push(`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`);monthLabels.push(monthFmt.format(d).replace('.',''));}
+  records.forEach(p=>{const d=new Date(p.date);if(Number.isNaN(d.getTime()))return;const parts=keyFmt.formatToParts(d),y=parts.find(x=>x.type==='year')?.value,m=parts.find(x=>x.type==='month')?.value,key=`${y}-${m}`,ix=bucketKeys.indexOf(key);if(ix>=0)monthTotals[ix]+=Number(p.amount)||0;});
+  const max=Math.max(...monthTotals,1),scaleTop=Math.ceil(max/4)||1,axisMax=scaleTop*4,chartW=540,chartH=238,left=54,right=520,top=14,bottom=190,plotH=bottom-top,step=(right-left)/6,barW=38;
+  const compact=n=>new Intl.NumberFormat('es-MX',{notation:'compact',maximumFractionDigits:1}).format(n);
+  let svg=`<svg class="barSvg" viewBox="0 0 ${chartW} ${chartH}" role="img" aria-label="Pagos recibidos en los últimos seis meses">`;
+  for(let i=0;i<=4;i++){const value=axisMax*(4-i)/4,y=top+plotH*i/4;svg+=`<line x1="${left}" y1="${y}" x2="${right}" y2="${y}" stroke="#e8eef1" stroke-width="1"/><text x="${left-8}" y="${y+4}" text-anchor="end" class="axisLabel">$${compact(value)}</text>`;}
+  monthTotals.forEach((value,i)=>{const h=value?Math.max(3,plotH*value/axisMax):0,x=left+step*i+(step-barW)/2,y=bottom-h,cx=x+barW/2;svg+=`<rect x="${x}" y="${value?y:bottom-2}" width="${barW}" height="${value?h:2}" rx="7" fill="url(#payBarGrad)" class="chartBar"><title>${esc(monthLabels[i])}: ${money(value)}</title></rect>`;if(value)svg+=`<text x="${cx}" y="${Math.max(top+10,y-7)}" text-anchor="middle" class="barValue">$${compact(value)}</text>`;svg+=`<text x="${cx}" y="${bottom+23}" text-anchor="middle" class="monthLabel">${esc(monthLabels[i])}</text>`;});
+  svg='<svg class="barSvg" viewBox="0 0 540 238" role="img" aria-label="Pagos recibidos en los últimos seis meses"><defs><linearGradient id="payBarGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2d9c91"/><stop offset="1" stop-color="#176d83"/></linearGradient></defs>'+svg.slice(svg.indexOf('>')+1)+'</svg>';
+  monthHost.innerHTML=records.length?svg:'<div class="chartEmpty"><span>▥</span><b>Sin movimientos todavía</b><small>La tendencia aparecerá cuando haya pagos registrados.</small></div>';
+  const methodTotals=new Map();records.forEach(p=>{const name=String(p.method||'Otro').trim()||'Otro';methodTotals.set(name,(methodTotals.get(name)||0)+Number(p.amount));});
+  const methods=[...methodTotals.entries()].sort((a,b)=>b[1]-a[1]),total=methods.reduce((sum,x)=>sum+x[1],0),colors=['#176d83','#2d9c91','#85c8aa','#e5a84b','#8093a4','#a3b5c0','#5971a5'];
+  const circle=2*Math.PI*67;let offset=0,donut=`<svg class="donutSvg" viewBox="0 0 220 220" role="img" aria-label="Distribución de pagos por método"><circle cx="110" cy="110" r="67" fill="none" stroke="#edf2f4" stroke-width="24"/>`;
+  methods.forEach((entry,i)=>{const len=total?circle*entry[1]/total:0;donut+=`<circle cx="110" cy="110" r="67" fill="none" stroke="${colors[i%colors.length]}" stroke-width="24" stroke-dasharray="${len} ${circle-len}" stroke-dashoffset="${-offset}" transform="rotate(-90 110 110)" class="donutSegment"><title>${esc(entry[0])}: ${money(entry[1])}</title></circle>`;offset+=len;});
+  donut+=`<text x="110" y="104" text-anchor="middle" class="donutCaption">TOTAL</text><text x="110" y="128" text-anchor="middle" class="donutTotal">${compact(total)}</text></svg>`;
+  const legend=methods.map((entry,i)=>`<div class="methodLegend"><span class="methodSwatch" style="--swatch:${colors[i%colors.length]}"></span><span class="methodName" title="${esc(entry[0])}">${esc(entry[0])}</span><b>${money(entry[1])}</b></div>`).join('');
+  methodHost.innerHTML=records.length?`<div class="donutLayout">${donut}<div class="methodLegendList">${legend}</div></div>`:'<div class="chartEmpty"><span>◉</span><b>Sin métodos para mostrar</b><small>Se mostrarán al registrarse pagos.</small></div>';
+  const countEl=document.getElementById('paymentCount');if(countEl)countEl.textContent=`${records.length} ${records.length===1?'movimiento':'movimientos'}`;
+}
+const renderDashboardBeforeCharts=render;
+function openClientes(){renderClientsDirectory();renderClientPaymentStatus();showScreen('clientesScreen')}
+function renderClientsDirectory(){const body=document.getElementById('directoryBody');if(!body)return;const q=(document.getElementById('directorySearch')?.value||'').trim().toLocaleLowerCase('es-MX'),f=document.getElementById('directoryFilter')?.value||'all';let rows=clients.filter(c=>{const n=String(c.name||'').toLocaleLowerCase('es-MX'),ph=String(c.phone||'').toLocaleLowerCase('es-MX'),d=debt(c);return(!q||n.includes(q)||ph.includes(q))&&(f==='all'||(f==='active'&&c.active)||(f==='inactive'&&!c.active)||(f==='debt'&&c.active&&d>0)||(f==='clear'&&c.active&&d<=0))});rows.sort((a,b)=>String(a.name||'').localeCompare(String(b.name||''),'es-MX'));const count=document.getElementById('directoryCount');if(count)count.textContent=`Mostrando ${rows.length} de ${clients.length} clientes`;body.innerHTML=rows.map(c=>{const sec=getSectorialById(c.sectorialId),d=debt(c);return `<tr><td><div class="name">${esc(c.name||'Sin nombre')}</div><div class="muted">${esc(c.phone||'Sin WhatsApp')}</div></td><td>${esc(c.plan||'—')}<div class="muted">${money(c.price||0)}/mes</div></td><td>${sec?`<b>${esc(sec.name)}</b><div class="muted">${esc(sec.zone||'')}</div>`:'<span class="muted">Sin asignar</span>'}</td><td><span class="pill ${!c.active?'gray':d>0?'orange':'green'}">${!c.active?'Inactivo':d>0?'Pendiente':'Al corriente'}</span></td><td class="money">${money(d)}</td><td><div class="rowBtns"><button class="mini ${d>0?'green':'blue'}" onclick="openCobrar('${c.id}')">${d>0?'Cobrar':'Ver cuenta'}</button>${isAdmin()?`<button class="mini blue" onclick="editClient('${c.id}')">Editar</button>`:''}</div></td></tr>`}).join('')||'<tr><td colspan="6" class="empty">No hay clientes que coincidan.</td></tr>'}
+function renderClientPaymentStatus(){const host=document.getElementById('clientStatusChart');if(!host)return;const p=now(),el=document.getElementById('clientStatusPeriod');if(el)el.textContent=`${MONTHS[p.m]} ${p.y}`;const active=clients.filter(c=>c.active),v={paid:0,pending:0,none:0};active.forEach(c=>{const m=md(c,p.m),amount=Number(m.amount??c.price??0),paid=Number(m.paid||0);if(!m.charged)v.none++;else if(Math.max(0,amount-paid)<=0)v.paid++;else v.pending++});const total=active.length,items=[{label:'Pagaron',key:'paid',n:v.paid},{label:'Pendientes',key:'pending',n:v.pending},{label:'Sin cargo',key:'none',n:v.none}],metrics=items.map(x=>`<div class="statusMetric ${x.key}"><span class="statusMetricDot"></span><div><small>${x.label}</small><strong>${x.n}</strong><span class="statusPercent">${total?Math.round(x.n/total*100):0}% de activos</span></div></div>`).join(''),segments=items.filter(x=>x.n>0).map(x=>`<span class="statusSegment ${x.key}" style="width:${total?x.n/total*100:0}%" title="${x.label}: ${x.n} cliente(s)"></span>`).join('');host.innerHTML=total?`<div class="statusMetrics">${metrics}</div><div class="statusBarWrap"><div class="statusBarLabel"><span>Distribución de ${total} clientes activos</span><b>${total}</b></div><div class="statusBar">${segments}</div></div>`:'<div class="chartEmpty"><span>◉</span><b>No hay clientes activos</b><small>El resumen del periodo se mostrará aquí.</small></div>'}render=function(){renderDashboardBeforeCharts();renderPaymentCharts();};
+/* ===== End dashboard charts ===== */
+updatePermissions();
+cloudBoot();
+<!-- sectorial-client-linking-2026-10-05 -->
+</script></body></html>
+
+
+
+
+
+
+
+
+
+
